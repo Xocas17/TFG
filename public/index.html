@@ -1,38 +1,169 @@
-<!DOCTYPE html>
-<html>
+<html lang="es">
+ 
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+    <title>SaludVital</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-    <!-- update the version number as needed -->
-    <script type="module" src="js/firebase/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script type="module" src="js/firebase/firebase-auth.js"></script>
-    <script type="module" src="js/firebase/firebase-database.js"></script>
-    <script type="module" src="js/firebase/firebase-firestore.js"></script>
-    <script type="module" src="js/firebase/firebase-functions.js"></script>
-    <script type="module" src="js/firebase/firebase-messaging.js"></script>
-    <script type="module" src="js/firebase/firebase-storage.js"></script>
-    <script type="module" src="js/firebase/firebase-analytics.js"></script>
-    <script type="module" src="js/firebase/firebase-remote-config.js"></script>
-    <script type="module" src="js/firebase/firebase-performance.js"></script>
-    <script type="module" src="js/firebase/firebaseconfig.js"></script>
+
+    <script src="js/firebase/firebase.js"></script>
+    <script src="js/firebase/firebaseconfig.js"></script>
+    <link href="css/global.css" rel="stylesheet">
     <script src="js/jquery.min.js"></script>
     <script src="js/materialize.min.js"></script>
+    <link href="css/materialize.css" rel="stylesheet">
+    <link href="css/materialize.min.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
+  </head>
+ 
+  <header>
+    <div id="spinner"
+      style="display:none !important;height: 100vh;width: 100vw;position: absolute;z-index: 10;background-color: white;">
+      <div id="spinner" class="spinner"></div>
+    </div>
+
+    <div style="display:block" id="header"></div>
     
 
-  </head>
-  <body>
+  </header>
 
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+  <main>
+    <div class="container" style="margin-top: 4vh !important">
+      <div class="row">
+        <div class="col s12">
+          <div class="card card-login">
+            <div class="card-content card-content-grande">
+              <center>
+                <img id="ipadimagen" class="ipadimagen" src="src/img/logo.png" />
+                <img id="docenteflota" style="display: none" class="ipadimagen logoflota2" src="img/class.svg" />
+              </center>
+
+              <div class="ipadpadding">
+                <!--<span style="margin-top:5vh" class="card-title center">Iniciar sesión</span>-->
+                <!--<form>-->
+             
+                <div class="input-field">
+                  <input id="email" type="email" class="validate" autocomplete="username" />
+                  <label id="idCorreo" for="email">Correo</label>
+                </div>
+                <div class="input-field">
+                  <input id="password" type="password" class="validate" autocomplete="current-password" />
+                  <label id="idContrasena" for="password">Contraseña</label>
+                </div>
+
+
+                <br />
+                <div>
+
+                  <button style="width: 100%;background-color: #2981b3;" onclick="toggleSignIn();" class="btn center zonaalumno" type="submit" id="quickstart-sign-in"
+                    value="Registro">
+                    Iniciar sesión
+                  </button>
+                  <a href="html/registro.html"><button style="margin-top: 5px; width: 100%;background-color: #2981b3;" class="btn center zonaalumno"
+                      type="submit" value="Registro" id="quickstart-sign-up">
+                      Regístrate
+                    </button></a>
+
+                  <!--<a href="#!" class="btn-flat">Volver</a>-->
+                </div>
+
+                <!--</form>-->
+
+                <div style="
+                      margin-top: 16px;
+                      text-align: center;
+                      text-decoration: underline;
+                      margin-top: 16px;
+                    ">
+                  <a id="idResetPassword" onclick="cambiarcontraseña()" style="
+                        font-weight: bold;
+                        margin-top: 20px;
+                        text-align: center;
+                        font-size: 1em;
+                        cursor: pointer;
+                      ">He olvidado mi contraseña</a>
+                </div>
+
+         
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+  </main>
+<script>
+  function toggleSignIn() {
 
+if (firebase.auth().currentUser) {
+  var current_user = firebase.auth().currentUser;
+  var email = document.getElementById("email").value;
+  email = email.toLowerCase();
+  var tipocuenta;
+  if (email.localeCompare(current_user.email) == 0) {
 
-  </body>
+ 
+  } else {
+    alert(
+      "Había una sesión iniciada de otro usuario, cerrando sesión, vuelva a loguearse"
+    );
+
+    firebase.auth().signOut();
+  }
+
+} else {
+  var email = document.getElementById("email").value;
+  email = email.toLowerCase();
+  var password = document.getElementById("password").value;
+  if (email.length < 4) {
+    alert("Introduce correo.");
+    return;
+  }
+  if (password.length < 4) {
+    alert("Introduce contraseña.");
+    return;
+  }
+  // Sign in with email and pass.
+  // [START authwithemail]
+
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then(function (user) {
+      // user signed in
+
+      var db = firebase.firestore();
+      var docRef = db.collection("usuarios").doc(email);
+      docRef.get().then(function (doc) {
+        if (doc && doc.exists) {
+          alert("Entras");
+
+          $("html").css("cursor", "default");
+          //}
+        }
+      });
+    })
+    .catch(function (error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+
+      if (errorCode === "auth/wrong-password") {
+        alert("Contraseña errónea.");
+      } else {
+        alert(errorMessage);
+      }
+      console.log(error);
+      document.getElementById("quickstart-sign-in").disabled = false;
+    });
+
+  // [END authwithemail]
+}
+$("html").css("cursor", "progress");
+document.getElementById("quickstart-sign-in").disabled = true;
+}
+</script>
+
 </html>
