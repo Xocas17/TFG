@@ -16,14 +16,11 @@
     <link href="../css/materialize.min.css" rel="stylesheet">
     <script src="../js/jquery.min.js"></script>
     <script src="../js/jquery.js"></script>
-
+    <script src="../js/registro.js"></script>
   </head>
  
   <header>
-    <div id="spinner" style="display:none !important;height: 100vh;width: 100vw;position: absolute;z-index: 10;background-color: white;">
-      <div id="spinner" class="spinner" ></div>
-    </div>
-  <div style="display: none" id="header"></div> 
+
   </header>
 
 
@@ -33,15 +30,15 @@
     <div class="container" style="margin-top: 4vh !important;">
       <div class="row">
         <div class="col s12 ">
-          <div class="card card-login">
-            <div class="card-content card-content-grande">
+          <div class="card">
+            <div class="card-content">
               <center>
-                <img id="ipadimagen" class="ipadimagen"  src="../src/img/logo.png">
+                <img id="logoFoto" src="../src/img/logo.png">
               </center>
         
                 <div class="row">
                   <div class="input-field col s6">
-                    <input id="email" type="email" class="validate" autocomplete="username">
+                    <input id="email" type="email" class="validate">
                     <label id="idCorreo" for="email">Correo</label>
                   </div>
                   <div class="input-field col s6">
@@ -88,7 +85,7 @@
                     <label id="idEdad" for="edad">Edad</label>
                   </div>
                   <div class="input-field col s6">
-                  <select id="pais">
+                  <select onchange="comprobarPais()" id="pais">
                     <option value="" selected="selected">Seleccionar País</option> 
                     <option value="Afghanistan">Afghanistan</option> 
                     <option value="Albania">Albania</option> 
@@ -332,7 +329,7 @@
                     </select>
                   <label>País</label>
                   </div>
-                  <div class="input-field col s6">
+                  <div id="divProvincia" style="display: none;" class="input-field col s6">
                     <select id="provincia">
                       <option value=""  selected>Selecciona Provincia</option>
                       <option id="p1" value="A Coruña">A Coruña</option>
@@ -392,12 +389,12 @@
                     </div>
                 </div>
                     
-                    <button style="margin-top: 5px;width:100%" class="btn center zonaalumno" type="submit" id="quickstart-sign-up" onclick="handleSignUp();" value="Registro">Confirmar registro</button>
+                    <button style="background-color: #2981b3;margin-top: 5px;width:100%" class="btn center" type="submit" onclick="handleSignUp();" value="Registro">Confirmar registro</button>
                     <div style="
                     text-align: center;
                     margin-top: 16px;
                     margin-bottom: 16px;"> 
-                      <a id="idBackToLogin" href="./index.html"  style="margin-bottom: 16px;font-weight:bold;margin-top:10px;text-align:center;font-size: 1em;cursor: pointer;">
+                      <a id="idBackToLogin" href="../index.html"  style="margin-bottom: 16px;font-weight:bold;margin-top:10px;text-align:center;font-size: 1em;cursor: pointer;">
                         Ya tienes una cuenta? Inicia Sesión
                       </a>
                     </div>
@@ -409,176 +406,10 @@
 
 
 
-                <script>
-                $(document).ready(function(){
-                  var select = document.getElementById("pais")
-                  M.FormSelect.init(select);
-                  var select = document.getElementById("provincia")
-                  M.FormSelect.init(select);  
-                  var select = document.getElementById("perfil")
-                  M.FormSelect.init(select);
-                  console.log("db",db)
-                });
-  
-                function handleSignUp() {
- 
+         
 
-                  setTimeout(function () {
-                    $("#spinner").fadeIn("slow", function () {
-                      // Animation complete.
-                    });
-                  }, 300);
-
-                  var correo1 = document.getElementById("email").value.toLowerCase();
-                  var correo2 = document.getElementById("correo2").value.toLowerCase();
-
-                  if (correo2 != correo1) {
-                    alert("Los correos no coinciden, evite usar copiar y pegar");
-                    setTimeout(function () {
-                      $("#spinner").fadeOut("slow", function () {
-                        // Animation complete.
-                      });
-                    }, 100);
-                    return;
-                  }
-                  else{
-                    if (/^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/.test(correo1)){
-                     
-                      } else {
-                      alert("La dirección de email es incorrecta.");
-                      return;
-                      }
-                  }
-
-                  var contra1= document.getElementById("password").value;
-                  var contra2=document.getElementById("confirmPassword").value;
-                  if(contra1!==contra2){
-                    alert("Las contraseñas no coinciden");
-                    return;
-                  }
-                  var usuario = document.getElementById("usuario").value;
-                  var db = firebase.firestore();
-                  var docRef = db.collection("usuarios").where("nombreUsuario","==",usuario);
-                  var existe=false;
-                  docRef.get().then(function (querySnapshot){
-                      querySnapshot.forEach(function(doc){
-                        existe=true;
-                      });
-                  }).then(function(){
-
-                  if(existe==true){
-                    alert("Ya existe ese nombre de usuario");
-                    return;
-                  }
-                  var nombre = document.getElementById("nombre").value;
-                  var apellidos = document.getElementById("apellidos").value;
-               
-                  var perfil = document.getElementById("perfil").value;
-                  var altura = document.getElementById("altura").value;
-                  var edad = document.getElementById("edad").value;
-                  var pais = document.getElementById("pais").value;
-                  var provincia = document.getElementById("provincia").value;
-                  var peso = document.getElementById("peso").value;
-                  var metrosCuadrados = (altura*altura)/10000;
-                  var imc = metrosCuadrados/peso;
-
-
-                  if(nombre.length<=1){
-                    alert("Debes introducir un nombre válido");
-                    return;
-                  }
-                  if(apellidos.length<=1){
-                    alert("Debes introducir un nombre válido");
-                    return;
-                  }
-
-                  if(peso.includes(",")){
-                    alert("El separador decimal es '.'");
-                    return;
-                  }
-                  if(edad<18){
-                    alert("Debes ser mayor de edad");
-                    return;
-                  }
-                  if(edad>130){
-                    alert("Debes introducir una edad válida");
-                    return;
-                  }
-                  if(altura<50||altura>250){
-                    alert("Debes introducir una altura válida");
-                    return;
-                  }
-                  
-                  firebase
-                    .auth()
-                    .createUserWithEmailAndPassword(correo1, contra1)
-                    .then(
-                      function (user) {
-                        //location.href='./continuarregistro.html';
-                        var user = firebase.auth().currentUser;
-                        //logUser(user);
-
-                        var uid2 = user.uid;
-                        var db = firebase.firestore();
-                    
-                        db.collection("usuarios")
-                          .doc(user.email)
-                          .set({
-                            correo: correo1,
-                            identificador: uid2,
-                            usuario,
-                            nombre,
-                            apellidos,
-                            perfil,
-                            altura,
-                            edad,
-                            pais,
-                            provincia,
-                            peso,
-                            imc
-                          })
-                          .then(function () {
-                            setTimeout(function () {
-                              $("#spinner").fadeOut("slow", function () {
-                                alert("Hecho")
-                              });
-                            }, 100);
-
-                           
-                        
-                          
-                          })
-                          .catch(function (error) {
-                            console.error("Error writing document: ", error);
-                          });
-
-                        //location.href='./continuarregistro.html';
-                      },
-                      function (error) {
-                        // Handle Errors here.
-                        var errorboton2 = "1";
-                        var errorCode = error.code;
-                        var errorMessage = error.message;
-                        // [START_EXCLUDE]
-                        if (errorCode == "auth/weak-password") {
-                          alert("The password is too weak.");
-                          setTimeout(function () {
-                            $("#spinner").fadeOut("slow", function () {
-                              // Animation complete.
-                            });
-                          }, 100);
-                          return
-                        } else {
-                          alert(errorMessage);
-                        }
-                        console.log(error);
-                        // [END_EXCLUDE]
-                      }
-                    );
-                  }); 
-          }
    
-                </script>
+                
             </div>
           </div>
         </div>

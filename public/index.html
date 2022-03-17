@@ -15,16 +15,10 @@
     <link href="css/materialize.css" rel="stylesheet">
     <link href="css/materialize.min.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
+    <script src="js/index.js"></script>
   </head>
  
   <header>
-    <div id="spinner"
-      style="display:none !important;height: 100vh;width: 100vw;position: absolute;z-index: 10;background-color: white;">
-      <div id="spinner" class="spinner"></div>
-    </div>
-
-    <div style="display:block" id="header"></div>
-    
 
   </header>
 
@@ -32,11 +26,11 @@
     <div class="container" style="margin-top: 4vh !important">
       <div class="row">
         <div class="col s12">
-          <div class="card card-login">
-            <div class="card-content card-content-grande">
+          <div class="card">
+            <div class="card-content">
               <center>
-                <img id="ipadimagen" class="ipadimagen" src="src/img/logo.png" />
-                <img id="docenteflota" style="display: none" class="ipadimagen logoflota2" src="img/class.svg" />
+                <img id="logoFoto" src="src/img/logo.png" />
+
               </center>
 
               <div class="ipadpadding">
@@ -44,11 +38,11 @@
                 <!--<form>-->
              
                 <div class="input-field">
-                  <input id="email" type="email" class="validate" autocomplete="username" />
+                  <input id="email" type="email" class="validate"/>
                   <label id="idCorreo" for="email">Correo</label>
                 </div>
                 <div class="input-field">
-                  <input id="password" type="password" class="validate" autocomplete="current-password" />
+                  <input id="password" type="password" class="validate"/>
                   <label id="idContrasena" for="password">Contraseña</label>
                 </div>
 
@@ -56,14 +50,8 @@
                 <br />
                 <div>
 
-                  <button style="width: 100%;background-color: #2981b3;" onclick="toggleSignIn();" class="btn center zonaalumno" type="submit" id="quickstart-sign-in"
-                    value="Registro">
-                    Iniciar sesión
-                  </button>
-                  <a href="html/registro.html"><button style="margin-top: 5px; width: 100%;background-color: #2981b3;" class="btn center zonaalumno"
-                      type="submit" value="Registro" id="quickstart-sign-up">
-                      Regístrate
-                    </button></a>
+                  <button style="width: 100%;background-color: #2981b3;" onclick="toggleSignIn();" class="btn center" type="submit" id="quickstart-sign-in">Iniciar sesión</button>
+                  <a href="html/registro.html"><button style="margin-top: 5px; width: 100%;background-color: #2981b3;" class="btn center" type="submit">Regístrate</button></a>
 
                   <!--<a href="#!" class="btn-flat">Volver</a>-->
                 </div>
@@ -95,75 +83,6 @@
       </div>
     </div>
   </main>
-<script>
-  function toggleSignIn() {
 
-if (firebase.auth().currentUser) {
-  var current_user = firebase.auth().currentUser;
-  var email = document.getElementById("email").value;
-  email = email.toLowerCase();
-  var tipocuenta;
-  if (email.localeCompare(current_user.email) == 0) {
-
- 
-  } else {
-    alert(
-      "Había una sesión iniciada de otro usuario, cerrando sesión, vuelva a loguearse"
-    );
-
-    firebase.auth().signOut();
-  }
-
-} else {
-  var email = document.getElementById("email").value;
-  email = email.toLowerCase();
-  var password = document.getElementById("password").value;
-  if (email.length < 4) {
-    alert("Introduce correo.");
-    return;
-  }
-  if (password.length < 4) {
-    alert("Introduce contraseña.");
-    return;
-  }
-  // Sign in with email and pass.
-  // [START authwithemail]
-
-  firebase
-    .auth()
-    .signInWithEmailAndPassword(email, password)
-    .then(function (user) {
-      // user signed in
-
-      var db = firebase.firestore();
-      var docRef = db.collection("usuarios").doc(email);
-      docRef.get().then(function (doc) {
-        if (doc && doc.exists) {
-          alert("Entras");
-
-          $("html").css("cursor", "default");
-          //}
-        }
-      });
-    })
-    .catch(function (error) {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-
-      if (errorCode === "auth/wrong-password") {
-        alert("Contraseña errónea.");
-      } else {
-        alert(errorMessage);
-      }
-      console.log(error);
-      document.getElementById("quickstart-sign-in").disabled = false;
-    });
-
-  // [END authwithemail]
-}
-$("html").css("cursor", "progress");
-document.getElementById("quickstart-sign-in").disabled = true;
-}
-</script>
 
 </html>
