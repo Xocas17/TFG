@@ -60,6 +60,7 @@ var docRef = db.collection("usuarios").doc(email);
 docRef.get().then(function (doc) {
   if (doc && doc.exists) {
     $("html").css("cursor", "default");
+    location.href="./html/menuPrincipal.html"
     //}
   }
 });

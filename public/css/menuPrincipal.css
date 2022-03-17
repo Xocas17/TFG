@@ -1,0 +1,46 @@
+
+   .service {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    display:flex !important;
+  }
+  .card {
+    transition: 0.5s;
+    background: #eee;
+    height: 100% !important;
+    cursor:pointer;
+  }
+  .card h5 {
+    padding: 10px 0px;
+    color:#2981b3;
+  }
+  .card:hover i,
+  h5 {
+    color: #2981b3;
+  }
+  
+  .service .card:hover {
+    transform: scale(1.03);
+    background: #fff;
+  }
+  h4{
+    font-family: 'Montserrat';
+    font-weight: bold;
+    color:#2981b3;
+  }
+  .container .service{
+      display:flex
+  }
+  body{
+      background-image: url("../src/img/logoFTO.png");
+      background-repeat: no-repeat;
+      background-position: center bottom;
+      background-attachment: fixed;
+      background-size: 40%;
+      
+
+  }
