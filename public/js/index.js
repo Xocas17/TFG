@@ -14,7 +14,8 @@ if (correo.length <=1) {
 
 }
 function toggleSignIn() {
-
+document.getElementById("divSpinner").style.display="flex";
+document.getElementById("divContainer").style.display="none";
 $("html").css("cursor", "progress");
 console.log("Entra1");
 if (firebase.auth().currentUser) {
