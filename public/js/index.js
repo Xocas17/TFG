@@ -14,17 +14,22 @@ if (correo.length <=1) {
 
 }
 function toggleSignIn() {
+
 $("html").css("cursor", "progress");
+console.log("Entra1");
 if (firebase.auth().currentUser) {
 var current_user = firebase.auth().currentUser;
 var email = document.getElementById("email").value;
 email = email.toLowerCase();
 var tipocuenta;
+console.log("Entra2");
 if (email.localeCompare(current_user.email) == 0) {
-
+  console.log("Entrauno")
+  $("html").css("cursor", "default");
+  location.href="./html/menuPrincipal.html"
 
 } else {
-
+  console.log("Entrados")
 alert(
 "Había una sesión iniciada de otro usuario, cerrando sesión, vuelva a loguearse"
 );
