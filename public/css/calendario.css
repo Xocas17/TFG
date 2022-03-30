@@ -1,0 +1,41 @@
+.fc-event{
+  cursor: pointer;
+}
+    @media only screen and (max-width: 601px) {
+      #idmain {
+        margin-top: 0px !important;
+      }
+    }
+
+    .container .row .col {
+      align-items: center;
+      width: 100%;
+    }
+
+    .container .row .col .card {
+      margin: 0px auto;
+      align-items: center;
+    }
+
+    h4 {
+      padding: 5vh;
+      margin: 0px auto;
+      text-align: center;
+    }
+    #boton-perfil {
+      margin: 0px auto;
+      align-items: center;
+    }
+
+    #boton-perfil .btn {
+      margin: 0px auto;
+      position: relative;
+      display: block;
+      width: 30%;
+      margin-bottom: 4vh;
+      text-align: center;
+      line-height: auto !important;
+      height: fit-content;
+      border-radius: 1em;
+      padding: 5px 20px;
+    }

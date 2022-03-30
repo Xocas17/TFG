@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width"> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="description" content="">
+    <title>Generar evento</title>
+    <link href="css/jqvmap.css" rel="stylesheet">
+    <link href="css/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
+    <link href="css/admin-materialize.min.css" rel="stylesheet">
+    <link href="css/icon.css" rel="stylesheet">
+    <link href="css/calendario.css" rel="stylesheet">
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
+	<script src="js/firebase.js"></script>
+
+<!-- this, preferably, goes inside head element: -->
+<!--[if lt IE 9]>
+<script type="text/javascript" src="./js/firmas/libs/flashcanvas.js"></script>
+<![endif]-->
+<script src="js/firebaseconfig.js"></script>
+<script>
+
+  const app = firebase.app();
+  const storage = app.storage();
+  var db = firebase.firestore();
+  
+
+
+
+
+	</script>
+	<script src="js/blob-util.min.js"></script>
+	<style>
+		
+		.linearoja
+		{
+		border-bottom: 1px solid #F44336 !important;
+		box-shadow: 0 1px 0 0 #F44336 !important;
+		}
+
+		.select-wrapper{
+  			width: 11em;
+		}
+		@media (max-width: 600px) {
+		
+		.div80
+		{
+		width:80%;
+		}
+		.div20
+		{
+		position: relative;
+		top: -1.5em;
+		}
+		
+		.paddinmovil
+		{
+			padding-bottom: 6em !important;
+		}
+		
+		.marginmoviltop
+		{
+			margin-top: 8px;
+		}
+		
+		.marginmoviltop2
+		{
+			margin-top: 1.35em !important;
+		}
+	
+		
+		}
+		
+		[type="checkbox"].filled-in:disabled:not(:checked)+span:not(.lever):after{border-color:ff9e61;background-color:#949494}
+		
+		[type="checkbox"].filled-in:disabled:not(:checked)+span:not(.lever):after {
+		background-color: #fff !important;
+		border-color: #ff9e61 !important;
+		}
+			
+		[type="checkbox"].filled-in:disabled:checked+span:not(.lever):after 
+		{
+			background-color: #2bbbad !important;
+			border-color: #ff9e61 !important;
+		}
+
+	
+
+		.settings-group {
+			margin-bottom: 30px;
+		}
+
+	
+		
+		canvas
+		{
+			border: 1px solid #ccc!important;
+			border-radius:15px;
+			/*min-height:30vh;*/
+		}
+	
+	
+	</style>
+	
+  </head>
+  <body>
+    <header>
+		<a class='dropdown-trigger estiloboton' href='#' data-target='dropdown1' style="display:block;width:28px;height:28px;z-index:99"> 
+			<i id="iconovisiblemenu" class="large material-icons" style="font-size: 2em;color:black;" >more_vert</i>
+		</a>
+		<img style="display:none" class="logoflota" src="img/logo-anetva.svg">	  
+	  
+	  	<!-- Dropdown Structure -->
+		  <div class="fixed-action-btn" style="top:0px !important; right:12px !important;">
+			<a onclick="window.history.back();" class="btn-floating btn-large red colorvolver">
+				<i class="large material-icons" style="font-size: 2.2rem;">arrow_back</i>
+			</a>
+		</div> 
+
+	    <div id="dropdown1" class="dropdown-content notifications">
+        	<div class="notifications-title">notifications</div>
+				<div class="card">
+					<div class="card-content"><span class="card-title">Joe Smith made a purchase</span>
+						<p>Content</p>
+					</div>
+					<div class="card-action"><a href="#!">view</a><a href="#!">dismiss</a></div>
+				</div>
+				<div class="card">
+					<div class="card-content"><span class="card-title">Daily Traffic Update</span>
+						<p>Content</p>
+					</div>
+					<div class="card-action"><a href="#!">view</a><a href="#!">dismiss</a></div>
+				</div>
+				<div class="card">
+					<div class="card-content"><span class="card-title">New User Joined</span>
+						<p>Content</p>
+					</div>
+					<div class="card-action"><a href="#!">view</a><a href="#!">dismiss</a></div>
+				</div>
+      	</div>
+      	<div id="chat-dropdown" class="dropdown-content dropdown-tabbed">
+			<ul class="tabs tabs-fixed-width">
+			<li class="tab col s3"><a href="#settings">Settings</a></li>
+			<li class="tab col s3"><a href="#friends" class="active">Friends</a></li>
+			</ul>
+			<div id="settings" class="col s12">
+				<div class="settings-group">
+					<div class="setting">Night Mode
+					<div class="switch right">
+						<label>
+						<input type="checkbox"><span class="lever"></span>
+						</label>
+					</div>
+					</div>
+					<div class="setting">Beta Testing
+					<label class="right">
+						<input type="checkbox"><span></span>
+					</label>
+					</div>
+				</div>
+			</div>
+			<div id="friends" class="col s12">
+			<ul class="collection flush">
+				<li class="collection-item avatar">
+				<div class="badged-circle online"><img src="img/portrait1.jpg" alt="avatar" class="circle"></div><span class="title">Jane Doe</span>
+				<p class="truncate">Lo-fi you probably haven't heard of them</p>
+				</li>
+				<li class="collection-item avatar">
+				<div class="badged-circle"><img src="img/portrait2.jpg" alt="avatar" class="circle"></div><span class="title">John Chang</span>
+				<p class="truncate">etsy leggings raclette kickstarter four dollar toast</p>
+				</li>
+				<li class="collection-item avatar">
+				<div class="badged-circle"><img src="img/portrait3.jpg" alt="avatar" class="circle"></div><span class="title">Lisa Simpson</span>
+				<p class="truncate">Raw denim fingerstache food truck chia health goth synth</p>
+				</li>
+			</ul>
+			</div>
+      	</div>
+    </header> 
+    <main>
+      <div id="calendario" class="row">
+        <div class="col s12 m12">
+          <h2 style="text-align: center">Generador de eventos</h2>
+    
+          <!--Add buttons to initiate auth sequence and sign out-->
+          <button id="authorize_button" style="display: none; margin-left: auto; margin-right: auto"
+            class="waves-effect waves-light btn">
+            Autorizar
+          </button>
+          <button id="signout_button" style="display: none; margin-left: auto; margin-right: auto"
+            class="waves-effect waves-light btn">
+            Salir
+          </button>
+    
+          <!--Zona de edición-->
+    
+          <div>
+            <div class="input-field col s12">
+							<select id="centro">
+								<option value=""  >Selecciona Centro</option>
+								<option id="0" value="Barcelona" selected>Barcelona</option>
+								<option id="1" value="Bilbao">Bilbao</option>
+								<option id="2" value="Granada">Granada</option>
+								<option id="3" value="La Linea de la Concepcion">La Línea de la Concepción</option>
+								<option id="4" value="Las Palmas">Las Palmas de G.C</option> 
+								<option id="5" value="Lugo">Lugo</option> 
+								<option id="6" value="Madrid">Madrid</option>  
+								<option id="7" value="Oaxaca">Oaxaca-México</option>  
+								<option id="8" value="Pamplona">Pamplona</option>  
+								<option id="9" value="Redondela">Redondela(Pontevedra)</option>  
+								<option id="10" value="Santomera">Santomera(Murcia)</option>  
+								<option id="11" value="Valencia">Valencia</option> 
+								<option id="12" value="Valladolid">Valladolid</option>  
+							  </select>
+              <label>Elegir Centro de formación</label>
+              
+            </div>
+            <div class="input-field col s12">
+              <select id="modulo">
+                <option value=""  >Selecciona Módulo</option>
+                <option id="0" value="Of-Basic">Of-Basic</option>
+                <option id="1" value="Of-II">Of-II</option>
+                <option id="2" value="Of-III">Of-III</option>
+                <option id="3" value="Reciclaje Of-Basic">Reciclaje Of-Basic</option>
+                <option id="4" value="Reciclaje Of-II">Reciclaje Of-II</option> 
+                <option id="5" value="Reciclaje Of-III">Reciclaje Of-III</option> 
+              </select>
+              <label>Elegir Modalidad</label>
+              
+            </div>
+            <div class="input-field col s6">
+              <select id="selectFormador">
+              </select>
+              <label>Elegir formador</label>
+            </div>
+
+            <div class="input-field col s6">
+              <select id="selectEvaluador">
+              </select>
+              <label>Elegir evaluador</label>
+            </div>
+            <div class="input-field col s12" id="divInputCentro" style="display:none;" >
+              <input type="text" id="inputCentro"/>
+              <label for="inputCentro" onclick="$('#inputCentro').trigger('click')">Indica Centro On Training</label>
+            </div>
+            <div id="fechainicio" class="col m6 l-bord" style="display:block;">
+              <label>Fecha inicio</label>
+              <input type="text" class="datepicker" id="from" onchange="recomponerFecha();"  />
+            </div>
+    
+            <div id="fechafin" class="col m6 l-bord" style="display:block;">
+              <label>Fecha fin</label>
+              <input type="text" class="datepicker" id="to" />
+            </div>
+
+            <div id="horainicio" class="col m6 l-bord" style="display:block;">
+              <label>Hora inicio</label>
+              <input type="text" class="timepicker" id="from1" />
+            </div>
+    
+            <div id="horafin" class="col m6 l-bord" style="display:block;">
+              <label>Hora fin</label>
+              <input type="text" class="timepicker" id="to1" onchange="comprobarHoras();"/>
+            </div>
+
+          <button onclick="comprobarCampos();" id="recogerDatos" style="
+              display: block;
+              margin-left: auto;
+              margin-right: auto;
+              margin-bottom: 20px;
+            " class="waves-effect waves-light btn">
+            Generar Evento
+          </button>
+    
+          <button id="actualizarEvento" style="
+              display: none;
+              margin-left: auto;
+              margin-right: auto;
+              margin-bottom: 20px;
+            " class="waves-effect waves-light btn">
+            Actualizar Evento
+          </button>
+    
+ 
+
+          <label id="etiquetaCheckEnviarCalendario" >
+            <input id="checkEnviarCalendario"  type="checkbox" class="filled-in" checked="checked" />
+            <span style="margin-left: auto; margin-right: auto;">Enviar al calendario</span>
+          </label>
+    
+      
+    
+          <div class="input-field col s12" id="listadoEventosActualizar" style="display:none; padding-top: 10px; ">
+            <select id="divListadoEventosActualizar" style="padding-top: 20px;" >
+                <option value="" disabled selected>Evento</option>
+            </select>
+            <label style="padding-top: 10px; ">Selecciona un Evento</label>
+          </div>      
+    
+        </div>
+      </div>
+  </div>
+
+
+
+	
+  </div>
+  
+
+  
+ 
+  
+
+ 
+
+</div>
+
+    </main><!-- Scripts -->
+<script src="js/jquery.min.js"></script>
+
+<script src="js/moment.min.js"></script>
+
+<!-- External libraries -->
+
+<!-- jqvmap -->
+<script type="text/javascript" src="js/jqvmap/jquery.vmap.min.js"></script>
+<script type="text/javascript" src="js/jqvmap/jquery.vmap.world.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/jqvmap/jquery.vmap.sampledata.js"></script>
+
+<!-- ChartJS -->
+<script type="text/javascript" src="js/Chart.js"></script>
+<script type="text/javascript" src="js/Chart.Financial.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/fullcalendar.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+<script src="js/imagesloaded.pkgd.min.js"></script>
+<script src="js/masonry.pkgd.min.js"></script>
+<script src="js/materialize.min.js"></script>
+
+<!-- Initialization script -->
+ <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<!--<script src="js/admin.js"></script>-->
+    <script src="js/init.js"></script>
+	<script type="text/javascript" src="js/firebaselogin.js"></script>
+
+	
+
+	
+	
+	
+	
+	<script>
+
+    function recomponerFecha(){
+      var finicio= $('#from').val();
+      var date= new Date(finicio);
+
+      // SET OPTIONS FOR TO DATEPICKER
+      var optionsTo = {
+      autoclose: true,
+      minDate: date,
+      };
+
+      var $to = $("#to").datepicker(optionsTo);
+    }
+    var emailFormadorGlobal;
+    var emeailEvaluadorGlobal;
+
+	firebase.auth().onAuthStateChanged(function(user) {
+    rellenarFormadores();
+    rellenarEvaluadores();
+        if (user) {
+          user_mail=user.email;
+          var db = firebase.firestore();
+          var docRef = db.collection("usuarios").doc(user.email);
+          docRef.get().then(function(doc) {
+            if(doc && doc.exists) {
+              var myDatausuario = doc.data();
+              var admin = myDatausuario.admin;
+              if(admin==0 || typeof admin == "undefined"){
+                window.location.href = "./prohibido.html"
+              }
+
+            }
+          });
+        }else{
+          window.location.href = "./prohibido.html"
+        }
+      });
+  function comprobarHoras(){
+    var hinicio = $('#from1').val();
+    var hfin= $('#to1').val();
+
+    var h1= hinicio.split();
+    var h2= hfin.split();
+
+    if(h1[0]>=h2[0]){
+      if(h1[0]==h2[0]){
+        if(h1[0]>h2[1]){
+        var toastHTML = '<span class="btn-flat">Establezca una hora de finalización mayor que la de inicio"</span>';
+        M.toast({ html: toastHTML, classes: 'red lighten-3' }, 300);
+        return;
+        }
+      }
+      else{
+        var toastHTML = '<span class="btn-flat">Establezca una hora de finalización mayor que la de inicio"</span>';
+        M.toast({ html: toastHTML, classes: 'red lighten-3' }, 300);
+        return;
+      }
+
+    }
+  }
+  function comprobarCampos(){
+         // SET OPTIONS FOR FROM DATEPICKER
+
+    var centro = $('#centro').val();
+    var modulo =$('#modulo').val();
+    var formador =$('#selectFormador').val();
+    var evaluador = $('#selectEvaluador').val();
+    var finicio= $('#from').val();
+    var ffin=  $('#to').val();
+    var hinicio = $('#from1').val();
+    var hfin= $('#to1').val();
+
+    
+    if(centro==""){
+      var toastHTML = '<span class="btn-flat">Seleccione un centro"</span>';
+      M.toast({ html: toastHTML, classes: 'red lighten-3' }, 300);
+      return;
+    }
+    if(modulo==""){
+      var toastHTML = '<span class="btn-flat">Selecione un curso de la lista"</span>';
+      M.toast({ html: toastHTML, classes: 'red lighten-3' }, 300);
+      return;
+    }
+    if(formador==""){
+      var toastHTML = '<span class="btn-flat">Selecione un formador de la lista"</span>';
+      M.toast({ html: toastHTML, classes: 'red lighten-3' }, 300);
+      return;
+    }
+    if(evaluador==""){
+      var toastHTML = '<span class="btn-flat">Selecione un evaluador de la lista"</span>';
+      M.toast({ html: toastHTML, classes: 'red lighten-3' }, 300);
+      return;
+    }
+    
+    if(finicio==""){
+      var toastHTML = '<span class="btn-flat">Establezca una fecha de inicio"</span>';
+      M.toast({ html: toastHTML, classes: 'red lighten-3' }, 300);
+      return;
+    }
+    else{
+
+    }
+    if(ffin==""){
+      var toastHTML = '<span class="btn-flat">Establezca uan fecha de fin"</span>';
+      M.toast({ html: toastHTML, classes: 'red lighten-3' }, 300);
+      return;
+    }
+    if(hinicio==""){
+      var toastHTML = '<span class="btn-flat">Establezca una hora de inicio"</span>';
+      M.toast({ html: toastHTML, classes: 'red lighten-3' }, 300);
+      return;
+    }
+    else{
+      console.log(parseInt($('#from1').val()));
+    }
+    if(hfin==""){
+      var toastHTML = '<span class="btn-flat">Establezca una hora de fin"</span>';
+      M.toast({ html: toastHTML, classes: 'red lighten-3' }, 300);
+      return;
+    }
+    else{
+      comprobarHoras();
+    }
+   
+    var nombreDocumento="" +$('#modulo').val() +"_"+$('#centro').val() +"_" +$('#from').val();
+    var db = firebase.firestore();
+    var fTimeStamp= new Date(finicio);
+    fTimeStamp =fTimeStamp.valueOf();
+    console.log("Paso 1");
+    db.collection("registroCalendario")
+          .doc(nombreDocumento)
+          .set({
+            centro: centro,
+            modulo: modulo,
+            formador: formador,
+            evaluador: evaluador,
+            fechaInicioTS: fTimeStamp,
+            fechaInicio: finicio,
+            fechaFin: ffin,
+            horaInicio: hinicio,
+            horaFin: hfin,
+          })
+          .then(function () {
+            setTimeout(function () {
+              $("#spinner").fadeOut("slow", function () {
+                // Animation complete.
+              });
+            }, 100);
+            
+            console.log("Paso 2");
+              db = firebase.firestore();
+              console.log("Correof",emailFormadorGlobal);
+              db.collection("usuarios").doc(emailFormadorGlobal).update({
+              modulosEnCurso: firebase.firestore.FieldValue.arrayUnion(nombreDocumento)
+
+
+            }).then(function() {
+
+            })
+            
+              var dbs = firebase.firestore();
+              console.log("Dbs",dbs);
+              console.log("Correo",emailEvaluadorGlobal);
+              dbs.collection("evaluadores").doc(emailEvaluadorGlobal).update({
+              modulosEnCurso: firebase.firestore.FieldValue.arrayUnion(nombreDocumento)
+            }).then(function() {
+
+            })
+            console.log("Paso 4");
+            var toastHTML = '<span class="btn-flat"> Evento creado con éxito </span>';
+    M.toast({ html: toastHTML, classes: 'green lighten-3' }, 800);
+  
+           
+          })
+ 
+      //var docRef3 = db3.collection("asistencia/${correo}/${fechac[2]}").doc(fechac[1]+fechac[0]).where("curso", "==", "Trabajo en alturas");
+}
+
+function rellenarEvaluadores(){
+  var docRef = db.collection("evaluadores");
+var select = document.getElementById("selectEvaluador");
+docRef.get().then(function (querySnapshot) {
+                    querySnapshot.forEach(function (doc) { 
+                      const myData = doc.data(); 
+                      var option;
+                      option = document.createElement('option');
+                      option.value = myData.nombreCompleto;
+                      option.text = myData.nombreCompleto;
+                      if (typeof select !== "undefined") {
+                         select.add( option ); 
+                        emailEvaluadorGlobal= myData.email;
+                        }
+                  
+
+                    });
+                    M.FormSelect.init(select);  
+                });
+}
+function rellenarFormadores(){
+
+  console.log("Entras")
+var docRef = db.collection("usuarios").where("tipoCuenta","==","formador");
+var select = document.getElementById("selectFormador");
+docRef.get().then(function (querySnapshot) {
+                    querySnapshot.forEach(function (doc) { 
+                      const myData = doc.data(); 
+                      var option;
+                      option = document.createElement('option');
+                      option.value = myData.nombre +" " + myData.apellidos;
+                      option.text = myData.nombre +" " + myData.apellidos;
+                      if (typeof select !== "undefined") { 
+                        select.add( option );
+                        emailFormadorGlobal = myData.correo;
+                      }
+                    });
+                    M.FormSelect.init(select);  
+                }
+                
+                );
+
+
+           
+
+}
+
+	$(document).ready(function(){
+    var date = new Date();
+    console.log("Date",date)
+    var optionsFrom = {
+    autoclose: true,
+    minDate: date,
+    };
+    var $from = $("#from").datepicker(optionsFrom);
+    $('.timepicker').timepicker({
+      twelveHour : false
+    });
+    $('.collapsible').collapsible({
+      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+    });
+  
+  
+  });
+
+
+</script>
+
+
+<div class="sidenav-overlay" style="display: none; opacity: 0;"></div><div class="drag-target"></div></body></html>
