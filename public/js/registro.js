@@ -5,7 +5,6 @@ $(document).ready(function(){
   M.FormSelect.init(select);  
   var select = document.getElementById("perfil")
   M.FormSelect.init(select);
-  console.log("db",db)
 });
 function comprobarPais(){
   var pais= document.getElementById("pais").value;
@@ -71,8 +70,8 @@ function handleSignUp() {
   var provincia = document.getElementById("provincia").value;
   var peso = document.getElementById("peso").value;
   var metrosCuadrados = (altura*altura)/10000;
-  var imc = metrosCuadrados/peso;
-
+  var imc = peso/metrosCuadrados;
+  
 
   if(nombre.length<=1){
     $("html").css("cursor", "default");

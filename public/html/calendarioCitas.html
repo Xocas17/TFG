@@ -15,591 +15,200 @@
     <link href="../css/materialize.min.css" rel="stylesheet">
     <script src="../js/jquery.min.js"></script>
     <script src="../js/jquery.js"></script>
-    <script src="../js/calendarioCitas.js"></script>
+
     <link href='../js/fullcalendarjs/lib/main.css' rel='stylesheet' />
     <script src='../js/fullcalendarjs/lib/main.js'></script>
     <script src='../js/fullcalendarjs/lib/locales/es.js'></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+         
 
   </head>
   <body class="11has-fixed-sidenav">
     <header>
-      <div class="fixed-action-btn" style="top:0px !important; right:20px !important;">
-        <a href="perfil.html" class="btn-floating btn-large hse-floating-action-button">
+      <div class="fixed-action-btn" style="bottom:90px !important; right:30px !important;">
+        <a href="menuPrincipal.html" class="btn-floating btn-large">
           <i class="large material-icons" style="font-size: 2.2rem;">arrow_back</i>
         </a>
       </div>
-      <div id="botonCentro" class="fixed-action-btn" style="bottom: 100px !important; display:none;" >
-  <a class="btn-floating btn-large red colorvolver">
-    <i class="large material-icons">location_city</i>
-  </a>
-  <ul style="left: -200px !important;">
-  
-    <li>
-      <a onclick="recargarCalendar('TODOS','0');" id="botonTODOS" class="btn-floating btn-large teal" style="width: 258px;border-radius: 10px;background-color: #26a69a!important;">
-          <span style="bottom: 5px;position: relative;">TODOS </span>
-       </a>
-     </li>
-    <li>
-	 <a onclick="recargarCalendar('ONSITE','0');" id="botonONSITE" class="btn-floating btn-large teal" style="width: 258px;border-radius: 10px;background-color: #26a69a!important;">
-       <span style="bottom: 5px;position: relative;">OnSite </span>
-    </a>
-	</li>
-    <li>
-	 <a onclick="recargarCalendar('CHILE','0');" id="boton" class="btn-floating btn-large teal" style="width: 258px;border-radius: 10px;background-color: #26a69a!important;">
-      <span style="bottom: 5px;position: relative;">Chile </span>
-    </a>
-	</li>
-    <li>
-	 <a onclick="recargarCalendar('GALICIA','0');" id="buttonpay" class="btn-floating btn-large teal" style="width: 258px;border-radius: 10px;background-color: #26a69a!important;">
-       <span style="bottom: 5px;position: relative;">Galicia</span>
-    </a>
-	</li>
-	    <li>
-	     <a onclick="recargarCalendar('SEVILLA','0');" id="button" class="btn-floating btn-large teal" style="width: 258px;border-radius: 10px;background-color: #26a69a!important;">
-        <span style="bottom: 5px;position: relative;">Sevilla</span>
-    </a>
-	</li>
-	    <li>
-	    <a onclick="recargarCalendar('NAVARRA','0');" id="buttonfirmas" class="btn-floating btn-large teal" style="width: 258px;border-radius: 10px;background-color: #26a69a!important;">
-        <span style="bottom: 5px;position: relative;">Navarra</span>
-    </a>
-	</li>
-
-    <li>
-	    <a onclick="recargarCalendar('CANARIAS','0');"  class="btn-floating btn-large teal" style="width: 258px;border-radius: 10px;background-color: #26a69a!important;">
-      <span style="bottom: 5px;position: relative;">Canarias</span>
-    </a>
-	</li>
-
-
-    <li>
-	    <a onclick="recargarCalendar('COSTARICA','0');" class="btn-floating btn-large teal" style="width: 258px;border-radius: 10px;background-color: #26a69a!important;">
-<span style="bottom: 5px;position: relative;">Costa Rica</span>
-    </a>
-	</li>
-  
-
-
-
-  </ul>
-</div>
-
-      <div class="fixed-action-btn" style="bottom:18px !important; right:20px !important;">
-        <a onclick="modalOpen('#modal2');" class="btn-floating btn-large hse-floating-action-button">
+      <div class="fixed-action-btn" style="bottom:18px !important; right:30px !important;">
+        <a onclick="modalOpen('#modal2');" class="btn-floating btn-large">
           <i class="large material-icons" style="font-size: 2.2rem;">add</i>
         </a>
       </div>
-      <img style="display: none" class="logoflota hse-logo-src" />
-      <img
-        id="docenteflota"
-        style="display: none; left: 65px !important"
-        class="logoflota2"
-        src="img/class.svg"
-      />
+
     </header>
     <main id="idmain">
       <div id='calendar'></div>
       <div id="modal" class="modal">
         <div class="modal-content">
           <div id="modal_h1"></div>
-          <span style="font-weight: bold" id="tituloEdicion"></span><br>
-          <span id="descriEdicion"></span>
+          <span style="font-weight: bold" id="tituloCita"></span><br>
+          <span id="descriCita"></span>
         </div>
         <div class="modal-footer">
-
-          <a class="btn" style="color:white !important" onclick="borrarEdicion(); ">Borrar edición</a>
-          <a class="btn" style="color:white !important" onclick="$('#modal').modal('close'); ">Cerrar</a>
+          <a class="btn" style="color:white !important" onclick="abrirCita();">Modificar cita</a>
+          <a class="btn" style="color:white !important" onclick="eliminarCita();">Borrar cita</a>
+          <a class="btn" style="color:white !important" onclick="modalClose('#modal')">Cerrar</a>
         </div>
-        <textarea style="display:none;margin:10px;" placeholder="Introduce aquí la nueva descripción corta" id="textNotas"></textarea>
-        <a class="btn" id="btnNotas" style="display:none;margin:8px;float:right;color:white !important" onclick="cambiarNotas(); ">Modificar descripción corta</a>
         </div>
-        <div id="modal2" class="modal" style="height: 100%;width:85% !important;">
-          <div class="modal-content" style="height:100%">
-            <iframe style="position:relative; display:block; width: 100%; height:100%;" src="./calendariomini.html" title="Calendario">
-            </iframe>
-            <div id="modal_h1"></div>
-            <span style="font-weight: bold" id="tituloEdicion"></span><br>
-            <span id="descriEdicion"></span>
+        <div id="modal2" class="modal" style="height: 50%;width:50% !important;">
+          <div class="modal-content" style="height:0%">
+            <div class="row">
+              <center><h3>Introducir Cita</h3></center>
+              <div class ="input-field col s6">
+                <select class="select" id="especialidad">
+                  <option value="ALERGOLOGÍA" selected>ALERGOLOGÍA</option>
+                  <option value="ANATOMÍA PATOLÓGICA">ANATOMÍA PATOLÓGICA</option>
+                  <option value="ANESTESIOLOGÍA Y REANIMACIÓN" >ANESTESIOLOGÍA Y REANIMACIÓN</option>
+                  <option value="ANGIOLOGÍA Y CIRUGÍA VASCULAR" >ANGIOLOGÍA Y CIRUGÍA VASCULAR</option>
+                  <option value="APARATO DIGESTIVO" >APARATO DIGESTIVO</option>
+                  <option value="CARDIOLOGÍA" >CARDIOLOGÍA</option>
+                  <option value="CIRUGÍA CARDIOVASCULAR" >CIRUGÍA CARDIOVASCULAR</option>
+                  <option value="CIRUGÍA GENERAL" >CIRUGÍA GENERAL</option>
+                  <option value="CIRUGÍA DEL APARATO DIGESTIVO" >ALERGOLOGÍA</option>
+                  <option value="CIRUGÍA ORAL Y MAXILOFACIAL" >CIRUGÍA ORAL Y MAXILOFACIAL</option>
+                  <option value="CIRUGÍA ORTOPÉDICA" >CIRUGÍA ORTOPÉDICA</option>
+                  <option value="CIRUGÍA PEDIÁTRICA" >CIRUGÍA PEDIÁTRICA</option>
+                  <option value="CIRUGÍA PLÁSTICA, ESTÉTICA Y REPARADORA" >CIRUGÍA PLÁSTICA, ESTÉTICA Y REPARADORA</option>
+                  <option value="CIRUGÍA TORÁCICA" >CIRUGÍA TORÁCICA</option>
+                  <option value="DERMATOLOGÍA" >DERMATOLOGÍA</option>
+                  <option value="ENDOCRINOLOGÍA Y NUTRICIÓN" >ENDOCRINOLOGÍA Y NUTRICIÓN</option>
+                  <option value="FARMACOLOGÍA CLÍNICA" >FARMACOLOGÍA CLÍNICA</option>
+                  <option value="GERIATRÍA" >GERIATRÍA</option>
+                  <option value="HEMATOLOGÍA Y HEMOTERAPIA" >HEMATOLOGÍA Y HEMOTERAPIA</option>
+                  <option value="INMUNOLOGÍA" >INMUNOLOGÍA</option>
+                  <option value="MEDICINA DEL TRABAJO" >MEDICINA DEL TRABAJO</option>
+                  <option value="MEDICINA FAMILIAR Y COMUNITARIA" >MEDICINA FAMILIAR Y COMUNITARIA</option>
+                  <option value="MEDICINA FÍSICA Y REHABILITACIÓN" >MEDICINA FÍSICA Y REHABILITACIÓN</option>
+                  <option value="MEDICINA INTENSIVA" >MEDICINA INTENSIVA</option>
+                  <option value="MEDICINA INTERNA" >MEDICINA INTERNA</option>
+                  <option value="MEDICINA NUCLEAR" >MEDICINA NUCLEAR</option>
+                  <option value="MEDICINA PREVENTIVA Y SALÚD PÚBLICA" >MEDICINA PREVENTIVA Y SALÚD PÚBLICA</option>
+                  <option value="NEFROLOGÍA" >NEFROLOGÍA</option>
+                  <option value="NEUMOLOGÍA" >NEUMOLOGÍA</option>
+                  <option value="NEUROCIRUGÍA" >NEUROCIRUGÍA</option>
+                  <option value="NEUROFISIOLOGÍA CLÍNICA" >NEUROFISIOLOGÍA CLÍNICA</option>
+                  <option value="OBSTETRICIA Y GINECOLOGÍA" >OBSTETRICIA Y GINECOLOGÍA</option>
+                  <option value="OFTALMOLOGÍA" >OFTALMOLOGÍA</option>
+                  <option value="ONCOLOGÍA MÉDICA" >ONCOLOGÍA MÉDICA</option>
+                  <option value="ONCOLOGÍA RADIOTERÁPICA" >ONCOLOGÍA RADIOTERÁPICA</option>
+                  <option value="OTORRINOLARINGOLOGÍA" >OTORRINOLARINGOLOGÍA</option>
+                  <option value="PEDIATRÍA" >PEDIATRÍA</option>
+                  <option value="PSIQUIATRA" >PSIQUIATRA</option>
+                  <option value="RADIODIAGNÓSTICO" >RADIODIAGNÓSTICO</option>
+                  <option value="REUMATOLOGÍA" >REUMATOLOGÍA</option>
+                  <option value="TRAUMATOLOGÍA" >TRAUMATOLOGÍA</option>
+                  <option value="UROLOGÍA" >UROLOGÍA</option>
+                  </select>
+                  <label>Especialidad</label>
+              </div>
+              <div class="input-field col s6">
+                <input id="fechaPicker" style="cursor:pointer" type="text" class="datepicker">
+                <label>Fecha Cita</label>
+              </div>
+              <div class="input-field col s6">
+                <input id="timePicker" style="cursor:pointer" type="text" class="timepicker">
+                <label>Hora Cita</label>
+              </div>
+                <div class ="input-field col s6">
+                  <select class="select" id="periodicidad">
+                    <option value="false" selected>Sin periodicidad</option>
+                    <option value="true">Periódica</option>
+                    </select>
+                    <label>Establecer periodicidad de la cita</label>
+                </div>
+            
           </div>
           <div class="modal-footer">
-            <a class="btn" style="color:white !important" onclick="$('#modal2').modal('close'); ">Cancelar</a>
+            <a class="btn" style="color:white !important" onclick="añadirCita();">Añadir</a>
+            <a class="btn" style="color:white !important" onclick="modalClose('#modal2')">Cancelar</a>
           </div>
+         </div>
+         </div>
+         <div id="modal3" class="modal" style="height: 50%;width:50% !important;">
+          <div class="modal-content" style="height:0%">
+            <div class="row">
+              <center><h3>Modificar Cita</h3></center>
+              <div class ="input-field col s6">
+                <select class="select" id="especialidadMod">
+                  <option value="ALERGOLOGÍA" selected>ALERGOLOGÍA</option>
+                  <option value="ANATOMÍA PATOLÓGICA">ANATOMÍA PATOLÓGICA</option>
+                  <option value="ANESTESIOLOGÍA Y REANIMACIÓN" >ANESTESIOLOGÍA Y REANIMACIÓN</option>
+                  <option value="ANGIOLOGÍA Y CIRUGÍA VASCULAR" >ANGIOLOGÍA Y CIRUGÍA VASCULAR</option>
+                  <option value="APARATO DIGESTIVO" >APARATO DIGESTIVO</option>
+                  <option value="CARDIOLOGÍA" >CARDIOLOGÍA</option>
+                  <option value="CIRUGÍA CARDIOVASCULAR" >CIRUGÍA CARDIOVASCULAR</option>
+                  <option value="CIRUGÍA GENERAL" >CIRUGÍA GENERAL</option>
+                  <option value="CIRUGÍA DEL APARATO DIGESTIVO" >ALERGOLOGÍA</option>
+                  <option value="CIRUGÍA ORAL Y MAXILOFACIAL" >CIRUGÍA ORAL Y MAXILOFACIAL</option>
+                  <option value="CIRUGÍA ORTOPÉDICA" >CIRUGÍA ORTOPÉDICA</option>
+                  <option value="CIRUGÍA PEDIÁTRICA" >CIRUGÍA PEDIÁTRICA</option>
+                  <option value="CIRUGÍA PLÁSTICA, ESTÉTICA Y REPARADORA" >CIRUGÍA PLÁSTICA, ESTÉTICA Y REPARADORA</option>
+                  <option value="CIRUGÍA TORÁCICA" >CIRUGÍA TORÁCICA</option>
+                  <option value="DERMATOLOGÍA" >DERMATOLOGÍA</option>
+                  <option value="ENDOCRINOLOGÍA Y NUTRICIÓN" >ENDOCRINOLOGÍA Y NUTRICIÓN</option>
+                  <option value="FARMACOLOGÍA CLÍNICA" >FARMACOLOGÍA CLÍNICA</option>
+                  <option value="GERIATRÍA" >GERIATRÍA</option>
+                  <option value="HEMATOLOGÍA Y HEMOTERAPIA" >HEMATOLOGÍA Y HEMOTERAPIA</option>
+                  <option value="INMUNOLOGÍA" >INMUNOLOGÍA</option>
+                  <option value="MEDICINA DEL TRABAJO" >MEDICINA DEL TRABAJO</option>
+                  <option value="MEDICINA FAMILIAR Y COMUNITARIA" >MEDICINA FAMILIAR Y COMUNITARIA</option>
+                  <option value="MEDICINA FÍSICA Y REHABILITACIÓN" >MEDICINA FÍSICA Y REHABILITACIÓN</option>
+                  <option value="MEDICINA INTENSIVA" >MEDICINA INTENSIVA</option>
+                  <option value="MEDICINA INTERNA" >MEDICINA INTERNA</option>
+                  <option value="MEDICINA NUCLEAR" >MEDICINA NUCLEAR</option>
+                  <option value="MEDICINA PREVENTIVA Y SALÚD PÚBLICA" >MEDICINA PREVENTIVA Y SALÚD PÚBLICA</option>
+                  <option value="NEFROLOGÍA" >NEFROLOGÍA</option>
+                  <option value="NEUMOLOGÍA" >NEUMOLOGÍA</option>
+                  <option value="NEUROCIRUGÍA" >NEUROCIRUGÍA</option>
+                  <option value="NEUROFISIOLOGÍA CLÍNICA" >NEUROFISIOLOGÍA CLÍNICA</option>
+                  <option value="OBSTETRICIA Y GINECOLOGÍA" >OBSTETRICIA Y GINECOLOGÍA</option>
+                  <option value="OFTALMOLOGÍA" >OFTALMOLOGÍA</option>
+                  <option value="ONCOLOGÍA MÉDICA" >ONCOLOGÍA MÉDICA</option>
+                  <option value="ONCOLOGÍA RADIOTERÁPICA" >ONCOLOGÍA RADIOTERÁPICA</option>
+                  <option value="OTORRINOLARINGOLOGÍA" >OTORRINOLARINGOLOGÍA</option>
+                  <option value="PEDIATRÍA" >PEDIATRÍA</option>
+                  <option value="PSIQUIATRA" >PSIQUIATRA</option>
+                  <option value="RADIODIAGNÓSTICO" >RADIODIAGNÓSTICO</option>
+                  <option value="REUMATOLOGÍA" >REUMATOLOGÍA</option>
+                  <option value="TRAUMATOLOGÍA" >TRAUMATOLOGÍA</option>
+                  <option value="UROLOGÍA" >UROLOGÍA</option>
+                  </select>
+                  <label>Especialidad</label>
+              </div>
+              <div class="input-field col s6">
+                <input id="fechaPickerMod" style="cursor:pointer" type="text" class="datepicker">
+                <label>Fecha Cita</label>
+              </div>
+              <div class="input-field col s6">
+                <input id="timePickerMod" style="cursor:pointer" type="text" class="timepicker">
+                <label>Hora Cita</label>
+              </div>
+                <div class ="input-field col s6">
+                  <select class="select" id="periodicidadMod">
+                    <option value="false" selected>Sin periodicidad</option>
+                    <option value="true">Periódica</option>
+                    </select>
+                    <label>Establecer periodicidad de la cita</label>
+                </div>
+            
           </div>
-        
+          <div class="modal-footer">
+            <a class="btn" style="color:white !important" onclick="modificarCita();">Modificar Cita</a>
+            <a class="btn" style="color:white !important" onclick="modalClose('#modal3')">Cancelar</a>
+          </div>
+         </div>
+         </div>
+    
     </main>
-
-    <nav
-      id="navbarbottom"
-      style="
-        height: 60px;
-        background-color: #fff0 !important;
-        position: fixed;
-        bottom: 0px; display:none;
-      "
-      class="navbar navbarbottom"
-    >
-      <div style="position: fixed" class="navbar-bottom">
-        <div class="row">
-          <div class="col s3">
-            <a
-              id="idmiscursostodos"
-              class="waves-effect"
-              href="mis_cursos_todos.html"
-              ><i
-                style="color: #7b7b7b; margin-top: -0.2em"
-                class="material-icons"
-                >school</i
-              ><span class="spanicon" style="color: #7b7b7b">Matrícula</span></a
-            >
-          </div>
-          <div class="col s3">
-            <a id="idasistencia2" class="waves-effect" href="asistencia.html"
-              ><i
-                id="idasistencia2id"
-                style="color: #7b7b7b; margin-top: -0.2em"
-                class="material-icons"
-                >playlist_add</i
-              ><span
-                id="idasistencia2span"
-                class="spanicon"
-                style="color: #7b7b7b"
-                >Asistencia</span
-              ></a
-            >
-          </div>
-          <div class="col s3">
-            <a id="hrefcertificados" href="notas.html" class="waves-effect"
-              ><i
-                id="imgcertificados"
-                style="margin-top: -0.2em; color: #7b7b7b"
-                class="material-icons"
-                >turned_in_not</i
-              ><span id="idcertificados" class="spanicon" style="color: #7b7b7b"
-                >Certificados</span
-              ></a
-            >
-          </div>
-          <div class="col s3">
-            <a href="perfil.html" class="waves-effect"
-              ><i
-                style="color: #7b7b7b; margin-top: -0.2em"
-                class="material-icons"
-                >account_circle</i
-              ><span class="spanicon" style="color: #7b7b7b">Mi Cuenta</span></a
-            >
-          </div>
-        </div>
-      </div>
-    </nav>
 
 
     <div class="sidenav-overlay" style="display: none; opacity: 0"></div>
     <div class="drag-target"></div>
   </body>
-  <script>
-    var lugarGlobal="";
-    $('.fixed-action-btn').floatingActionButton();
-    $('.modal').modal();
-    var permisoCalendario;
-    var cal;
-    var fecha=new Date();
-    var aPoner=[];
-    var eventosTodos=[];
-    var eventosSevilla=[];
-    var eventosCanarias=[];
-    var eventosNavarra=[];
-    var eventosTraining=[];
-    var eventosRica=[];
-    var eventosGalicia=[];
-    var eventosChile=[];
-    var db = firebase.firestore();
-    var docRef= db.collection("registroCalendario");
-    docRef.get().then(function (querySnapshot){
-    querySnapshot.forEach(function (doc) {
-      var myData =doc.data();
-     
-      var centro = myData.centro;
-      var object = new Object();
-      object.id=doc.id;
-      object.title=doc.id;
-      var fechaInicioOriginal= doc.data().fecha_inicio.split("-");
-      var fechaInicioParseada = fechaInicioOriginal[2]+"-"+fechaInicioOriginal[1]+"-"+fechaInicioOriginal[0];
-      var fechaFinOriginal= doc.data().fecha_fin.split("-");
-      var fechaFinParseada = fechaFinOriginal[2]+"-"+fechaFinOriginal[1]+"-"+fechaFinOriginal[0];
-      var today = new Date(fechaFinParseada)
-      var tomorrow = new Date(today)
-      tomorrow.setDate(tomorrow.getDate() + 1)
-      var month = tomorrow.getUTCMonth() + 1; //months from 1-12
-      var day = tomorrow.getUTCDate();
-      var year = tomorrow.getUTCFullYear();
-      if(month<10){
-        month = "0"+month;
-      }
-      if(day<10){
-        day ="0"+day;
-      }
-      var echaFinParseada=year+"-"+month+"-"+day;
-      
-      console.log("doc.id",doc.id,"fechaFinParseada",fechaFinParseada,"labuena",echaFinParseada)
-      object.start=fechaInicioParseada;
-      object.end= echaFinParseada;
-      object.backgroundColor=ciudad(doc.id);
-      if(typeof myData.notas =="undefined"){
-        object.description=myData.descripcion_larga;
-        
-      }
-      else{
-        object.description= myData.descripcion_larga;
-        object.descriptionNotas=myData.notas;
-      }
 
-      rellenarCiudades(centro,object);
-      eventosTodos.push(object);
-    });
-  }).then(function(){
-    var db = firebase.firestore();
-    var user = firebase.auth().currentUser.email;
-    db.collection("usuarios").doc(user).get().then(function(doc){
-      var admin=doc.data().admin;
-      permisoCalendario = doc.data().permisoCalendario;
-      var docente = doc.data().esdocente;
-      var centro = doc.data().centro_solicitado;
-      if(typeof centro!=="undefined"){
-        centro = centro.toUpperCase();
-      }
-      if(permisoCalendario==1){
-        document.getElementById("btnNotas").style.display="block";
-        document.getElementById("textNotas").style.display="block";
-      }
-      if(admin=="1"){
-        document.getElementById("botonCentro").style.display="block";
-        aPoner = eventosTodos;
-        lugarGlobal="TODOS";
-
-      }
-      else{
-        if(docente=="1"){
-          if(centro.includes("ONSITE")){
-            aPoner=eventosTraining;
-            lugarGlobal="ONSITE";
-          }
-          if(centro.includes("GALICIA")){
-            aPoner=eventosGalicia;
-            lugarGlobal="GALICIA";
-          }
-          if(centro.includes("RICA")){
-            aPoner=eventosRica;
-            lugarGlobal="COSTARICA";
-          }
-          if(centro.includes("CHILE")){
-            aPoner=eventosChile;
-            lugarGlobal="CHILE";
-          }
-          if(centro.includes("NAVARRA")){
-            aPoner=eventosNavarra;
-            lugarGlobal="NAVARRA";
-          }
-          if(centro.includes("SEVILLA")){
-            aPoner=eventosSevilla;
-            lugarGlobal="SEVILLA";
-          }
-          if(centro.includes("CANARIAS")){
-            aPoner=eventosCanarias;
-            lugarGlobal="CANARIAS";
-          }
-        }
-        else{
-          alert("No puedes acceder a esta página")
-          window.history.back();
-        }
-      
-      }
-  
-    var calendarEl = document.getElementById('calendar');
-     cal = new FullCalendar.Calendar(calendarEl, {
-      eventClick: function(info) {
-       document.getElementById("textNotas").value="";
-       fecha=info.event.start
-        localStorage.setItem("edicionBorrar",info.event.title);
-        document.getElementById("tituloEdicion").innerText=info.event.title;
-        if(typeof info.event.extendedProps.description!=="undefined"){
-          document.getElementById("descriEdicion").innerText=info.event.extendedProps.description;
-          if(permisoCalendario=="1"){
-            if(typeof info.event.extendedProps.descriptionNotas !=="undefined"){
-              document.getElementById("textNotas").value=info.event.extendedProps.descriptionNotas;
-            }
-          }
-
-          
-        }
-        else{
-          document.getElementById("descriEdicion").innerText="Sin descripción adicional."
-        }
-
-        
-      modalOpen("#modal")
-    //alert('Event: ' + info.event.title);
+  <script src="../js/calendarioCitas.js"></script>
 
 
-
-  },
-   events: aPoner,
-   locale: 'es'
-})
-cal.render();
-
-  });
-
-  });
-
-  function modalOpen(m){
-	$(m).modal('open');
-}	
-
-function recargarCalendar(ciudad,n){
-  lugarGlobal=ciudad;
- 
-
-  switch(ciudad){
-    case 'ONSITE':
-      aPoner=eventosTraining;
-      break;
-    case 'SEVILLA':
-      aPoner=eventosSevilla;
-      break;
-    case 'NAVARRA':
-      aPoner=eventosNavarra;
-      break;
-    case 'GALICIA':
-      aPoner=eventosGalicia;
-      break;
-    case 'CHILE':
-      aPoner=eventosChile;
-      break;
-    case 'COSTARICA':
-      aPoner=eventosRica;
-      break;
-    case 'CANARIAS':
-      aPoner=eventosCanarias;
-      break;
-    case 'TODOS':
-      aPoner=eventosTodos;
-      break;
-  }
-  var calendarEl = document.getElementById('calendar');
-  $("#calendar").empty();
-if(n=='0'){
-  var f = cal.getDate();
- console.log("calendDate",cal.getDate());
-  console.log("Aqui si tieens que entrar")
-  cal = new FullCalendar.Calendar(calendarEl, {
-      eventClick: function(info) {
-        document.getElementById("textNotas").value="";
-        localStorage.setItem("edicionBorrar",info.event.title);
-        fecha=info.event.start;
-        if(fecha==null || fecha =="null" || typeof fecha ==null || typeof fecha =="null"){
-          fecha = new Date();
-        }
-        document.getElementById("tituloEdicion").innerText=info.event.title;
-        if(typeof info.event.extendedProps.description!=="undefined"){
-          document.getElementById("descriEdicion").innerText=info.event.extendedProps.description;
-          if(permisoCalendario=="1"){
-            if(typeof info.event.extendedProps.descriptionNotas !=="undefined"){
-              document.getElementById("textNotas").value=info.event.extendedProps.descriptionNotas;
-            }
-          }
-
-          
-        }
-        else{
-          document.getElementById("descriEdicion").innerText="Sin descripción adicional."
-        }
-
-
-        
-      modalOpen("#modal")
-
-
-
-
-  },
-   events: aPoner,
-   locale: 'es',
-   initialDate: f
-})
-cal.render();
-}
-else{
- 
-  console.log("Aqui no tienes que entrar")
-  cal = new FullCalendar.Calendar(calendarEl, {
-      eventClick: function(info) {
-        document.getElementById("textNotas").value="";
-        localStorage.setItem("edicionBorrar",info.event.title);
-        fecha=info.event.start;
-        if(fecha==null || fecha =="null" || typeof fecha ==null || typeof fecha =="null"){
-          fecha = new Date();
-        }
-        document.getElementById("tituloEdicion").innerText=info.event.title;
-        if(typeof info.event.extendedProps.description!=="undefined"){
-          document.getElementById("descriEdicion").innerText=info.event.extendedProps.description;
-          
-          if(permisoCalendario=="1"){
-            if(typeof info.event.extendedProps.descriptionNotas !=="undefined"){
-              document.getElementById("textNotas").value=info.event.extendedProps.descriptionNotas;
-            }
-          }
-
-          
-        }
-        else{
-          document.getElementById("descriEdicion").innerText="Sin descripción adicional."
-        }
-
-
-        
-      modalOpen("#modal")
-    //alert('Event: ' + info.event.title);
-
-
-
-  },
-   events: aPoner,
-   locale: 'es',
-   initialDate:fecha
-})
-cal.render();
-}
-
-//calend.gotoDate(fecha)
-}
-function rellenarCiudades(element,object){
-  if(element.toUpperCase().includes("TRAINING")){
-				eventosTraining.push(object)
-        return;
-			}
-  if(element.toUpperCase().includes("SEVILLA")){
-				eventosSevilla.push(object);
-        return;
-			}
-	if(element.toUpperCase().includes("NAVARRA")){
-				eventosNavarra.push(object);
-        return;
-			}
-	if(element.toUpperCase().includes("CHILE")){
-				eventosChile.push(object);
-        return;
-			}
-	if(element.toUpperCase().includes("GALICIA")){
-				eventosGalicia.push(object);
-        return;
-			}
-	if(element.toUpperCase().includes("RICA")){
-				eventosRica.push(object);
-        return;
-			}
-
-	if(element.toUpperCase().includes("CANARIAS")){
-				eventosCanarias.push(object);
-        return;
-			}
-}
-function cambiarNotas(){
-  
-  var edicionCambiar  = localStorage.getItem("edicionBorrar");
-  var nuevaDescripcion = document.getElementById("textNotas").value;
-  var r = confirm("Estas seguro de que quieres poner esta nueva descripción?:\n"+ nuevaDescripcion);
-  if(r==true){
-    var db = firebase.firestore();
-    db.collection("registroCalendario").doc(edicionCambiar).update({
-      notas:nuevaDescripcion
-    }).then(function(){
-      alert("Descripción modificada correctamente.")
-      location.reload();
-    })
-  }
-}
-function borrarEdicion(){
-  var edicionBorrar  = localStorage.getItem("edicionBorrar");
-
-  var r = confirm("Estás seguro de borrar la edición: " + edicionBorrar +"?");
-  if (r == true) {
-
-  var db = firebase.firestore();
-  db.collection("registroCalendario").doc(edicionBorrar).delete().then(function(){
-    $('#modal').modal('close');
-    alert("Edición borrada correctamente");
-    var event = cal.getEventById(edicionBorrar);
-    borrarElementoarray(aPoner,event);
-    borrarElementoarray(eventosCanarias,event);
-    borrarElementoarray(eventosChile,event);
-    borrarElementoarray(eventosGalicia,event);
-    borrarElementoarray(eventosNavarra,event);
-    borrarElementoarray(eventosSevilla,event);
-    borrarElementoarray(eventosTodos,event);
-    borrarElementoarray(eventosTraining,event);
-    borrarElementoarray(eventosNavarra,event);
-
-
-
-    event.remove();
-    
-    recargarCalendar(lugarGlobal,'1')
- 
-
-
-    //location.reload();
-  });
-  } 
-
-}
-function borrarElementoarray(array,event){
-  for( var i = 0; i < array.length; i++){ 
-
-    if ( array[i].title === event.title) { 
-
-        array.splice(i, 1); 
-    }
-
-}
-
-}
-  function ciudad(element){
-    var toRet='#BA4A00'
-    if(element.toUpperCase().includes("SS")){
-				toRet= "#2E86C1";
-			}
-    if(element.toUpperCase().includes("BST")){
-      toRet= "#F5B7B1";
-			}
-			if(element.toUpperCase().includes("BSTR")){
-        toRet= "#EC7063";
-			}
-			if(element.toUpperCase().includes("ART")){
-        toRet= "#82E0AA";
-			}
-			if(element.toUpperCase().includes("BR")){
-        toRet= "#52BE80";
-			}
-			if(element.toUpperCase().includes("BTT")){
-        toRet= "#3498DB";
-			}
-			if(element.toUpperCase().includes("EFA")){
-        toRet= "#AED6F1";
-			}
-			if(element.toUpperCase().includes("SLS")){
-        toRet= "#ABB2B9";
-			}
-      if(element.toUpperCase().includes("IRATA")){
-        toRet= "#F1C40F";
-			}
-      return toRet
-
-		
-			
-		}  
-
-
-</script>
 </html>
