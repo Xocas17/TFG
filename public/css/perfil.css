@@ -1,0 +1,76 @@
+.span-titulos{
+color: white !important;
+}
+
+	
+  
+
+
+.exam-list .card .card-action {
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: rgba(255, 255, 255, 0.25);
+}
+
+.card .card-action {
+    background-color: inherit;
+    border-top: 1px solid rgba(255, 255, 255, 0.39);
+    position: relative;
+    padding: 16px 24px;
+}
+
+.card-title.ng-binding {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.container {
+    width: 100%;
+}
+
+.dataTables_wrapper {
+    border-top: 1px solid rgba(0, 0, 0, 0) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0) !important;
+}
+
+td:first-child {
+    width: 33%;
+}
+
+td:nth-child(2) {
+    width: 20%;
+}
+
+.tabla2 td:first-child {
+    width: 30%;
+}
+
+.tabla2 td:nth-child(2) {
+    width: 70%;
+}
+
+#barravisible2
+{
+width: 20em !important;
+margin-left: auto !important;
+margin-right: auto !important;
+position: absolute !important;
+border-bottom-right-radius: 20px !important;
+border-bottom-left-radius: 20px !important;
+}
+
+header
+{
+width: 20em !important;
+margin-left: auto !important;
+margin-right: auto !important;
+}
+
+td, th {
+
+font-size: 1.5em;
+}
+ul
+{
+list-style-type: circle;
+}

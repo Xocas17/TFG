@@ -9,7 +9,7 @@
     <script src="../js/firebase/firebase.js"></script>
     <script src="../js/firebase/firebaseconfig.js"></script>
     <link href="../css/global.css" rel="stylesheet">
-    <link href="../css/calendario.css" rel="stylesheet">
+    <link href="../css/perfil.css" rel="stylesheet">
     <script src="../js/jquery.min.js"></script>
     <script src="../js/materialize.min.js"></script>
     <link href="../css/materialize.css" rel="stylesheet">
@@ -22,89 +22,6 @@
     <script src='../js/fullcalendarjs/lib/locales/es.js'></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-         
-
-    <style>
-	
-  
-
-
-        .exam-list .card .card-action {
-            border-top: 1px solid rgba(255, 255, 255, 0.25);
-            border-top-width: 1px;
-            border-top-style: solid;
-            border-top-color: rgba(255, 255, 255, 0.25);
-        }
-
-        .card .card-action {
-            background-color: inherit;
-            border-top: 1px solid rgba(255, 255, 255, 0.39);
-            position: relative;
-            padding: 16px 24px;
-        }
-
-        .card-title.ng-binding {
-            text-shadow: 2px 2px 4px #000000;
-        }
-
-        .container {
-            width: 100%;
-        }
-
-        .dataTables_wrapper {
-            border-top: 1px solid rgba(0, 0, 0, 0) !important;
-            border-bottom: 1px solid rgba(0, 0, 0, 0) !important;
-        }
-
-        td:first-child {
-            width: 33%;
-        }
-
-        td:nth-child(2) {
-            width: 20%;
-        }
-
-        .tabla2 td:first-child {
-            width: 30%;
-        }
-
-        .tabla2 td:nth-child(2) {
-            width: 70%;
-        }
-
-        #barravisible2
-    {
-    width: 20em !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    position: absolute !important;
-    border-bottom-right-radius: 20px !important;
-    border-bottom-left-radius: 20px !important;
-    }
-	
-	header
-    {
-    width: 20em !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    }
-	
-    td, th {
-    
-    font-size: 1.5em;
-}
-ul
-{
-list-style-type: circle;
-}
-
-    </style>
-<script>
-    function goBack(){
-
-window.location.replace(localStorage.getItem('back'));
-}
-</script>
 
 
 </head>
@@ -120,16 +37,8 @@ window.location.replace(localStorage.getItem('back'));
 <header>
     <div class="navbar-fixed" >
         <nav class="navbar white" id="barravisible2">
-            <div class="nav-wrapper"><a href="#!" class="brand-logo grey-text text-darken-4">Ficha Alumno</a>
-                <ul id="nav-mobile" class="right">
-                    <!-- <li class="hide-on-med-and-down"><a href="https://themes.materializecss.com/">Extra</a></li>-->
-                    <li class="hide-on-med-and-down"><a href="#!" data-target="dropdown1"
-                                                        class="dropdown-trigger waves-effect"><i class="material-icons">notifications</i></a>
-                    </li>
-                    <li><a href="#!" data-target="chat-dropdown" class="dropdown-trigger waves-effect"><i
-                                    class="material-icons">notifications_none</i></a></li>
-                </ul>
-        
+            <div>
+              <span class="brand-logo grey-text text-darken-4">Perfil</span>
             </div>
         </nav>
     </div>
@@ -252,23 +161,14 @@ window.location.replace(localStorage.getItem('back'));
 
         <div id="tabla">
             <div id="imprimir">
-                <!--<center><h3>Evaluación del alumno <span id="modulo"><script>document.write(localStorage.getItem('moduloAlumno'));</script></span></h3></center>-->
-
-                <!--<p class="center-align">
-                <a onclick="activarasistencia()" data-id="1" style="background-color: #1000ff91 !important;" class="btn waves-effect waves-light lighten-2">Activar asistencia</a>
-                <a onclick="location.reload();" data-id="1" style="background-color: #1000ff91 !important;" class="btn waves-effect waves-light lighten-2">Recargar asistencia</a>
-                </p>-->
-
-
                 <div id="correccion1"
                      style="margin-right: 1vw; margin-left: 1vw;border: 5px solid white; border-radius: 20px 20px;display:block;"
                      class="card">
-
                     <div style="padding: 1vw" id="table-custom-elements_wrapper" class="dataTables_wrapper no-footer">
 
                         <table>
                             <tr style="border-bottom: 0px solid rgba(0,0,0,0.12);">
-                                <th style="background-color: #2981b3;border-radius:12px;" colspan="4" ><span style="margin-left: 1em;" id="fichatitulo"></span>
+                                <th style="background-color: #2981b3;border-radius:12px;" colspan="4" ><span class="span-titulos"  style="margin-left: 1em;">Datos personales</span>
                                     <span style="float:right;margin-right:3.8em;" id="centroAlumno"></span>
                                 </th>
                             </tr>
@@ -307,7 +207,7 @@ window.location.replace(localStorage.getItem('back'));
                         <table class="highlight">
                             <thead>
                             <tr style="background-color: #2981b3;border-radius:12px !important;border-bottom: none;">
-                                <th colspan="2" style="border-radius: 12px;"><span style="margin-left: 1em;">Datos de contacto</span></th>
+                                <th colspan="2" style="border-radius: 12px;"><span class="span-titulos"  style="margin-left: 1em;">Datos de contacto</span></th>
                                
 
                             </tr>
@@ -337,7 +237,7 @@ window.location.replace(localStorage.getItem('back'));
 
                             <thead>
                             <tr style="background-color: #2981b3;border-radius:12px;border-bottom: none;">
-                                <th colspan="2" style="border-radius: 12px;"><span style="margin-left: 1em;">Dirección</span></th>
+                                <th colspan="2" style="border-radius: 12px;"><span class="span-titulos" style="margin-left: 1em;">Dirección</span></th>
                              
 
                             </tr>
@@ -371,7 +271,7 @@ window.location.replace(localStorage.getItem('back'));
 
                             <thead>
                             <tr style="background-color: #2981b3;border-radius:12px;border-bottom: none;">
-                                <th colspan="2" style="border-radius: 12px;" ><span style="margin-left: 1em;">Otra documentación</span></th>
+                                <th colspan="2" style="border-radius: 12px;" ><span class="span-titulos" style="margin-left: 1em;">Otra documentación</span></th>
                                
 
                             </tr>
@@ -508,85 +408,12 @@ window.location.replace(localStorage.getItem('back'));
                         </table>
                     </div>
 
-
-                    <!--<table class="centered highlight">
-                       <thead>
-                         <tr>
-                             <th>Nombre</th>
-                             <th>Nota teoría</th>
-                             <th>Prácticas</th>
-                             <th>Asistencia</th>
-                         </tr>
-                       </thead>
-
-                       <tbody >
-
-                       </tbody>
-                     </table>-->
-
                 </div>
 
-
-                <div id="correccion"
-                     style="margin-right: 1vw; margin-left: 1vw;border: 5px solid white; border-radius: 20px 20px;display:none;"
-                     class="card">
-
-                    <div style="padding: 1vw" id="table-custom-elements_wrapper" class="dataTables_wrapper no-footer">
-
-                        <table class="highlight">
-
-                            <thead>
-                            <tr style="background-color: #2981b3;border-radius:12px;">
-                                <th>Valoración del alumno</th>
-                                <th>Módulo: WAH</th>
-                                <th>Firma isntructor</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>Evaluación Final</td>
-                                <td>
-                                    <span id="fallostotales"></span>
-                                </td>
-                                <td rowspan="4">
-                                    <img style="width: 30%;" src="./img/firmadocentepng.png">
-                                </td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid rgba(0, 0, 0, 0);">
-                                <td>Nota final</td>
-                                <td id="tdnotafinal">
-                                    <span id="notafinal"></span>
-                                </td>
-
-                            </tr>
-
-
-                            <tr style="border-bottom: 1px solid rgba(0, 0, 0, 0);">
-                                <td>Nota teórica</td>
-                                <td>
-                                    <span id="notaAlumno"></span>/10
-                                </td>
-
-                            </tr>
-
-
-                            <tr style="border-bottom: 1px solid rgba(0, 0, 0, 0);">
-                                <td>Fallos Módulo</td>
-                                <td>
-                                    <span id="evaluacionVerde"></span>
-                                </td>
-
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
 
 
             </div>
             <p class="center-align">
-                <a onclick="PrintElem()" style="font-size: 1.35em;font-weight: 400;border-radius: 20px;width: 8em;line-height: 1.6em;height: 1.6em;"
-                   class="btn waves-effect waves-light lighten-2">Imprimir</a>
                 <a onclick="guardarCambios()" style="font-size: 1.35em;font-weight: 400;border-radius: 20px;width: 8em;line-height: 1.6em;height: 1.6em;"
                    class="btn waves-effect waves-light lighten-2">Actualizar</a>
             </p>
