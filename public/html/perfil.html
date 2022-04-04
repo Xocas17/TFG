@@ -43,267 +43,126 @@
         </nav>
     </div>
 
-
-    <ul style="display:none" id="sidenav-left" class="sidenav 1sidenav-fixed">
-        <li><a href="fichapersonaldocente.html" class="logo-container"><span style="margin-left:0.5em"
-                                                                             id="nombreusuario">Usuario</span>
-                <img style="width:34px;height:34px;float: left;border-radius: 2em;margin-top: 0.6em;" id="imgusermenu"
-                     src="./img/user.png">
-          
-            </a></li>
-        <li class="no-padding">
-            <ul class="collapsible collapsible-accordion">
-                <li class="bold waves-effect"><a class="collapsible-header">Mi cuenta<i class="material-icons chevron">chevron_left</i></a>
-                    <div class="collapsible-body">
-                        <ul>
-                            <li><a href="fichapersonaldocente.html" class="waves-effect">Mis datos<i
-                                            class="material-icons">web</i></a></li>
-                            <li><a href="incidencia.html" class="waves-effect">Incidencia<i class="material-icons">headset_mic</i></a>
-                            </li>
-                            <li><a class="waves-effect">Resultados encuestas alumnos<i
-                                            class="material-icons">tab</i></a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="bold waves-effect"><a class="collapsible-header">Formación<i class="material-icons chevron">chevron_left</i></a>
-                    <div class="collapsible-body">
-                        <ul>
-                            <li><a class="waves-effect" href="mis_cursos_docente.html">Mis cursos<i
-                                            class="material-icons">school</i></a></li>
-                            <li><a class="waves-effect">Crear test teórico<i class="material-icons">tab</i></a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="bold waves-effect"><a class="collapsible-header" id="quickstart-sign-out">Cerrar sesión</a>
-                    <a style="display:none" class="collapsible-header" id="quickstart-sign-in">Iniciar sesión</a>
-                    <a style="display:none" class="collapsible-header" id="quickstart-verify-email">Iniciar sesión</a>
-                    <a style="display:none" class="collapsible-header" id="quickstart-password-reset">Iniciar sesión</a>
-                    <span style="display:none" id="quickstart-sign-in-status">Unknown</span>
-                    <span style="display:none" id="quickstart-sign-in">Unknown</span>
-                    <span style="display:none" id="quickstart-account-details">Unknown</span>
-                    <span style="display:none" id="email">Unknown</span>
-                    <span style="display:none" id="password">Unknown</span>
-                    <a style="display:none" class="collapsible-header" id="quickstart-sign-up">Iniciar sesión</a>
-                </li>
-                <li class="bold waves-effect active"><a class="collapsible-header" onclick="salirapp()">Salir</a>
-                </li>
-            </ul>
-        </li>
-    </ul>
-
-
-    <div id="dropdown1" class="dropdown-content notifications">
-        <div class="notifications-title">Notificaciones</div>
-        <div class="card">
-            <div class="card-content"><span class="card-title">Clase de mantenimiento</span>
-                <p>Content</p>
-            </div>
-            <div class="card-action"><a href="#!">ver</a><a href="#!">rechazar</a></div>
-        </div>
-        <div class="card">
-            <div class="card-content"><span class="card-title">Examen teoría</span>
-                <p>Content</p>
-            </div>
-            <div class="card-action"><a href="#!">ver</a><a href="#!">rechazar</a></div>
-        </div>
-        <div class="card">
-            <div class="card-content"><span class="card-title">Mañana hay clase</span>
-                <p>Content</p>
-            </div>
-            <div class="card-action"><a href="#!">ver</a><a href="#!">rechazar</a></div>
-        </div>
-    </div>
-    <div id="chat-dropdown" class="dropdown-content dropdown-tabbed">
-        <ul class="tabs tabs-fixed-width">
-
-            <li class="tab col s3"><a href="#friends" class="active">Notificaciones</a></li>
-        </ul>
-
-        <div id="friends" class="col s12">
-            <ul class="collection flush">
-                <li class="collection-item avatar">
-                    <div class="badged-circle online"><img src="img/portrait1.jpg" alt="avatar" class="circle"></div>
-                    <span class="title">Docente Susana</span>
-                    <p class="truncate">Tienes un test práctico mañana</p>
-                </li>
-                <li class="collection-item avatar">
-                    <div class="badged-circle"><img src="img/logohse.jpg" alt="avatar" class="circle"></div>
-                    <span class="title">Resultado exámenes</span>
-                    <p class="truncate">Ya está disponible tu puntuación.</p>
-                </li>
-            </ul>
-        </div>
-    </div>
 </header>
 
 
 <main>
     <div style="margin-top:-3vh !important" class="section container ipadcontainer">
-
-
-        <div style="display:none" id="faltan" class="row">
-            <div class="col s12 m6">
-                <div class="card white">
-                    <div class="card-content white-text">
-                        <span style="color:black" class="card-title">No hay alumnos matriculados</span>
-                        <p>En este momento no hay alumnos matriculados en este curso, si tienes cualquier duda puedes
-                            llamarnos
-                            o contactar con nosotros a través de info@tav.es</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="./mis_cursos_docente.html">Volver a cursos</a>
-                        <a href="tel:986102020">Llámanos</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
         <div id="tabla">
             <div id="imprimir">
                 <div id="correccion1"
                      style="margin-right: 1vw; margin-left: 1vw;border: 5px solid white; border-radius: 20px 20px;display:block;"
                      class="card">
                     <div style="padding: 1vw" id="table-custom-elements_wrapper" class="dataTables_wrapper no-footer">
-
                         <table>
                             <tr style="border-bottom: 0px solid rgba(0,0,0,0.12);">
-                                <th style="background-color: #2981b3;border-radius:12px;" colspan="4" ><span class="span-titulos"  style="margin-left: 1em;">Datos personales</span>
+                                <th style="background-color: #2981b3;border-radius:12px;" colspan="4" ><span class="span-titulos"  style="margin-left: 1em;">Datos generales</span>
                                     <span style="float:right;margin-right:3.8em;" id="centroAlumno"></span>
                                 </th>
                             </tr>
                             <tr>
-                                <td style="width:22%">Nombre</td>
-                                <td style="width:40%"><span id="idnombre"></span></td>
-                                <td>Fecha nac: <span id="fechaid"></span></td>
-                                <td rowspan="2"><img id="avatarprofe" crossorigin="anonymous" style="width:100%;border-radius: 2em;max-width: 10vh;margin-left: auto;margin-right: auto;display: block;" onerror="this.src='img/profecara.jpg'">
+                                <td style="width:22%">Nombre:</td>
+                                <td style="width:40%"><span id="nombreSpan"></span></td>
+                                <td>País: <span id="edadSpan"></span></td>
                                 </td>
-
                             </tr>
                             <tr>
-                                <td style="width:22%">ID Winda</td>
-                                <td style="width:40%" id="numeroid"><span id="idwinda"></span></td>
-                                <td>DNI: <span id="dniid"></span></td>
+                                <td style="width:22%">Correo:</td>
+                                <td style="width:40%"><span id="correoSpan"></span></td>
+                                <td>Usuario: <span id="usuarioSpan"></span></td>
+                            </tr>
+                            <tr>
+                                <td style="width:22%">País:</td>
+                                <td style="width:40%"><span id="paisSpan"></span></td>
                             </tr>
 
-                            <tr>
-                                <td style="width:22%" >Talla ropa</td>
-                                <td style="width:40%" id="tallaid1"><span id="tallaCamiseta"></span></td>
-                                <td>IBAN: <span id="IBAN"></span></td>
-                                <td ><img id="dniImage" onclick="window.open(this.src, '_blank');" crossorigin="anonymous"
-                                    style="border-radius: 1em; margin-left: auto;margin-right: auto;display:block;max-height: 100px;"
-                                    onerror="this.src='img/32.png'" >
-                                 </td>
-                            </tr>
                         </table>
                     </div>
                 </div>
 
 
-                <div style="    margin-right: 1vw; margin-left: 1vw;border: 5px solid white; border-radius: 20px 20px;padding:1vw;" class="card tabla2">
-
-                   <!--l style="padding: 1vw" id="table-custom-elements_wrapper" class="dataTables_wrapper no-footer">-->
-
+                <div style="margin-right: 1vw; margin-left: 1vw;border: 5px solid white; border-radius: 20px 20px;padding:1vw;" class="card tabla2">
                         <table class="highlight">
                             <thead>
                             <tr style="background-color: #2981b3;border-radius:12px !important;border-bottom: none;">
                                 <th colspan="2" style="border-radius: 12px;"><span class="span-titulos"  style="margin-left: 1em;">Datos de contacto</span></th>
-                               
-
+                            
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
                                 <td>Teléfono</td>
-                                <td>	<div class="row"> <div class="input-field col s2">
-          <input placeholder="País" id="code" type="text" class="validate">
-          <label for="code">Code</label>
-        </div>
-        <div class="input-field col s7">
-          <input placeholder="Teléfono" id="telefonoid" type="text" class="validate">
-          <label for="telefonoid">Teléfono / Phone</label>
-        </div>
-        <div class="input-field col s3">
-         <a id="telefonoid_whatsapp" href="#"><img style="width:3em;margin-left: auto;margin-right: auto;display: block;" src="img/whatsapp.svg"></a> 
-          </div>
-    </div></td>
+                                <td><div class="row"> <div class="input-field col s2">
+                                    <input placeholder="País" id="codigoInput" type="text" class="validate">
+                                    <label for="code">Code</label>
+                                </div>
+                                <div class="input-field col s7">
+                                    <input placeholder="Teléfono" id="telefonoInput" type="text" class="validate">
+                                    <label for="telefonoid">Teléfono / Phone</label>
+                                </div>
+                                <div class="input-field col s3">
+                                    <a id="telefonoid_whatsapp" href="#"><img style="width:3em;margin-left: auto;margin-right: auto;display: block;" src="img/whatsapp.svg"></a> 
+                                    </div>
+                            </div></td>
                             </tr>
-                            <tr style="border-bottom: none;">
-                                <td>Correo electrónico</td>
-                                <td><input placeholder="Correo" id="correoid" type="text" class="validate" disabled></td>
-                            </tr>
+
                             </tbody>
 
 
                             <thead>
                             <tr style="background-color: #2981b3;border-radius:12px;border-bottom: none;">
-                                <th colspan="2" style="border-radius: 12px;"><span class="span-titulos" style="margin-left: 1em;">Dirección</span></th>
+                                <th colspan="2" style="border-radius: 12px;"><span class="span-titulos" style="margin-left: 1em;">Datos médicos</span></th>
                              
 
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td>Calle</td>
-                                <td><input placeholder="Calle" id="calleid" type="text" class="validate"></td>
+                                <td>Peso</td>
+                                <td><input placeholder="Peso" id="pesoInput" type="text" class="validate"></td>
                             </tr>
                             <tr>
-                                <td>Ciudad</td>
-                                <td><input placeholder="Ciudad" id="ciudadid" type="text" class="validate"></td>
+                                <td>IMC</td>
+                                <td><input disabled placeholder="IMC" id="imcInput" type="text" class="validate"></td>
                             </tr>
 
                             <tr>
-                                <td>Provincia</td>
-                                <td><input placeholder="Provincia" id="provinciaid" type="text" class="validate"></td>
+                                <td>Altura</td>
+                                <td><input placeholder="Altura" id="alturaInput" type="text" class="validate"></td>
                             </tr>
 
 
                             <tr>
-                                <td>Código postal</td>
-                                <td><input placeholder="Código postal" id="postalid" type="text" class="validate"></td>
+                                <td>Colesterol</td>
+                                <td><input placeholder="Colesterol" id="colesterolInput" type="text" class="validate"></td>
                             </tr>
-                            <tr style="border-bottom: none;">
-                                <td>País</td>
-                                <td><input placeholder="País" id="paisid" type="text" class="validate"></td>
+                            <tr>
+                                <td>Triglicéridos</td>
+                                <td><input placeholder="Triglicéridos" id="trigliceridosInput" type="text" class="validate"></td>
                             </tr>
+                            
+
                             </tbody>
 
 
                             <thead>
                             <tr style="background-color: #2981b3;border-radius:12px;border-bottom: none;">
-                                <th colspan="2" style="border-radius: 12px;" ><span class="span-titulos" style="margin-left: 1em;">Otra documentación</span></th>
+                                <th colspan="2" style="border-radius: 12px;" ><span class="span-titulos" style="margin-left: 1em;">Otras opciones</span></th>
                                
 
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>ID Winda</td>
-
-                                <td><input placeholder="id winda" id="windaid" type="text" class="validate"></td>
-                            </tr>
-                            <tr>
-                                <td>ID Irata</td>
-
-                                <td><input placeholder="Notas" id="irataid" type="text" class="validate"></td>
-                            </tr>
-							    <tr>
-                                <td>Empresa</td>
-
-                                <td><input placeholder="Empresa" id="empresaid" type="text" class="validate"></td>
-                            </tr>
 
                             <tr>
-                                <td>Instructor</td>
-
+                                <td>Perfil:</td>
                                 <td>
-                                    
                                     <div class="switch">
                                         <label>
-                                          No
+                                          Privado
                                           <input id="esdocente" type="checkbox">
                                           <span class="lever"></span>
-                                          Si
+                                          Público
                                         </label>
                                       </div>
                                 
@@ -311,94 +170,69 @@
                             </tr>
 
 
-                            <tr>
-                                <td>Instructor en formación</td>
 
+
+                            <td>Notificaciones de citas médicas</td>
+                            <tr>
+
+                                <td>Correo:</td>
                                 <td>
-                                    
                                     <div class="switch">
                                         <label>
-                                          No
-                                          <input id="enformacion" type="checkbox">
+                                          Activado
+                                          <input id="esdocente" type="checkbox">
                                           <span class="lever"></span>
-                                          Si
+                                          Desactivado
                                         </label>
                                       </div>
                                 
                                 </td>
+
                             </tr>
-
                             <tr>
-                                <td>Cuenta habilitada</td>
-
+                                <td>Teléfono:</td>
                                 <td>
-                                    
                                     <div class="switch">
                                         <label>
-                                          No
-                                          <input id="cuentahabilitada" type="checkbox">
+                                          Activado
+                                          <input id="esdocente" type="checkbox">
                                           <span class="lever"></span>
-                                          Si
+                                          Desactivado
                                         </label>
                                       </div>
                                 
                                 </td>
                             </tr>
-
-
+                            <td>Notificaciones de medicación</td>
                             <tr>
-                                <td>Centro actual</td>
 
+                                <td>Correo:</td>
                                 <td>
-                                    <div class="input-field col s12">
-                                        <select id="centro_actual">
-                                          <optgroup label="Europa">
-                                            <option value="Navarra">Navarra</option>
-                                            <option value="galicia">Galicia</option>
-                                            <option value="Sevilla">Sevilla</option>
-                                            <option value="Onsite">OnSite</option>
-                                          </optgroup>
-                                          <optgroup label="América">
-                                            <option value="Chile">Chile</option>
-                                            <option value="Costa Rica">Costa Rica</option>
-                                          </optgroup>
-                                        </select>
+                                    <div class="switch">
+                                        <label>
+                                          Activado
+                                          <input id="esdocente" type="checkbox">
+                                          <span class="lever"></span>
+                                          Desactivado
+                                        </label>
                                       </div>
+                                    
+                                      
                                 
                                 </td>
+
                             </tr>
-
-
-
                             <tr>
-                                <td>Nivel de Recursos</td>
-
+                                <td>Teléfono:</td>
                                 <td>
-                                    <div class="input-field col s12">
-                                        <select id="acceso_recursos">
-                                            <option value="1">Lectura Básica BST</option>
-                                            <option value="6">Lectura Básica ART</option>
-                                            <option value="7">Lectura Básica BTT</option>
-                                            <option value="8">Lectura Básica IRATA</option>
-                                            <option value="9">Lectura Básica BR</option>
-                                            <option value="10">Lectura Básica SLS</option>
-                                            <option value="2">Lectura y Escritura BST</option>
-                                            <option value="3">Lectura y Escritura GWO</option>
-                                            <option value="4">Lectura y Escritura IRATA</option>
-                                            <option value="5">Lectura y Escritura GWO+IRATA</option>
-                                        </select>
+                                    <div class="switch">
+                                        <label>
+                                          Activado
+                                          <input id="esdocente" type="checkbox">
+                                          <span class="lever"></span>
+                                          Desactivado
+                                        </label>
                                       </div>
-                                
-                                </td>
-                            </tr>
-
-
-                            <tr>
-                                <td>Recibió formación docente</td>
-
-                                <td>
-                                    <ul id="modulosformados2">
-                                    </ul>
                                 
                                 </td>
                             </tr>
@@ -426,596 +260,6 @@
         </div>
 
 </main><!-- Scripts -->
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment.min.js"></script>
-
-<!-- External libraries -->
-
-<!-- jqvmap -->
-<script type="text/javascript" src="js/jqvmap/jquery.vmap.min.js"></script>
-<script type="text/javascript" src="js/jqvmap/jquery.vmap.world.js" charset="utf-8"></script>
-<script type="text/javascript" src="js/jqvmap/jquery.vmap.sampledata.js"></script>
-
-<!-- ChartJS -->
-<script type="text/javascript" src="js/Chart.js"></script>
-<script type="text/javascript" src="js/Chart.Financial.js"></script>
-
-
-<script>
-    var uidusuario;
-
-   
-    document.getElementById('dniImage').src = "https://firebasestorage.googleapis.com/v0/b/totalhse.appspot.com/o/dnis%2F" + encodeURIComponent(correoenviado) + ".jpg?alt=media";
-    //Esperamos a que se detecte al usuario y cuando se haga hecho leemos la base de datos y asignamos los valores a los inputs
-    var contador = 0;
-    var emails_alumnos = new Array();
-    var resultadosCC = [2, 2, "n2", "n3"];
-    var resultadosGestion = [3, 3, 3, 3, "n2", "n3", "n4", "n5"];
-    var resultadosOrganizacon = [0, 0, 0, "n1", "n2", "n3"];
-
-    firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-
-
-            let docRef = db.collection("usuarios").doc(correoenviado);
-            docRef.get().then(function (doc) {
-                if (doc && doc.exists) {
-
-                    const myData = doc.data();
-
-                    const actualizarfichamedica = myData.actualizarfichamedica;
-                    const centro_solicitado = myData.centro_solicitado;
-
-                    const correo = myData.correo;
-                    const direccion = myData.direccion;
-
-                    const ev_medica = myData.ev_medica;
-
-                    const genero = myData.genero;
-                    const id_modulos = myData.id_modulos;
-                    const pais = myData.pais;
-                    const provincia = myData.provincia;
-                    var telefono = myData.telefono;
-                    const idwinda = myData.winda;
-					const idirata = myData.idirata;
-                    const modulosFormados = myData.modulosFormados;
-                    const zip = myData.zip;
-                    const totalid = "GB2010GA"
-
-                    const fechaNacimiento = myData.fechanacimiento;
-                    const dni = myData.dni;
-                    const ciudad = myData.ciudad;
-
-                    const nombredb = myData.nombre;
-                    const apellidosdb = myData.apellidos;
-                    const esdocente = myData.esdocente;
-                    const enformacion = myData.enformacion;
-                    const pendienteAprobacion = myData.pendienteAprobacion;
-					const empresa = myData.empresa;
-                    var acceso_recursosdb = myData.acceso_recursos;
-
-					var prefix = myData.prefix;
-
-                    var select = document.getElementById("centro_actual");
-
-                    if(typeof myData.id_imagenAntigua!=="undefined"){
-                        uidusuario=myData.id_imagenAntigua;
-                    }
-                    else{
-                        uidusuario=myData.id_usuario;
-                    }
-                    document.getElementById('avatarprofe').src = imgurl1 = "https://firebasestorage.googleapis.com/v0/b/totalhse.appspot.com/o/avatares%2Fthumbs%2F"+ encodeURIComponent(uidusuario) + "_800x600.jpg?alt=media";
-                    if (typeof centro_solicitado !== "undefined") 
-                    {
-                        select.value = centro_solicitado;
-                        M.FormSelect.init(select);
-                    }
-
-
-                    if (typeof modulosFormados !== "undefined") 
-                    {
-                        modulosFormados.forEach(function (moduloFormado) {
-                            //var formados3 = document.getElementById("modulosformados2");
-                            var moduloponer2 = moduloFormado.split(";");
-                            //console.log("spli" + moduloponer2);
-                            moduloponer2.pop();
-                            moduloponer2.pop();
-                            //console.log("pop" + moduloponer2);
-                            moduloponer2 = moduloponer2.join(";");
-                            //console.log("join" + moduloponer2);
-                            moduloponer2 = moduloponer2.replace(/;/g, "    ");
-                            $("#modulosformados2").append("<li>"+moduloponer2+"</li>");
-                                        });
-                    }
-
-                    var select2 = document.getElementById("acceso_recursos");
-
-if (typeof acceso_recursosdb !== "undefined") 
-{
-    select2.value = acceso_recursosdb;
-    M.FormSelect.init(select2);
-}
-
-                    
-
-
-                    if (typeof apellidosdb !== "undefined" && apellidosdb.length > 1) {
-                        document.getElementById("idnombre").innerHTML = nombredb + " " + apellidosdb;
-                    } else {
-                        if (typeof nombredb !== "undefined" && nombredb.length > 1) {
-                            document.getElementById("idnombre").innerHTML = nombredb;
-                        }
-                    }
-
-                    if (typeof winda !== "undefined" && winda.length > 1) {
-                        let windaAux = winda.toUpperCase();
-                        windaAux = windaAux.replace(/\s/g, "");
-                        document.getElementById("idwinda").innerHTML = windaAux;
-                    }
-					
-					 if (typeof prefix !== "undefined"  && prefix.length>1 )  {
-		 document.getElementById("code").value = prefix; 
-		 }
-		 
-		 	 if (typeof idwinda !== "undefined"  && idwinda.length>1 )  {
-		 document.getElementById("windaid").value = idwinda; 
-         document.getElementById("idwinda").innerHTML = idwinda; 
-		 }
-		  	 if (typeof empresa !== "undefined"  && empresa.length>1 )  {
-		 document.getElementById("empresaid").value = empresa; 
-		 }
-
-         if (typeof esdocente !== "undefined" )  {
-             if (esdocente == 1)
-             {
-                document.getElementById("esdocente").checked = true;
-             }
-             else
-             {
-                document.getElementById("esdocente").checked = false;
-             }
-		 }
-
-
-
-         if (typeof enformacion !== "undefined" )  {
-             if (enformacion == 1)
-             {
-                document.getElementById("enformacion").checked = true;
-             }
-             else
-             {
-                document.getElementById("enformacion").checked = false;
-             }
-		 }
-
-         if (typeof pendienteAprobacion !== "undefined" )  {
-             if (pendienteAprobacion == 1)
-             {
-                document.getElementById("cuentahabilitada").checked = false;
-             }
-             else
-             {
-                document.getElementById("cuentahabilitada").checked = true;
-             }
-		 }
-         else
-         {
-            document.getElementById("cuentahabilitada").checked = true; 
-         }
-
-		 
-		  	 if (typeof idirata !== "undefined"  && idirata.length>1 )  {
-		 document.getElementById("irataid").value = idirata; 
-		 }
-
-                    if (typeof esdocente !== "undefined" && (esdocente.length == 1)) {
-                        document.getElementById("fichatitulo").innerHTML = "Ficha de usuario";
-                    } else {
-                        document.getElementById("fichatitulo").innerHTML = "Ficha de usuario";
-                    }
-
-                    if (typeof dni !== "undefined" && dni.length > 1) {
-                        document.getElementById("dniid").innerHTML = dni;
-                    }
-
-
-                    if (typeof correo !== "undefined" && correo.length > 1) {
-                        document.getElementById("correoid").value = correo;
-                    }
-
-                    if (typeof ciudad !== "undefined" && ciudad.length > 1) {
-                        document.getElementById("ciudadid").value = ciudad;
-                    }
-
-                    if (typeof direccion !== "undefined" && direccion.length > 1) {
-                        document.getElementById("calleid").value = direccion;
-                    }
-
-
-                    if (typeof zip !== "undefined" && zip.length > 1) {
-                        document.getElementById("postalid").value = zip;
-                    }
-
-                    if (typeof telefono !== "undefined" && telefono.length > 1) {
-                        var telefonowhatsapp = "whatsapp://send?text=Hola!&phone="+prefix+telefono;
-						telefono = telefono.replace("+34", "");
-                        document.getElementById("telefonoid").value = telefono;
-                        document.getElementById("telefonoid_whatsapp").setAttribute("href", telefonowhatsapp);
-
-                    }
-
-                    if (typeof provincia !== "undefined" && provincia.length > 1) {
-                        document.getElementById("provinciaid").value = provincia;
-                    }
-                    if (typeof pais !== "undefined" && pais.length > 1) {
-                        document.getElementById("paisid").value = pais;
-                    }
-
-                    if (typeof myData.IBAN !== "undefined" && myData.IBAN > 1) {
-                        document.getElementById("IBAN").innerHTML = myData.IBAN;
-                    }
-
-                    if (typeof myData.tallaCamiseta !== "undefined") {
-                        document.getElementById("tallaCamiseta").innerHTML = myData.tallaCamiseta;
-                    }
-
-                    /*  if (typeof genero !== "undefined" && genero.length>1 )
-                    {
-                    document.getElementById("generoid").value = genero;
-                    }*/
-
-                    /*if (typeof ev_medica !== "undefined" && ev_medica.length > 1) {
-                        document.getElementById("ev_medicaid").value = "Realizada correctamente";
-                    } else {
-                        document.getElementById("ev_medicaid").value = "No realizada";
-                    }
-
-
-                    if (typeof encuesta !== "undefined" && encuesta.length > 1) {
-                        document.getElementById("encuestaid").value = "Realizada correctamente";
-                    } else {
-                        document.getElementById("encuestaid").value = "No realizada";
-                    }*/
-
-
-                    if (typeof centro_solicitado !== "undefined" && centro_solicitado.length > 1) {
-                        document.getElementById("centroAlumno").innerHTML = "Centro: " + centro_solicitado;
-                    }
-
-                    if (typeof fechaNacimiento !== "undefined" && fechaNacimiento.length > 1) {
-                        document.getElementById("fechaid").innerHTML = fechaNacimiento;
-                    }
-
-
-                    document.getElementById("spinner").style.display = "none";
-
-
-                }
-            }).catch(function (error) {
-                console.log("Got an error: ", error);
-            });
-
-
-        } else {
-            // No user is signed in.
-        }
-    });
-
-
-</script>
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/fullcalendar.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
-<script src="js/imagesloaded.pkgd.min.js"></script>
-<script src="js/masonry.pkgd.min.js"></script>
-<script src="js/materialize.min.js"></script>
-
-<!-- Initialization script -->
-<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-<!--<script src="js/admin.js"></script>-->
-<script src="js/init.js"></script>
-<script src="js/print/printThis.js"></script>
-<script type="text/javascript" src="js/firebaselogin.js"></script>
-
-<script>
-    /*
-    window.alert2 = function (txt) {
-   navigator.notification.alert(txt, null, "Aviso", "Cerrar");
-}*/
-
-
-    function salirapp() {
-        if (navigator.app) {
-            navigator.app.exitApp();
-        } else if (navigator.device) {
-            navigator.device.exitApp();
-        }
-    }
-
-
-    function PrintElem() {
-
-
-        $('#imprimir').printThis({
-            importCSS: true,
-            header: ""
-        });
-
-//<center><h3>Informe de alumno</h3></center>
-
-//window.print();
-
-//$("#myID").printThis();
-        /*
-            var elem = document.getElementById("tabla");
-            var mywindow = window.open('', 'PRINT', 'height=400,width=600');
-
-            mywindow.document.write('<html><head><title>' + document.title  + '</title>');
-            mywindow.document.write('</head><body >');
-            mywindow.document.write('<h1>' + document.title  + '</h1>');
-            mywindow.document.write(document.getElementById("tabla").innerHTML);
-            mywindow.document.write('</body></html>');
-
-            mywindow.document.close();
-            // necessary for IE >= 10
-            mywindow.focus();
-            // necessary for IE >= 10
-
-            mywindow.print();
-            mywindow.close();*/
-
-        return true;
-    }
-</script>
-<script>
-
-
-    // setTimeout(function()
-    function exportar() {
-
-        var HTML_Width = $('#imprimir').width();
-        var HTML_Height = $('#imprimir').height();
-        var top_left_margin = 15;
-        var bottom_margin = 50;
-        var top_margin = 20;
-        var PDF_Width = HTML_Width + (top_left_margin * 2);
-        var PDF_Height = (PDF_Width * 1.2) + (top_left_margin * 2);
-        var canvas_image_width = HTML_Width;
-        var canvas_image_height = (HTML_Height) + (top_margin * 2) + (bottom_margin);
-        var totalPDFPages = Math.ceil(HTML_Height / PDF_Height) - 1;
-
-        html2canvas($('#imprimir')[0], {scale: 2, useCORS: true, allowTaint: true}).then(function (canvas) {
-            var imgData = canvas.toDataURL("image/jpeg", 1.0);
-//alert([PDF_Width, PDF_Height]);
-            pdf = new jsPDF('p', 'pt', [PDF_Width, PDF_Height]);
-
-            pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin, canvas_image_width, canvas_image_height);
-            for (var i = 1; i <= totalPDFPages; i++) {
-                pdf.addPage(PDF_Width, PDF_Height);
-                pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height * i) + (top_left_margin * 4), canvas_image_width, canvas_image_height);
-            }
-
-            pdf.save(localStorage.getItem('nombreAlumno') + ".pdf");
-
-
-        });
-
-
-        setTimeout(function () {
-            window.close();
-        }, 2000);
-    }
-
-    // }, 5000);
-
-
-    /*
-     var specialElementHandlers = {
-        'DIV to be rendered out': function(element, renderer){
-         return true;
-      }
-      };
-  */
-
-
-    //scale: 2,useCORS: true, allowTaint:true}
-
-
-function guardarCambios() {
-
-
-	  //var nombre = document.getElementById('nombre').value;
-      //var apellidos = document.getElementById('apellidos').value;
-	  //var fecha = document.getElementById('fecha').value;
-	  //var dni = document.getElementById('dni').value;
-      if (document.getElementById("esdocente").checked) { var esdocente2 = "1";} else { var esdocente2 = "0";}
-      if (document.getElementById("enformacion").checked) { var enformacion2 = "1";} else { var enformacion2 = "0";}
-      if (document.getElementById("cuentahabilitada").checked) { var cuentahabilitada2 = "0";} else { var cuentahabilitada2 = "1";}
-	  
-      var recursos = 0;
-      var recursos_disponibles = [];
-      var winda = document.getElementById('windaid').value;
-	  var empresa =  document.getElementById("empresaid").value;
-	  var idirataguardar = document.getElementById('irataid').value;
-	  var paisid = document.getElementById('paisid').value;
-	  var postalid = document.getElementById('postalid').value; //zip en db
-	  var provinciaid =  document.getElementById('provinciaid').value;
-	  var ciudadid = document.getElementById('ciudadid').value;
-	  var calleid = document.getElementById('calleid').value;
-	  var telefono = document.getElementById('telefonoid').value;
-	  var prefix =  document.getElementById('code').value;
-      var centro_actual =  document.getElementById('centro_actual').value;
-
-      var acceso_recursos =  document.getElementById('acceso_recursos').value;
-
-      if(acceso_recursos == 1)
-      {
-        recursos = 1;
-        recursos_disponibles = ["GWO", "BST", "FA", "SS", "FAW", "MH", "MHR", "FAW", "WAH", "MANUAL", "PRESENTACION", "ALUMNOS"];
-      }
-      if(acceso_recursos == 2)
-      {
-        recursos = 2;
-        recursos_disponibles = ["GWO", "BST", "FA", "SS", "FAW", "MH", "MHR", "FAW", "WAH", "MANUAL", "PRESENTACION", "ALUMNOS"];
-      }
-
-      if(acceso_recursos == 3)
-      {
-        recursos = 3;
-        recursos_disponibles = ["GWO", "BST", "FA", "SS", "FAW", "MH", "MHR", "FAW", "WAH", "MANUAL", "PRESENTACION", "ALUMNOS", "BTT", "SLS", "SE", "BR"];
-      }
-
-      if(acceso_recursos == 4)
-      {
-        recursos = 3;
-        recursos_disponibles = ["IRATA", "MANUAL", "PRESENTACION", "ALUMNOS"];
-      }
-
-      if(acceso_recursos == 5)
-      {
-        recursos = 3;
-        recursos_disponibles = ["IRATA", "MANUAL", "SS", "PRESENTACION", "ALUMNOS", "GWO", "BST", "FA", "FAW", "MH", "MHR", "FAW", "WAH", "MANUAL", "PRESENTACION", "ALUMNOS", "BTT", "SLS", "SE", "BR"];
-      }
-
-      if(acceso_recursos == 6)
-      {
-        recursos = 1;
-        recursos_disponibles = ["ART", "MANUAL", "PRESENTACION", "ALUMNOS"];
-      }
-
-
-      if(acceso_recursos == 7)
-      {
-        recursos = 1;
-        recursos_disponibles = ["BTT", "MANUAL", "PRESENTACION", "ALUMNOS"];
-      }
-
-
-      if(acceso_recursos == 8)
-      {
-        recursos = 1;
-        recursos_disponibles = ["IRATA", "MANUAL", "PRESENTACION", "ALUMNOS"];
-      }
-
-
-
-      if(acceso_recursos == 9)
-      {
-        recursos = 1;
-        recursos_disponibles = ["BR", "MANUAL", "PRESENTACION", "ALUMNOS"];
-      }
-
-
-
-      if(acceso_recursos == 10)
-      {
-        recursos = 1;
-        recursos_disponibles = ["SLS", "MANUAL", "PRESENTACION", "ALUMNOS"];
-      }
-
-
-/*
-      <option value="1">Lectura Básica BST</option>
-                                            <option value="2">Lectura y Escritura BST</option>
-                                            <option value="3">Lectura y Escritura GWO</option>
-                                            <option value="4">Lectura y Escritura IRATA</option>
-                                            <option value="5">Lectura y Escritura GWO+IRATA</option>
-*/
-
-
-
-	  //correoid para cambiar el correo hay que llamar al script que copia y pega documentos
-	  
-if (telefono.includes("+34"))
-{
-telefono = telefono.replace("+34", "");
-}
-	  
-
-	db.collection("usuarios").doc(correoenviado).update({
-
-	telefono: telefono,
-	empresa: empresa,
-	pais: paisid,
-	zip: postalid,
-	provincia: provinciaid,
-	ciudad: ciudadid,
-	prefix: prefix,
-	direccion: calleid,
-	idirata: idirataguardar,
-    esdocente: esdocente2,
-    enformacion: enformacion2,
-    pendienteAprobacion: cuentahabilitada2,
-    centro_solicitado: centro_actual,
-    recursos: recursos,
-    acceso_recursos: acceso_recursos,
-    recursos_disponibles: recursos_disponibles,
-    winda: winda
-})
-.then(function() {
-    console.log("Document successfully written!");
-	alert("Datos actualizados correctamente");
-	location.reload();
-})
-.catch(function(error) {
-    console.error("Error writing document: ", error);
-});
-
-
-    }
-	
-	
-	
-    function guardarpdf() {
-
-        var options = {
-            scale: 3,
-            useCORS: true,
-            "background": '#fff'
-        };
-
-        var pdf = new jsPDF('p', 'in', 'a3');
-        pdf.addHTML($("#imprimir"), options, function () {
-            pdf.save('Ficha:' + localStorage.getItem('nombreAlumno') + '.pdf');
-        });
-    }
-
-
-    $('#identificacion').on('change', function (e) {
-        var optionSelected = $("option:selected", this);
-        var valueSelected = this.value;
-        var dni = "500102030c"
-        var dnialumno = localStorage.getItem('dniAlumno');
-        var ultimaletra = dni.charCodeAt(dni.length - 1);
-        var primeraletra = dni.charCodeAt(0);
-        var dnisinletra = dnialumno.substr(0, dni.length - 1);
-
-
-        var totalid = Math.round(((ultimaletra + primeraletra) * dnisinletra) / primeraletra + dnialumno.substr(0, 3) * 11);
-
-
-        //alert(totalid.toString(32));
-
-        var totalidponer = (totalid.toString(32)).toUpperCase()
-        var idWinda = localStorage.getItem('idWindaAlumno');
-
-        if (valueSelected == 0) {
-            document.getElementById("numeroid").innerHTML = idWinda;
-        }
-        if (valueSelected == 1) {
-            document.getElementById("numeroid").innerHTML = dnialumno;
-        }
-        if (valueSelected == 2) {
-            document.getElementById("numeroid").innerHTML = totalidponer;
-        }
-    });
-
-
-</script>
-<div class="sidenav-overlay" style="display: none; opacity: 0;"></div>
-<div class="drag-target"></div>
+<script type="text/javascript" src="../js/perfil.js"></script>
 </body>
 </html>

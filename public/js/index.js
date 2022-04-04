@@ -25,12 +25,11 @@ email = email.toLowerCase();
 var tipocuenta;
 console.log("Entra2");
 if (email.localeCompare(current_user.email) == 0) {
-  console.log("Entrauno")
   $("html").css("cursor", "default");
   location.href="./html/menuPrincipal.html"
 
 } else {
-  console.log("Entrados")
+
 alert(
 "Había una sesión iniciada de otro usuario, cerrando sesión, vuelva a loguearse"
 );
@@ -79,10 +78,12 @@ if (errorCode === "auth/wrong-password") {
   alert("Contraseña errónea.");
 } else {
   alert(errorMessage);
+
 }
 console.log(error);
 document.getElementById("quickstart-sign-in").disabled = false;
 $("html").css("cursor", "default");
+location.reload();
 });
 
 // [END authwithemail]
