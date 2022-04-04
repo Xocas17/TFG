@@ -17,6 +17,8 @@
     <script src="../js/jquery.min.js"></script>
     <script src="../js/jquery.js"></script>
     <script src="../js/registro.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </head>
  
   <header>
@@ -37,54 +39,59 @@
               </center>
         
                 <div class="row">
-                  <div class="input-field col s6">
+                  <div class="input-field">
                     <input id="email" type="email" class="validate">
                     <label id="idCorreo" for="email">Correo</label>
                   </div>
-                  <div class="input-field col s6">
+                  <div class="input-field">
                     <input id="correo2" type="email" class="validate" >
                     <label id="idCorreo2"  for="correo2">Confirmar correo</label>
                   </div>
-                  <div class="input-field col s6">
+                  <div class="input-field ">
                     <input id="password" type="password" class="validate" autocomplete="current-password">
                     <label id="idContrasena" for="password">Contraseña</label>
                   </div>
-                  <div class="input-field col s6">
+                  <div class="input-field">
                     <input id="confirmPassword" type="password" class="validate" autocomplete="current-password">
                     <label id="idConfirmarContrasena" for="confirmPassword">Confirmar Contraseña</label>
                   </div>
-                  <div class="input-field col s4">
+                  <div class="input-field">
                     <input id="usuario" type="text" class="validate">
                     <label id="labelUsuario" for="usuario">Nombre de usuario</label>
                   </div>
-                  <div class="input-field col s4">
+                  <div class="input-field">
                     <input id="nombre" type="text" class="validate">
                     <label id="idNombre" for="nombre">Nombre</label>
                   </div>
-                  <div class="input-field col s4">
+                  <div class="input-field">
                     <input id="apellidos" type="text" class="validate">
                     <label id="idApellidos" for="apellidos">Apellidos</label>
                   </div>
-                  <div class ="input-field col s5">
+                  <div class="input-field">
+                    <input id="telefono" type="number" class="validate">
+                    <label id="idTelefono" for="telefono">Número de teléfono</label>
+                  </div>
+                  <div class ="input-field">
                     <select  id="perfil">
                       <option value="publico" selected>Público</option>
                       <option value="privado">Privado</option>
                       </select>
                       <label>Tipo de Perfil</label>
                   </div>
-                  <div class="input-field col s2">
+                  <div>
+                    <label>Fecha de Nacimiento</label>
+                    <input id="fechaNac" style="cursor:pointer" class="datepicker">
+                  </div>
+                  <div class="input-field">
                     <input id="peso" type="number" class="validate">
                     <label id="idPeso" for="peso">Peso(en kg)</label>
                   </div>
-                  <div class="input-field col s3">
+                  <div class="input-field">
                     <input id="altura" type="number" class="validate">
                     <label id="idAltura" for="altura">Altura(en cm)</label>
                   </div>
-                  <div class="input-field col s2">
-                    <input id="edad" type="number" class="validate">
-                    <label id="idEdad" for="edad">Edad</label>
-                  </div>
-                  <div class="input-field col s6">
+
+                  <div class="input-field">
                   <select onchange="comprobarPais()" id="pais">
                     <option value="" selected="selected">Seleccionar País</option> 
                     <option value="Afghanistan">Afghanistan</option> 
@@ -329,7 +336,7 @@
                     </select>
                   <label>País</label>
                   </div>
-                  <div id="divProvincia" style="display: none;" class="input-field col s6">
+                  <div id="divProvincia" style="display: none;" class="input-field">
                     <select id="provincia">
                       <option value=""  selected>Selecciona Provincia</option>
                       <option id="p1" value="A Coruña">A Coruña</option>
@@ -387,8 +394,10 @@
                       </select>
                     <label>Provincia</label>
                     </div>
+
                 </div>
-                    
+
+  
                     <button style="background-color: #2981b3;margin-top: 5px;width:100%" class="btn center" type="submit" onclick="handleSignUp();" value="Registro">Confirmar registro</button>
                     <div style="
                     text-align: center;

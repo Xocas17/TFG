@@ -95,7 +95,14 @@ $(document).ready(function(){
   })
   $('.datepicker').datepicker({
     format: 'dd/mm/yyyy',
-    minDate: minDate
+    minDate: minDate,
+    i18n: {
+      months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+      monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Set", "Oct", "Nov", "Dic"],
+      weekdays: ["Domingo","Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+      weekdaysShort: ["Dom","Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
+      weekdaysAbbrev: ["D","L", "M", "M", "J", "V", "S"]
+  }
   })
 });
 
@@ -139,7 +146,14 @@ var minDate = new Date()
 var fecha = document.getElementById('fechaPickerMod');
 M.Datepicker.init(fecha,{
   format: 'dd/mm/yyyy',
-  minDate: minDate
+  minDate: minDate,
+  i18n: {
+    months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+    monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Set", "Oct", "Nov", "Dic"],
+    weekdays: ["Domingo","Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+    weekdaysShort: ["Dom","Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
+    weekdaysAbbrev: ["D","L", "M", "M", "J", "V", "S"]
+}
 })
 $(fecha).val(citaPartes[1])
 

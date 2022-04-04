@@ -35,21 +35,18 @@
 
 <div id="spinner" class="spinner"></div>
 <header>
-    <div class="navbar-fixed" >
-        <nav class="navbar white" id="barravisible2">
-            <div>
-              <span class="brand-logo grey-text text-darken-4">Perfil</span>
-            </div>
-        </nav>
-    </div>
+
 
 </header>
 
 
 <main>
+    
     <div style="margin-top:-3vh !important" class="section container ipadcontainer">
         <div id="tabla">
+ 
             <div id="imprimir">
+                <center><img style="margin:30px;border-radius: 25px;border: 2px solid #2981b3;max-width:150px;" id="fotoPerfil" src="../src/img/perfilDefault.png"></center>
                 <div id="correccion1"
                      style="margin-right: 1vw; margin-left: 1vw;border: 5px solid white; border-radius: 20px 20px;display:block;"
                      class="card">
@@ -63,7 +60,7 @@
                             <tr>
                                 <td style="width:22%">Nombre:</td>
                                 <td style="width:40%"><span id="nombreSpan"></span></td>
-                                <td>País: <span id="edadSpan"></span></td>
+                                <td>Edad: <span id="edadSpan"></span></td>
                                 </td>
                             </tr>
                             <tr>
@@ -92,17 +89,11 @@
                             <tbody>
                             <tr>
                                 <td>Teléfono</td>
-                                <td><div class="row"> <div class="input-field col s2">
-                                    <input placeholder="País" id="codigoInput" type="text" class="validate">
-                                    <label for="code">Code</label>
-                                </div>
+                                <td>
                                 <div class="input-field col s7">
                                     <input placeholder="Teléfono" id="telefonoInput" type="text" class="validate">
-                                    <label for="telefonoid">Teléfono / Phone</label>
+                                    <label for="telefonoid">Teléfono</label>
                                 </div>
-                                <div class="input-field col s3">
-                                    <a id="telefonoid_whatsapp" href="#"><img style="width:3em;margin-left: auto;margin-right: auto;display: block;" src="img/whatsapp.svg"></a> 
-                                    </div>
                             </div></td>
                             </tr>
 
@@ -160,7 +151,7 @@
                                     <div class="switch">
                                         <label>
                                           Privado
-                                          <input id="esdocente" type="checkbox">
+                                          <input id="privacidad" type="checkbox">
                                           <span class="lever"></span>
                                           Público
                                         </label>
@@ -179,10 +170,10 @@
                                 <td>
                                     <div class="switch">
                                         <label>
-                                          Activado
-                                          <input id="esdocente" type="checkbox">
-                                          <span class="lever"></span>
                                           Desactivado
+                                          <input id="cCitas" type="checkbox">
+                                          <span class="lever"></span>
+                                          Activado
                                         </label>
                                       </div>
                                 
@@ -194,10 +185,10 @@
                                 <td>
                                     <div class="switch">
                                         <label>
-                                          Activado
-                                          <input id="esdocente" type="checkbox">
-                                          <span class="lever"></span>
                                           Desactivado
+                                          <input id="tCitas" type="checkbox">
+                                          <span class="lever"></span>
+                                          Activado
                                         </label>
                                       </div>
                                 
@@ -210,10 +201,10 @@
                                 <td>
                                     <div class="switch">
                                         <label>
-                                          Activado
-                                          <input id="esdocente" type="checkbox">
-                                          <span class="lever"></span>
                                           Desactivado
+                                          <input id="cMedic" type="checkbox">
+                                          <span class="lever"></span>
+                                          Activado
                                         </label>
                                       </div>
                                     
@@ -227,10 +218,10 @@
                                 <td>
                                     <div class="switch">
                                         <label>
-                                          Activado
-                                          <input id="esdocente" type="checkbox">
-                                          <span class="lever"></span>
                                           Desactivado
+                                          <input id="tMedic" type="checkbox">
+                                          <span class="lever"></span>
+                                          Activado
                                         </label>
                                       </div>
                                 

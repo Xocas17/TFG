@@ -35,6 +35,7 @@ alert(
 );
 
 firebase.auth().signOut();
+location.reload();
 }
 $("html").css("cursor", "default");
 } else {

@@ -5,6 +5,21 @@ $(document).ready(function(){
   M.FormSelect.init(select);  
   var select = document.getElementById("perfil")
   M.FormSelect.init(select);
+  var currYear = (new Date()).getFullYear();
+  $('.datepicker').datepicker({
+    format: 'dd/mm/yyyy',
+    defaultDate: new Date(currYear-18,1,31),
+    // setDefaultDate: new Date(2000,01,31),
+    maxDate: new Date(currYear-18,12,31),
+    yearRange: [1928, currYear-18],
+    i18n: {
+      months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+      monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Set", "Oct", "Nov", "Dic"],
+      weekdays: ["Domingo","Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+      weekdaysShort: ["Dom","Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
+      weekdaysAbbrev: ["D","L", "M", "M", "J", "V", "S"]
+  }
+  })
 });
 function comprobarPais(){
   var pais= document.getElementById("pais").value;
@@ -62,17 +77,27 @@ function handleSignUp() {
   }
   var nombre = document.getElementById("nombre").value;
   var apellidos = document.getElementById("apellidos").value;
-
+  var fechaNac = document.getElementById("fechaNac").value; 
   var perfil = document.getElementById("perfil").value;
   var altura = document.getElementById("altura").value;
-  var edad = document.getElementById("edad").value;
   var pais = document.getElementById("pais").value;
   var provincia = document.getElementById("provincia").value;
   var peso = document.getElementById("peso").value;
   var metrosCuadrados = (altura*altura)/10000;
   var imc = peso/metrosCuadrados;
-  
+  var telefono = document.getElementById("telefono").value;
 
+  if(telefono.length!=9){
+    $("html").css("cursor", "default");
+    alert("Debes introducir un número de teléfono válido");
+    return;
+  }
+
+  if(fechaNac.length<=1){
+    $("html").css("cursor", "default");
+    alert("Debes introducir una fecha de nacimiento");
+    return;
+  }
   if(nombre.length<=1){
     $("html").css("cursor", "default");
     alert("Debes introducir un nombre válido");
@@ -89,16 +114,7 @@ function handleSignUp() {
     alert("El separador decimal es '.'");
     return;
   }
-  if(edad<18){
-    $("html").css("cursor", "default");
-    alert("Debes ser mayor de edad");
-    return;
-  }
-  if(edad>130){
-    $("html").css("cursor", "default");
-    alert("Debes introducir una edad válida");
-    return;
-  }
+
   if(altura<50||altura>250){
     $("html").css("cursor", "default");
     alert("Debes introducir una altura válida");
@@ -127,17 +143,23 @@ function handleSignUp() {
             apellidos,
             perfil,
             altura,
-            edad,
             pais,
             provincia,
             peso,
-            imc
+            imc,
+            fechaNacimiento:fechaNac,
+            smsCitas:false,
+            smsMedicacion:false,
+            correoCitas:false,
+            correoMedicacion:false,
+            colesterol,
+            trigliceridos
           })
           .then(function () {
 
             $("html").css("cursor", "default");
             alert("Usuario registrado correctamente")
-        
+            location.href="html/menuPrincipal.html"
           
           })
           .catch(function (error) {
