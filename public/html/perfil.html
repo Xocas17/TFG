@@ -45,9 +45,9 @@
     <div style="margin-top:-3vh !important" class="section container ipadcontainer">
         <div id="tabla">
  
-            <div id="imprimir">
+            <div>
                 <center>
-                <div >
+                <div style="margin-bottom:50px">
                   <img style="cursor:pointer;display:flex;margin:30px;border-radius: 25px;border: 2px solid #2981b3;max-width:150px;"  id="fotoPerfil" src="../src/img/perfilDefault.png">
                   <a onclick="document.getElementById('inputFoto').click()" style="display:none;" id="editarFoto" class="btn-floating btn-large">
                     <i class="large material-icons" style="font-size: 2.2rem;" >edit</i>
@@ -58,13 +58,11 @@
 
                 <div class="input-field" style="display: none;">
                     <!-- capture="capture" dentro del input -->
-                    <input accept="image/jpeg" onchange="ValidateSize(this)" id="inputFoto" name="uploaded_file" type="file" class="validate">
+                    <input accept="image/*" onchange="ValidateSize(this)" id="inputFoto" name="uploaded_file" type="file" class="validate">
                 </div>
                 </div>
             </center>
-                <div id="correccion1"
-                     style="margin-right: 1vw; margin-left: 1vw;border: 5px solid white; border-radius: 20px 20px;display:block;"
-                     class="card">
+                <div style="margin-right: 1vw; margin-left: 1vw;border: 5px solid white; border-radius: 20px 20px;display:block;" class="card">
                     <div style="padding: 1vw" id="table-custom-elements_wrapper" class="dataTables_wrapper no-footer">
                         <table>
                             <tr style="border-bottom: 0px solid rgba(0,0,0,0.12);">
@@ -125,11 +123,11 @@
                             <tbody>
                             <tr>
                                 <td>Peso</td>
-                                <td><input placeholder="Peso" id="pesoInput" type="text" class="validate"></td>
+                                <td><input disabled placeholder="Peso" id="pesoOutput" type="text" class="validate"></td>
                             </tr>
                             <tr>
                                 <td>IMC</td>
-                                <td><input disabled placeholder="IMC" id="imcInput" type="text" class="validate"></td>
+                                <td><input disabled placeholder="IMC" id="imcOutput" type="text" class="validate"></td>
                             </tr>
 
                             <tr>
@@ -149,7 +147,27 @@
                             
 
                             </tbody>
+                            <thead>
+                                <tr style="background-color: #2981b3;border-radius:12px;border-bottom: none;">
+                                    <th colspan="2" style="border-radius: 12px;"><span class="span-titulos" style="margin-left: 1em;">Entradas diarias</span></th>
+                                 
+    
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Kilómetros recorridos hoy:</td>
+                                    <td><input placeholder="Km recorridos" id="kmInput" type="text" class="validate"></td>
+                                </tr>
+                                <tr>
+                                    <td>Peso hoy:</td>
+                                    <td><input placeholder="Peso" id="pesoInputDiario" type="text" class="validate"></td>
+                                </tr>
+                                
 
+                                
+    
+                                </tbody>
 
                             <thead>
                             <tr style="background-color: #2981b3;border-radius:12px;border-bottom: none;">
@@ -254,7 +272,7 @@
 
             </div>
             <p class="center-align">
-                <a onclick="guardarCambios()" style="font-size: 1.35em;font-weight: 400;border-radius: 20px;width: 8em;line-height: 1.6em;height: 1.6em;"
+                <a onclick="actualizarDatos()" style="font-size: 1.35em;font-weight: 400;border-radius: 20px;width: 8em;line-height: 1.6em;height: 1.6em;"
                    class="btn waves-effect waves-light lighten-2">Actualizar</a>
             </p>
 

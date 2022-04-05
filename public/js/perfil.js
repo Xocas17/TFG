@@ -34,6 +34,103 @@ function borrarFoto(){
     }
 
 }
+function actualizarDatos(){
+    $("html").css("cursor", "progress");
+    var telefono = document.getElementById("telefonoInput").value;
+    var altura = document.getElementById("alturaInput").value;
+    var colesterol = document.getElementById("colesterolInput").value;
+    var trigliceridos = document.getElementById("trigliceridosInput").value;
+    var km = document.getElementById("kmInput").value;
+    var peso = document.getElementById("pesoInputDiario").value;
+    if(peso.length==0){
+        peso=document.getElementById("pesoOutput").value;
+    }
+    
+    var perfil = document.getElementById("privacidad").checked;
+    var correoCitas = document.getElementById("cCitas").checked;
+    var telefonoCitas = document.getElementById("tCitas").checked;
+    var correoMedicacion =document.getElementById("cMedic").checked;
+    var telefonoMedicacion =document.getElementById("tMedic").checked;
+    var date = new Date();
+    var dia = date.getDate();
+    var month = date.getMonth()+1;
+    var year = date.getFullYear();
+    var fecha = dia +"/" + month+"/"+year;
+    var metrosCuadrados = (altura*altura)/10000;
+    var imc = peso/metrosCuadrados;
+    var entradaPeso = peso +"##" + fecha;
+    var entradaImc= imc +"##" + fecha;
+    var entradaKm = km +"##"+fecha; 
+
+    if(km.length==0){
+        km=0;
+    }
+    if(km<0){
+        $("html").css("cursor", "default");
+        alert("Debes introducir un número de kms válido");
+        return;
+    }
+    if(telefono.length!=9){
+        $("html").css("cursor", "default");
+        alert("Debes introducir un número de teléfono válido");
+        return;
+    }
+    if(peso.includes(",")){
+        $("html").css("cursor", "default");
+        alert("El separador decimal es '.'");
+        return;
+      }
+
+    if(altura<50||altura>250){
+        $("html").css("cursor", "default");
+        alert("Debes introducir una altura válida(en cm)");
+        return;
+      }
+    if(colesterol>1000 || colesterol <=0){
+        $("html").css("cursor", "default");
+        alert("Debes introducir un colesterol menor que 1000");
+        return;
+    }
+    if(trigliceridos>1000 || trigliceridos <=0){
+        $("html").css("cursor", "default");
+        alert("Debes introducir unos triglicéridos menores que 1000");
+        return;
+    }
+    if(perfil ==true){
+        perfil="público"
+    }
+    else{
+        perfil="privado"
+    }
+
+    db.collection("usuarios")
+        .doc(email)
+        .update({
+            perfil: perfil,
+            altura:altura,
+            peso:peso,
+            imc:imc,
+            smsCitas: telefonoCitas,
+            smsMedicacion: telefonoMedicacion,
+            correoCitas: correoCitas,
+            correoMedicacion: correoMedicacion,
+            colesterol: colesterol,
+            trigliceridos:trigliceridos,
+            evolucionKm:firebase.firestore.FieldValue.arrayUnion(entradaKm),
+            evolucionPeso:firebase.firestore.FieldValue.arrayUnion(entradaPeso),
+            evolucionIMC:firebase.firestore.FieldValue.arrayUnion(entradaImc)
+        })
+        .then(function () {
+
+            $("html").css("cursor", "default");
+            alert("Usuario actualizado correctamente")
+            location.reload();
+
+        })
+        .catch(function (error) {
+            console.error("Error writing document: ", error);
+        });
+}
 function onResolve(foundURL) { 
     document.getElementById("fotoPerfil").src=foundURL;
     document.getElementById("borrarFoto").style.display="inline-flex";
@@ -74,7 +171,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                 var cCitas = myData.correoCitas;
                 var cMedic = myData.correoMedicacion;
 
-                if(privacidad=="publico"){
+                if(privacidad=="público"){
                     privacidad=true;
                 }
                 else{
@@ -100,8 +197,8 @@ firebase.auth().onAuthStateChanged(function (user) {
 
                 document.getElementById("telefonoInput").value=telefono;
 
-                document.getElementById("pesoInput").value=peso;
-                document.getElementById("imcInput").value=IMC;
+                document.getElementById("pesoOutput").value=peso;
+                document.getElementById("imcOutput").value=IMC;
                 document.getElementById("alturaInput").value=altura;
                 document.getElementById("colesterolInput").value=colesterol;
                 document.getElementById("trigliceridosInput").value=trigliceridos;

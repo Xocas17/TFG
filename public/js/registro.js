@@ -86,7 +86,12 @@ function handleSignUp() {
   var metrosCuadrados = (altura*altura)/10000;
   var imc = peso/metrosCuadrados;
   var telefono = document.getElementById("telefono").value;
-
+  var citasMedicas = new Array();
+  var medicaciones = new Array();
+  var evolucionPeso = new Array();
+  var evolucionKm = new Array();
+  var evolucionIMC = new Array();
+  var kmDiarios=0;
   if(telefono.length!=9){
     $("html").css("cursor", "default");
     alert("Debes introducir un número de teléfono válido");
@@ -153,7 +158,12 @@ function handleSignUp() {
             correoCitas:false,
             correoMedicacion:false,
             colesterol,
-            trigliceridos
+            trigliceridos,
+            citasMedicas,
+            medicaciones,
+            evolucionKm,
+            evolucionPeso,
+            evolucionIMC
           })
           .then(function () {
 
