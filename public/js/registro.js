@@ -166,7 +166,6 @@ function handleSignUp() {
             console.error("Error writing document: ", error);
           });
 
-        //location.href='./continuarregistro.html';
       },
       function (error) {
         // Handle Errors here.
@@ -176,7 +175,6 @@ function handleSignUp() {
         // [START_EXCLUDE]
         if (errorCode == "auth/weak-password") {
           alert("The password is too weak.");
-
           return
         } else {
           alert(errorMessage);

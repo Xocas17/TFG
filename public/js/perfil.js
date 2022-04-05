@@ -1,7 +1,53 @@
-document.getElementById("fotoPerfil").src=""
+function ValidateSize(file) {
+    var FileSize = file.files[0].size / 1024 / 1024; // in MB
+    if (FileSize > 5) {
+        alert('Debes subir una foto menor de 2mb');
+    } else {
+    
+    subirFoto();
+        
+    }
+}
+function subirFoto(){
+    $("html").css("cursor", "progress");
+    var file = $('#inputFoto').prop('files')[0]; 
+	var image = new FormData();                  
+	image.append('file', file);
+    var storageRef = firebase.storage().ref();
+    var mountainsRef = storageRef.child('fotosUsuario/'+email+'.jpeg');
+    mountainsRef.put(file).then(function(snapshot) {
+        $("html").css("cursor", "default");
+        alert("Foto actualizada con éxito");
+        location.reload();
+    
+    });
+    
+}
+function borrarFoto(){
+    var r = confirm("Estas seguro de que quieres eliminar la foto?");
+    if(r==true){
+        var storageRef = firebase.storage().ref();
+        storageRef.child("fotosUsuario/"+email+".jpeg").delete().then(function(){
+            alert("Foto eliminada correctamente");
+            location.reload();
+        })
+    }
+
+}
+function onResolve(foundURL) { 
+    document.getElementById("fotoPerfil").src=foundURL;
+    document.getElementById("borrarFoto").style.display="inline-flex";
+    document.getElementById("editarFoto").style.display="inline-flex";
+    } 
+ function onReject(error){ 
+    document.getElementById("borrarFoto").style.display="none";
+    document.getElementById("editarFoto").style.display="none"; 
+    document.getElementById("fotoPerfil").setAttribute("onclick","document.getElementById('inputFoto').click()");
+    }
+var email;
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      var email = user.email;
+       email = user.email;
         var docRef = db.collection("usuarios").doc(email);
         docRef.get().then(function (doc) {
             if (doc && doc.exists) {
@@ -42,9 +88,10 @@ firebase.auth().onAuthStateChanged(function (user) {
                     edad=añoActual-edad.split("/")[2] -1;
                 }
               
-                
-                var imgUrl = "https://firebasestorage.googleapis.com/v0/b/tfginfo-be99f.appspot.com/o/fotosUsuario%2F" + encodeURIComponent(email) + ".jpeg?alt=media";
-                document.getElementById("fotoPerfil").src=imgUrl;
+                var storageRef = firebase.storage().ref();
+                var imgUrl2 = "fotosUsuario/" + email + ".jpeg";
+                storageRef.child(imgUrl2).getDownloadURL().then(onResolve, onReject);
+
                 document.getElementById("nombreSpan").innerText=nombreCompleto;
                 document.getElementById("edadSpan").innerText="  "+edad;
                 document.getElementById("correoSpan").innerText=email;
