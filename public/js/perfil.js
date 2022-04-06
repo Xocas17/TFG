@@ -14,7 +14,7 @@ function subirFoto(){
 	var image = new FormData();                  
 	image.append('file', file);
     var storageRef = firebase.storage().ref();
-    var mountainsRef = storageRef.child('fotosUsuario/'+email+'.jpeg');
+    var mountainsRef = storageRef.child('fotosUsuario/'+usuario+'.jpeg');
     mountainsRef.put(file).then(function(snapshot) {
         $("html").css("cursor", "default");
         alert("Foto actualizada con éxito");
@@ -27,7 +27,7 @@ function borrarFoto(){
     var r = confirm("Estas seguro de que quieres eliminar la foto?");
     if(r==true){
         var storageRef = firebase.storage().ref();
-        storageRef.child("fotosUsuario/"+email+".jpeg").delete().then(function(){
+        storageRef.child("fotosUsuario/"+usuario+".jpeg").delete().then(function(){
             alert("Foto eliminada correctamente");
             location.reload();
         })
@@ -142,6 +142,7 @@ function onResolve(foundURL) {
     document.getElementById("fotoPerfil").setAttribute("onclick","document.getElementById('inputFoto').click()");
     }
 var email;
+var usuario;
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
        email = user.email;
@@ -154,7 +155,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                 var edad = myData.fechaNacimiento;
                 
                 var pais = myData.pais;
-                var usuario= myData.nombreUsuario;
+                 usuario= myData.nombreUsuario;
                 var telefono = myData.telefono;
                 var peso = myData.peso;
                 var altura= myData.altura;
@@ -186,7 +187,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                 }
               
                 var storageRef = firebase.storage().ref();
-                var imgUrl2 = "fotosUsuario/" + email + ".jpeg";
+                var imgUrl2 = "fotosUsuario/" + usuario + ".jpeg";
                 storageRef.child(imgUrl2).getDownloadURL().then(onResolve, onReject);
 
                 document.getElementById("nombreSpan").innerText=nombreCompleto;

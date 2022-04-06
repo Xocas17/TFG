@@ -5,7 +5,7 @@ var fecha=new Date();
 var aPoner=[];
 var eventosTodos=[];
 var usuario;
-var citaSeleccionada;
+var medicacionSeleccionada;
 
 firebase.auth().onAuthStateChanged(function(user) {
 var db = firebase.firestore();
@@ -13,10 +13,10 @@ var db = firebase.firestore();
  db.collection("usuarios").doc(usuario).get().then(function (doc){
   if(doc &&doc.exists){
     var myData = doc.data();
-    var citasMedicas = myData.citasMedicas;
-    citasMedicas.forEach(function(cita){
+    var medicaciones = myData.medicaciones;
+    medicaciones.forEach(function(medicacion){
       var object = new Object();
-      var contenido = cita.split("##")
+      var contenido = medicacion.split("##")
       var especialidad = contenido[0]
       var fecha = contenido[1]
       var hora = contenido[2]
@@ -29,7 +29,7 @@ var db = firebase.firestore();
       object.end= fechaParseada;
       object.backgroundColor="blue";
       object.description="Tienes una consulta de " + especialidad + " el día " + fecha + " a las " + hora;
-      object.borrarBD=cita;
+      object.borrarBD=medicacion;
       eventosTodos.push(object);
 
 
@@ -40,9 +40,9 @@ var db = firebase.firestore();
         eventClick: function(info) {
           console.log("Object",info.event)
           fecha=info.event.start
-          citaSeleccionada=info.event.extendedProps.borrarBD;
-          document.getElementById("tituloCita").innerText=info.event.title;
-          document.getElementById("descriCita").innerText=info.event.extendedProps.description;            
+          medicacionSeleccionada=info.event.extendedProps.borrarBD;
+          document.getElementById("tituloMedicacion").innerText=info.event.title;
+          document.getElementById("descriMedicacion").innerText=info.event.extendedProps.description;            
           modalOpen("#modal")
     },
     events: eventosTodos,
@@ -59,20 +59,20 @@ function modalOpen(m){
 $(m).modal('open');
 }	
 
-function añadirCita(){
-  var r = confirm("Estás seguro de añadir la cita?");
+function añadirMedicacion(){
+  var r = confirm("Estás seguro de añadir la medicación?");
   if (r == true) {
     var especialidad = document.getElementById("especialidad").value;
     var fecha = document.getElementById("fechaPicker").value;
     var hora = document.getElementById("timePicker").value;
     var periodicidad = document.getElementById("periodicidad").value;
-    var cita=especialidad+"##"+fecha+"##"+hora+"##"+periodicidad;
+    var medicacion=especialidad+"##"+fecha+"##"+hora+"##"+periodicidad;
     var db = firebase.firestore();
     db.collection("usuarios").doc(usuario).update({
-      citasMedicas: firebase.firestore.FieldValue.arrayUnion(cita)
+      medicaciones: firebase.firestore.FieldValue.arrayUnion(medicacion)
     }).then(function(){
       $('#modal').modal('close');
-      alert("Cita añadida correctamente");
+      alert("Medicación añadida correctamente");
       location.reload();
     })
   } 
@@ -99,22 +99,22 @@ $(document).ready(function(){
   })
 });
 
-function modificarCita(){
-var citaModificar  = citaSeleccionada;
+function modificarMedicacion(){
+var medicacionModificar  = medicacionSeleccionada;
 var especialidad= document.getElementById("especialidadMod").value
 var fecha = document.getElementById("fechaPickerMod").value
 var hora = document.getElementById("timePickerMod").value
 var periodicidad = document.getElementById("periodicidadMod").value
-var citaModificada = especialidad + "##" + fecha + "##" + hora + "##" + periodicidad;
-var r = confirm("Estas seguro de que quieres modificar la cita?");
+var medicacionModificada = especialidad + "##" + fecha + "##" + hora + "##" + periodicidad;
+var r = confirm("Estas seguro de que quieres modificar la medicación?");
 
 if(r==true){
 var db = firebase.firestore();
 db.collection("usuarios").doc(usuario).update({
-  citasMedicas: firebase.firestore.FieldValue.arrayRemove(citaModificar)
+  medicaciones: firebase.firestore.FieldValue.arrayRemove(medicacionModificar)
 }).then(function(){
   db.collection("usuarios").doc(usuario).update({
-    citasMedicas:firebase.firestore.FieldValue.arrayUnion(citaModificada)
+    medicaciones:firebase.firestore.FieldValue.arrayUnion(medicacionModificada)
   }).then(function(){
     alert("Descripción modificada correctamente.")
     location.reload();
@@ -127,12 +127,12 @@ else{
 }
 }
 
-function abrirCita(){
+function abrirMedicacion(){
 modalClose('#modal')
-var citaModificar  = citaSeleccionada;
-var citaPartes = citaModificar.split("##");
+var medicacionModificar  = medicacionSeleccionada;
+var medicacionPartes = medicacionModificar.split("##");
 var select = document.getElementById("especialidadMod");
-select.value=citaPartes[0];
+select.value=medicacionPartes[0];
 M.FormSelect.init(select);  
 var minDate = new Date()
 
@@ -148,28 +148,28 @@ M.Datepicker.init(fecha,{
     weekdaysAbbrev: ["D","L", "M", "M", "J", "V", "S"]
 }
 })
-$(fecha).val(citaPartes[1])
+$(fecha).val(medicacionPartes[1])
 
 var hora = document.getElementById('timePickerMod')
 M.Timepicker.init(hora, {
-  defaultTime: citaPartes[2],
+  defaultTime: medicacionPartes[2],
   twelveHour: false
 
 });
-$(hora).val(citaPartes[2])
+$(hora).val(medicacionPartes[2])
 $(hora).attr('selected','selected')
-document.getElementById("periodicidadMod").value=citaPartes[3];
+document.getElementById("periodicidadMod").value=medicacionPartes[3];
 modalOpen('#modal3')
 }
-function eliminarCita(){
-var r = confirm("Estás seguro de borrar la cita?");
+function eliminarMedicación(){
+var r = confirm("Estás seguro de borrar la medicación?");
   if (r == true) {
     var db = firebase.firestore();
     db.collection("usuarios").doc(usuario).update({
-      citasMedicas: firebase.firestore.FieldValue.arrayRemove(citaSeleccionada)
+      medicaciones: firebase.firestore.FieldValue.arrayRemove(medicacionSeleccionada)
     }).then(function(){
       $('#modal2').modal('close');
-      alert("Cita borrada correctamente");
+      alert("Medicación borrada correctamente");
       location.reload();
     })
   } 

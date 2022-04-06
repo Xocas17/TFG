@@ -8,3 +8,13 @@ background-color: #8BC3F6 !important;
 .btn{
     background-color: #2981b3 !important;
 }
+header{
+    display:flex !important;
+    height:10% !important;
+    background-color:white !important;
+}
+h4{
+    font-family: 'Montserrat';
+    font-weight: bold;
+    color:#2981b3;
+  }

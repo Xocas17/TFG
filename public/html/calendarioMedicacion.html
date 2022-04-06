@@ -43,85 +43,50 @@
       <div id="modal" class="modal">
         <div class="modal-content">
           <div id="modal_h1"></div>
-          <span style="font-weight: bold" id="tituloCita"></span><br>
-          <span id="descriCita"></span>
+          <span style="font-weight: bold" id="tituloMedicacion"></span><br>
+          <span id="descriMedicacion"></span>
         </div>
         <div class="modal-footer">
-          <a class="btn" style="color:white !important" onclick="abrirCita();">Modificar Medicación</a>
-          <a class="btn" style="color:white !important" onclick="eliminarCita();">Borrar Medicación</a>
+          <a class="btn" style="color:white !important" onclick="abrirMedicacion();">Modificar Medicación</a>
+          <a class="btn" style="color:white !important" onclick="eliminarMedicacion();">Borrar Medicación</a>
           <a class="btn" style="color:white !important" onclick="modalClose('#modal')">Cerrar</a>
         </div>
         </div>
         <div id="modal2" class="modal" style="height: 50%;width:50% !important;">
           <div class="modal-content" style="height:0%">
             <div class="row">
-              <center><h3>Introducir Cita</h3></center>
+              <center><h3>Introducir Medicación</h3></center>
+              <div class="input-field col s6">
+                <input id="nombreMedicacion" type="text">
+                <label>Nombre de medicación</label>
+              </div>
               <div class ="input-field col s6">
-                <select class="select" id="especialidad">
-                  <option value="ALERGOLOGÍA" selected>ALERGOLOGÍA</option>
-                  <option value="ANATOMÍA PATOLÓGICA">ANATOMÍA PATOLÓGICA</option>
-                  <option value="ANESTESIOLOGÍA Y REANIMACIÓN" >ANESTESIOLOGÍA Y REANIMACIÓN</option>
-                  <option value="ANGIOLOGÍA Y CIRUGÍA VASCULAR" >ANGIOLOGÍA Y CIRUGÍA VASCULAR</option>
-                  <option value="APARATO DIGESTIVO" >APARATO DIGESTIVO</option>
-                  <option value="CARDIOLOGÍA" >CARDIOLOGÍA</option>
-                  <option value="CIRUGÍA CARDIOVASCULAR" >CIRUGÍA CARDIOVASCULAR</option>
-                  <option value="CIRUGÍA GENERAL" >CIRUGÍA GENERAL</option>
-                  <option value="CIRUGÍA DEL APARATO DIGESTIVO" >ALERGOLOGÍA</option>
-                  <option value="CIRUGÍA ORAL Y MAXILOFACIAL" >CIRUGÍA ORAL Y MAXILOFACIAL</option>
-                  <option value="CIRUGÍA ORTOPÉDICA" >CIRUGÍA ORTOPÉDICA</option>
-                  <option value="CIRUGÍA PEDIÁTRICA" >CIRUGÍA PEDIÁTRICA</option>
-                  <option value="CIRUGÍA PLÁSTICA, ESTÉTICA Y REPARADORA" >CIRUGÍA PLÁSTICA, ESTÉTICA Y REPARADORA</option>
-                  <option value="CIRUGÍA TORÁCICA" >CIRUGÍA TORÁCICA</option>
-                  <option value="DERMATOLOGÍA" >DERMATOLOGÍA</option>
-                  <option value="ENDOCRINOLOGÍA Y NUTRICIÓN" >ENDOCRINOLOGÍA Y NUTRICIÓN</option>
-                  <option value="FARMACOLOGÍA CLÍNICA" >FARMACOLOGÍA CLÍNICA</option>
-                  <option value="GERIATRÍA" >GERIATRÍA</option>
-                  <option value="HEMATOLOGÍA Y HEMOTERAPIA" >HEMATOLOGÍA Y HEMOTERAPIA</option>
-                  <option value="INMUNOLOGÍA" >INMUNOLOGÍA</option>
-                  <option value="MEDICINA DEL TRABAJO" >MEDICINA DEL TRABAJO</option>
-                  <option value="MEDICINA FAMILIAR Y COMUNITARIA" >MEDICINA FAMILIAR Y COMUNITARIA</option>
-                  <option value="MEDICINA FÍSICA Y REHABILITACIÓN" >MEDICINA FÍSICA Y REHABILITACIÓN</option>
-                  <option value="MEDICINA INTENSIVA" >MEDICINA INTENSIVA</option>
-                  <option value="MEDICINA INTERNA" >MEDICINA INTERNA</option>
-                  <option value="MEDICINA NUCLEAR" >MEDICINA NUCLEAR</option>
-                  <option value="MEDICINA PREVENTIVA Y SALÚD PÚBLICA" >MEDICINA PREVENTIVA Y SALÚD PÚBLICA</option>
-                  <option value="NEFROLOGÍA" >NEFROLOGÍA</option>
-                  <option value="NEUMOLOGÍA" >NEUMOLOGÍA</option>
-                  <option value="NEUROCIRUGÍA" >NEUROCIRUGÍA</option>
-                  <option value="NEUROFISIOLOGÍA CLÍNICA" >NEUROFISIOLOGÍA CLÍNICA</option>
-                  <option value="OBSTETRICIA Y GINECOLOGÍA" >OBSTETRICIA Y GINECOLOGÍA</option>
-                  <option value="OFTALMOLOGÍA" >OFTALMOLOGÍA</option>
-                  <option value="ONCOLOGÍA MÉDICA" >ONCOLOGÍA MÉDICA</option>
-                  <option value="ONCOLOGÍA RADIOTERÁPICA" >ONCOLOGÍA RADIOTERÁPICA</option>
-                  <option value="OTORRINOLARINGOLOGÍA" >OTORRINOLARINGOLOGÍA</option>
-                  <option value="PEDIATRÍA" >PEDIATRÍA</option>
-                  <option value="PSIQUIATRA" >PSIQUIATRA</option>
-                  <option value="RADIODIAGNÓSTICO" >RADIODIAGNÓSTICO</option>
-                  <option value="REUMATOLOGÍA" >REUMATOLOGÍA</option>
-                  <option value="TRAUMATOLOGÍA" >TRAUMATOLOGÍA</option>
-                  <option value="UROLOGÍA" >UROLOGÍA</option>
+                <select class="select" id="frecuencia">
+                  <option value="4" selected>Cada 4 horas</option>
+                  <option value="6 PATOLÓGICA">Cada 6 horas</option>
+                  <option value="8" >Cada 8 horas</option>
+                  <option value="12" >Cada 12 horas</option>
+                  <option value="24" >Cada 24 horas</option>
                   </select>
-                  <label>Especialidad</label>
+                  <label>Frecuencia</label>
               </div>
               <div class="input-field col s6">
-                <input id="fechaPicker" style="cursor:pointer" type="text" class="datepicker">
-                <label>Fecha Cita</label>
+                <input id="fechaIPicker" style="cursor:pointer" type="text" class="datepicker">
+                <label>Fecha de Inicio</label>
+              </div>
+              <div class="input-field col s6">
+                <input id="fechaFPicker" style="cursor:pointer" type="text" class="datepicker">
+                <label>Fecha de Finalización</label>
               </div>
               <div class="input-field col s6">
                 <input id="timePicker" style="cursor:pointer" type="text" class="timepicker">
-                <label>Hora Cita</label>
+                <label>Hora de Inicio</label>
               </div>
-                <div class ="input-field col s6">
-                  <select class="select" id="periodicidad">
-                    <option value="false" selected>Sin periodicidad</option>
-                    <option value="true">Periódica</option>
-                    </select>
-                    <label>Establecer periodicidad de la cita</label>
-                </div>
+
             
           </div>
           <div class="modal-footer">
-            <a class="btn" style="color:white !important" onclick="añadirCita();">Añadir</a>
+            <a class="btn" style="color:white !important" onclick="añadirMedicacion();">Añadir</a>
             <a class="btn" style="color:white !important" onclick="modalClose('#modal2')">Cancelar</a>
           </div>
          </div>
@@ -129,73 +94,38 @@
          <div id="modal3" class="modal" style="height: 50%;width:50% !important;">
           <div class="modal-content" style="height:0%">
             <div class="row">
-              <center><h3>Modificar Cita</h3></center>
+              <center><h3>Modificar Medicación</h3></center>
+              <div class="input-field col s6">
+                <input id="nombreMedicacionMod" type="text">
+                <label>Nombre de medicación</label>
+              </div>
               <div class ="input-field col s6">
-                <select class="select" id="especialidadMod">
-                  <option value="ALERGOLOGÍA" selected>ALERGOLOGÍA</option>
-                  <option value="ANATOMÍA PATOLÓGICA">ANATOMÍA PATOLÓGICA</option>
-                  <option value="ANESTESIOLOGÍA Y REANIMACIÓN" >ANESTESIOLOGÍA Y REANIMACIÓN</option>
-                  <option value="ANGIOLOGÍA Y CIRUGÍA VASCULAR" >ANGIOLOGÍA Y CIRUGÍA VASCULAR</option>
-                  <option value="APARATO DIGESTIVO" >APARATO DIGESTIVO</option>
-                  <option value="CARDIOLOGÍA" >CARDIOLOGÍA</option>
-                  <option value="CIRUGÍA CARDIOVASCULAR" >CIRUGÍA CARDIOVASCULAR</option>
-                  <option value="CIRUGÍA GENERAL" >CIRUGÍA GENERAL</option>
-                  <option value="CIRUGÍA DEL APARATO DIGESTIVO" >ALERGOLOGÍA</option>
-                  <option value="CIRUGÍA ORAL Y MAXILOFACIAL" >CIRUGÍA ORAL Y MAXILOFACIAL</option>
-                  <option value="CIRUGÍA ORTOPÉDICA" >CIRUGÍA ORTOPÉDICA</option>
-                  <option value="CIRUGÍA PEDIÁTRICA" >CIRUGÍA PEDIÁTRICA</option>
-                  <option value="CIRUGÍA PLÁSTICA, ESTÉTICA Y REPARADORA" >CIRUGÍA PLÁSTICA, ESTÉTICA Y REPARADORA</option>
-                  <option value="CIRUGÍA TORÁCICA" >CIRUGÍA TORÁCICA</option>
-                  <option value="DERMATOLOGÍA" >DERMATOLOGÍA</option>
-                  <option value="ENDOCRINOLOGÍA Y NUTRICIÓN" >ENDOCRINOLOGÍA Y NUTRICIÓN</option>
-                  <option value="FARMACOLOGÍA CLÍNICA" >FARMACOLOGÍA CLÍNICA</option>
-                  <option value="GERIATRÍA" >GERIATRÍA</option>
-                  <option value="HEMATOLOGÍA Y HEMOTERAPIA" >HEMATOLOGÍA Y HEMOTERAPIA</option>
-                  <option value="INMUNOLOGÍA" >INMUNOLOGÍA</option>
-                  <option value="MEDICINA DEL TRABAJO" >MEDICINA DEL TRABAJO</option>
-                  <option value="MEDICINA FAMILIAR Y COMUNITARIA" >MEDICINA FAMILIAR Y COMUNITARIA</option>
-                  <option value="MEDICINA FÍSICA Y REHABILITACIÓN" >MEDICINA FÍSICA Y REHABILITACIÓN</option>
-                  <option value="MEDICINA INTENSIVA" >MEDICINA INTENSIVA</option>
-                  <option value="MEDICINA INTERNA" >MEDICINA INTERNA</option>
-                  <option value="MEDICINA NUCLEAR" >MEDICINA NUCLEAR</option>
-                  <option value="MEDICINA PREVENTIVA Y SALÚD PÚBLICA" >MEDICINA PREVENTIVA Y SALÚD PÚBLICA</option>
-                  <option value="NEFROLOGÍA" >NEFROLOGÍA</option>
-                  <option value="NEUMOLOGÍA" >NEUMOLOGÍA</option>
-                  <option value="NEUROCIRUGÍA" >NEUROCIRUGÍA</option>
-                  <option value="NEUROFISIOLOGÍA CLÍNICA" >NEUROFISIOLOGÍA CLÍNICA</option>
-                  <option value="OBSTETRICIA Y GINECOLOGÍA" >OBSTETRICIA Y GINECOLOGÍA</option>
-                  <option value="OFTALMOLOGÍA" >OFTALMOLOGÍA</option>
-                  <option value="ONCOLOGÍA MÉDICA" >ONCOLOGÍA MÉDICA</option>
-                  <option value="ONCOLOGÍA RADIOTERÁPICA" >ONCOLOGÍA RADIOTERÁPICA</option>
-                  <option value="OTORRINOLARINGOLOGÍA" >OTORRINOLARINGOLOGÍA</option>
-                  <option value="PEDIATRÍA" >PEDIATRÍA</option>
-                  <option value="PSIQUIATRA" >PSIQUIATRA</option>
-                  <option value="RADIODIAGNÓSTICO" >RADIODIAGNÓSTICO</option>
-                  <option value="REUMATOLOGÍA" >REUMATOLOGÍA</option>
-                  <option value="TRAUMATOLOGÍA" >TRAUMATOLOGÍA</option>
-                  <option value="UROLOGÍA" >UROLOGÍA</option>
+                <select class="select" id="frecuenciaMod">
+                  <option value="4" selected>Cada 4 horas</option>
+                  <option value="6">Cada 6 horas</option>
+                  <option value="8" >Cada 8 horas</option>
+                  <option value="12" >Cada 12 horas</option>
+                  <option value="24" >Cada 24 horas</option>
                   </select>
-                  <label>Especialidad</label>
+                  <label>Frecuencia</label>
               </div>
               <div class="input-field col s6">
-                <input id="fechaPickerMod" style="cursor:pointer" type="text" class="datepicker">
-                <label>Fecha Cita</label>
+                <input id="fechaIPickerMod" style="cursor:pointer" type="text" class="datepicker">
+                <label>Fecha de Inicio</label>
+              </div>
+              <div class="input-field col s6">
+                <input id="fechaFPickerMod" style="cursor:pointer" type="text" class="datepicker">
+                <label>Fecha de Finalización</label>
               </div>
               <div class="input-field col s6">
                 <input id="timePickerMod" style="cursor:pointer" type="text" class="timepicker">
-                <label>Hora Cita</label>
+                <label>Hora de Inicio</label>
               </div>
-                <div class ="input-field col s6">
-                  <select class="select" id="periodicidadMod">
-                    <option value="false" selected>Sin periodicidad</option>
-                    <option value="true">Periódica</option>
-                    </select>
-                    <label>Establecer periodicidad de la cita</label>
-                </div>
+
             
           </div>
           <div class="modal-footer">
-            <a class="btn" style="color:white !important" onclick="modificarCita();">Modificar Cita</a>
+            <a class="btn" style="color:white !important" onclick="modificarMedicacion();">Modificar Medicación</a>
             <a class="btn" style="color:white !important" onclick="modalClose('#modal3')">Cancelar</a>
           </div>
          </div>
@@ -208,7 +138,7 @@
     <div class="drag-target"></div>
   </body>
 
-  <script src="../js/calendarioCitas.js"></script>
+  <script src="../js/calendarioMedicacion.js"></script>
 
 
 </html>

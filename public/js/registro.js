@@ -163,7 +163,9 @@ function handleSignUp() {
             medicaciones,
             evolucionKm,
             evolucionPeso,
-            evolucionIMC
+            evolucionIMC,
+            amigos,
+            solicitudesAmistad
           })
           .then(function () {
 
