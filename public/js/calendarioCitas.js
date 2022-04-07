@@ -3,9 +3,11 @@ var permisoCalendario;
 var cal;
 var fecha=new Date();
 var aPoner=[];
-var eventosTodos=[];
+var eventosTodos=new Array();
 var usuario;
 var citaSeleccionada;
+var citasMedicas=new Array;
+
 
 firebase.auth().onAuthStateChanged(function(user) {
 var db = firebase.firestore();
@@ -13,52 +15,88 @@ var db = firebase.firestore();
  db.collection("usuarios").doc(usuario).get().then(function (doc){
   if(doc &&doc.exists){
     var myData = doc.data();
-    var citasMedicas = myData.citasMedicas;
-    citasMedicas.forEach(function(cita){
-      var object = new Object();
-      var contenido = cita.split("##")
-      var especialidad = contenido[0]
-      var fecha = contenido[1]
-      var hora = contenido[2]
-      var periodica = contenido[3]
-      var fechaOriginal= fecha.split("/")
-      var fechaParseada = fechaOriginal[2]+"-"+fechaOriginal[1]+"-"+fechaOriginal[0]
-      object.id= especialidad + " " + fecha
-      object.title=especialidad +" " + fecha
-      object.start=fechaParseada;
-      object.end= fechaParseada;
-      object.backgroundColor="blue";
-      object.description="Tienes una consulta de " + especialidad + " el día " + fecha + " a las " + hora;
-      object.borrarBD=cita;
-      eventosTodos.push(object);
-
-
-    
-    })
-        var calendarEl = document.getElementById('calendar');
-        cal = new FullCalendar.Calendar(calendarEl, {
-        eventClick: function(info) {
-          console.log("Object",info.event)
-          fecha=info.event.start
-          citaSeleccionada=info.event.extendedProps.borrarBD;
-          document.getElementById("tituloCita").innerText=info.event.title;
-          document.getElementById("descriCita").innerText=info.event.extendedProps.description;            
-          modalOpen("#modal")
-    },
-    events: eventosTodos,
-    locale: 'es'
-    })
-    cal.render();
+     citasMedicas = myData.citasMedicas;
   }
+}).then(function(){
+  meterCitas(citasMedicas);
 })
 })
+
+function meterCitas(citasMedicas){
+  citasMedicas.forEach(function(cita){
+    var object = new Object();
+    var contenido = cita.split("##")
+    var especialidad = contenido[0]
+    var fecha = contenido[1]
+    var hora = contenido[2]
+    var periodica = contenido[3]
+    var fechaOriginal= fecha.split("/")
+    var fechaParseada = fechaOriginal[2]+"-"+fechaOriginal[1]+"-"+fechaOriginal[0]
+
+    object.id= especialidad + " " + fecha
+    object.title=especialidad +" " + fecha
+    object.start=fechaParseada;
+    object.end= fechaParseada;
+    object.backgroundColor="blue";
+    object.description="Tienes una consulta de " + especialidad + " el día " + fecha + " a las " + hora;
+    object.borrarBD=cita;
+    eventosTodos.push(object);
+
+    if(periodica=="true"){
+      var valorPeriodicidad = parseInt(contenido[4]);
+      var i=valorPeriodicidad;
+      while(i<1095){
+        var object = new Object()
+        var dateParseada = new Date(Date.parse(fechaParseada));
+        dateParseada.setDate(dateParseada.getDate()+i);
+        object.description="Consulta periódica de " +especialidad
+        object.id= especialidad 
+        object.title=especialidad 
+        object.start=dateParseada;
+        object.end= dateParseada;
+        object.backgroundColor="blue";
+        object.borrarBD=cita;
+        eventosTodos.push(object);
+        i=i+valorPeriodicidad;
+      }
+      
+    }
+
+
+
+  
+  })
+ 
+      var calendarEl = document.getElementById('calendar');
+      cal = new FullCalendar.Calendar(calendarEl, {
+      eventClick: function(info) {
+        console.log("Object",info.event)
+        fecha=info.event.start
+        citaSeleccionada=info.event.extendedProps.borrarBD;
+        document.getElementById("tituloCita").innerText=info.event.title;
+        document.getElementById("descriCita").innerText=info.event.extendedProps.description;            
+        modalOpen("#modal")
+  },
+  events: eventosTodos,
+  locale: 'es'
+  })
+  cal.render();
+}
 function modalClose(m){
 $(m).modal('close'); 
 }
 function modalOpen(m){
 $(m).modal('open');
 }	
-
+function comprobarPeriodicidad(){
+var periodicidad = document.getElementById("periodicidad").value;
+if(periodicidad=="true"){
+  document.getElementById("divPeriodicidad").style.display="block";
+}
+else{
+  document.getElementById("divPeriodicidad").style.display="none";
+}
+}
 function añadirCita(){
   var r = confirm("Estás seguro de añadir la cita?");
   if (r == true) {
@@ -66,7 +104,8 @@ function añadirCita(){
     var fecha = document.getElementById("fechaPicker").value;
     var hora = document.getElementById("timePicker").value;
     var periodicidad = document.getElementById("periodicidad").value;
-    var cita=especialidad+"##"+fecha+"##"+hora+"##"+periodicidad;
+    var valorPeriodicidad = document.getElementById("valorPeriodicidad").value;
+    var cita=especialidad+"##"+fecha+"##"+hora+"##"+periodicidad+"##"+valorPeriodicidad;
     var db = firebase.firestore();
     db.collection("usuarios").doc(usuario).update({
       citasMedicas: firebase.firestore.FieldValue.arrayUnion(cita)
@@ -98,6 +137,8 @@ $(document).ready(function(){
       weekdaysAbbrev: ["D","L", "M", "M", "J", "V", "S"]
   }
   })
+
+
 });
 
 function modificarCita(){
@@ -105,8 +146,10 @@ var citaModificar  = citaSeleccionada;
 var especialidad= document.getElementById("especialidadMod").value
 var fecha = document.getElementById("fechaPickerMod").value
 var hora = document.getElementById("timePickerMod").value
-var periodicidad = document.getElementById("periodicidadMod").value
-var citaModificada = especialidad + "##" + fecha + "##" + hora + "##" + periodicidad;
+
+var trozoDerecha = citaModificar.split("##")[3] + "##" + citaModificar.split("##")[4]
+
+var citaModificada = especialidad + "##" + fecha + "##" + hora + "##" + trozoDerecha;
 var r = confirm("Estas seguro de que quieres modificar la cita?");
 
 if(r==true){
@@ -117,7 +160,7 @@ db.collection("usuarios").doc(usuario).update({
   db.collection("usuarios").doc(usuario).update({
     citasMedicas:firebase.firestore.FieldValue.arrayUnion(citaModificada)
   }).then(function(){
-    alert("Descripción modificada correctamente.")
+    alert("Cita modificada correctamente.")
     location.reload();
   })
 
@@ -159,7 +202,6 @@ M.Timepicker.init(hora, {
 });
 $(hora).val(citaPartes[2])
 $(hora).attr('selected','selected')
-document.getElementById("periodicidadMod").value=citaPartes[3];
 modalOpen('#modal3')
 }
 function eliminarCita(){

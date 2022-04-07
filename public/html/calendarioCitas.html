@@ -111,10 +111,22 @@
                 <input id="timePicker" style="cursor:pointer" type="text" class="timepicker">
                 <label>Hora Cita</label>
               </div>
-                <div class ="input-field col s6">
+                <div onchange="comprobarPeriodicidad();" class ="input-field col s6">
                   <select class="select" id="periodicidad">
                     <option value="false" selected>Sin periodicidad</option>
                     <option value="true">Periódica</option>
+                    </select>
+                    <label>Periodicidad</label>
+                </div>
+                <div style="display:none;" id="divPeriodicidad" class="input-field col s6">
+                  <select class="select" id="valorPeriodicidad">
+                    <option value="7" selected>Cada semana</option>
+                    <option value="14">Cada 2 semanas</option>
+                    <option value="21">Cada 3 semanas</option>
+                    <option value="30">Cada mes</option>
+                    <option value="90">Cada 3 meses</option>
+                    <option value="180">Cada 6 meses</option>
+                    <option value="365">Cada año</option>
                     </select>
                     <label>Establecer periodicidad de la cita</label>
                 </div>
@@ -185,14 +197,7 @@
                 <input id="timePickerMod" style="cursor:pointer" type="text" class="timepicker">
                 <label>Hora Cita</label>
               </div>
-                <div class ="input-field col s6">
-                  <select class="select" id="periodicidadMod">
-                    <option value="false" selected>Sin periodicidad</option>
-                    <option value="true">Periódica</option>
-                    </select>
-                    <label>Establecer periodicidad de la cita</label>
-                </div>
-            
+
           </div>
           <div class="modal-footer">
             <a class="btn" style="color:white !important" onclick="modificarCita();">Modificar Cita</a>

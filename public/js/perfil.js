@@ -154,7 +154,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                 var nombreCompleto = myData.nombre +" " + myData.apellidos;
                 var edad = myData.fechaNacimiento;
                 
-                var pais = myData.pais;
+                var nacionalidad = myData.nacionalidad;
                  usuario= myData.nombreUsuario;
                 var telefono = myData.telefono;
                 var peso = myData.peso;
@@ -194,7 +194,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                 document.getElementById("edadSpan").innerText="  "+edad;
                 document.getElementById("correoSpan").innerText=email;
                 document.getElementById("usuarioSpan").innerText="  "+usuario;
-                document.getElementById("paisSpan").innerText=pais;
+                document.getElementById("nacionalidadSpan").innerText=nacionalidad;
 
                 document.getElementById("telefonoInput").value=telefono;
 

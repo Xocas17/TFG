@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  var select = document.getElementById("pais")
+  var select = document.getElementById("nacionalidad")
   M.FormSelect.init(select);
   var select = document.getElementById("provincia")
   M.FormSelect.init(select);  
@@ -21,15 +21,7 @@ $(document).ready(function(){
   }
   })
 });
-function comprobarPais(){
-  var pais= document.getElementById("pais").value;
-  if(pais=="Spain"){
-    document.getElementById("divProvincia").style.display="block";
-  }
-  else{
-    document.getElementById("divProvincia").style.display="none";
-  }
-}
+
 function handleSignUp() {
 
   $("html").css("cursor", "progress");
@@ -80,7 +72,7 @@ function handleSignUp() {
   var fechaNac = document.getElementById("fechaNac").value; 
   var perfil = document.getElementById("perfil").value;
   var altura = document.getElementById("altura").value;
-  var pais = document.getElementById("pais").value;
+  var nacionalidad = document.getElementById("nacionalidad").value;
   var provincia = document.getElementById("provincia").value;
   var peso = document.getElementById("peso").value;
   var metrosCuadrados = (altura*altura)/10000;
@@ -91,7 +83,12 @@ function handleSignUp() {
   var evolucionPeso = new Array();
   var evolucionKm = new Array();
   var evolucionIMC = new Array();
+  var amigos = new Array();
+  var solicitudesAmistad = new Array();
   var kmDiarios=0;
+  var colesterol="";
+  var trigliceridos="";
+
   if(telefono.length!=9){
     $("html").css("cursor", "default");
     alert("Debes introducir un número de teléfono válido");
@@ -148,7 +145,7 @@ function handleSignUp() {
             apellidos,
             perfil,
             altura,
-            pais,
+            nacionalidad,
             provincia,
             peso,
             imc,
@@ -165,13 +162,14 @@ function handleSignUp() {
             evolucionPeso,
             evolucionIMC,
             amigos,
-            solicitudesAmistad
+            solicitudesAmistad,
+            telefono
           })
           .then(function () {
 
             $("html").css("cursor", "default");
             alert("Usuario registrado correctamente")
-            location.href="html/menuPrincipal.html"
+            location.href="menuPrincipal.html"
           
           })
           .catch(function (error) {
