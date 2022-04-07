@@ -6,7 +6,7 @@ var aPoner=[];
 var eventosTodos=new Array();
 var usuario;
 var citaSeleccionada;
-var citasMedicas=new Array;
+var citasMedicas=new Array();
 
 
 firebase.auth().onAuthStateChanged(function(user) {

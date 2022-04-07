@@ -3,55 +3,71 @@ var permisoCalendario;
 var cal;
 var fecha=new Date();
 var aPoner=[];
-var eventosTodos=[];
+var eventosTodos=new Array();
 var usuario;
 var medicacionSeleccionada;
+var medicaciones=new Array();
+
 
 firebase.auth().onAuthStateChanged(function(user) {
-var db = firebase.firestore();
+ var db = firebase.firestore();
  usuario = user.email;
  db.collection("usuarios").doc(usuario).get().then(function (doc){
   if(doc &&doc.exists){
-    var myData = doc.data();
-    var medicaciones = myData.medicaciones;
-    medicaciones.forEach(function(medicacion){
-      var object = new Object();
-      var contenido = medicacion.split("##")
-      var especialidad = contenido[0]
-      var fecha = contenido[1]
-      var hora = contenido[2]
-      var periodica = contenido[3]
-      var fechaOriginal= fecha.split("/")
-      var fechaParseada = fechaOriginal[2]+"-"+fechaOriginal[1]+"-"+fechaOriginal[0]
-      object.id= especialidad + " " + fecha
-      object.title=especialidad +" " + fecha
-      object.start=fechaParseada;
-      object.end= fechaParseada;
-      object.backgroundColor="blue";
-      object.description="Tienes una consulta de " + especialidad + " el día " + fecha + " a las " + hora;
-      object.borrarBD=medicacion;
-      eventosTodos.push(object);
+     var myData = doc.data();
+     medicaciones = myData.medicaciones;
+  }
+}).then(function(){
+  meterMedicaciones(medicaciones);
+})
+})
 
+function meterMedicaciones(medicaciones){
+  medicaciones.forEach(function(medicacion){
+    var object = new Object();
+    var contenido = medicacion.split("##")
+    var nombre = contenido[0]
+    var frecuencia = contenido[1]
+    var fechaInicio = contenido[2]
+    var fechaFin = contenido[3]
+    var horaInicio = contenido[4]
+    var fechaInicioOriginal= fechaInicio.split("/")
+    var fechaParseada = fechaInicioOriginal[2]+"-"+fechaInicioOriginal[1]+"-"+fechaInicioOriginal[0]
+    var fechaFinOriginal = fechaFin.split("/");
+    var fechaFinParseada = fechaFinOriginal[2]+"-"+fechaFinOriginal[1]+"-"+fechaFinOriginal[0]
+    object.id= nombre + " " + fechaInicio
+    object.title=nombre +" " + fechaInicio
+    object.start=fechaParseada;
+    object.end= fechaFinParseada;
+    object.backgroundColor="blue";
+    object.description=  nombre + " a las "+ horaInicio+ " del día " + fechaInicio +" al dia " + fechaFin +" cada " + frecuencia +" horas";
+    object.borrarBD=medicacion;
+    eventosTodos.push(object);
 
     
-    })
-        var calendarEl = document.getElementById('calendar');
-        cal = new FullCalendar.Calendar(calendarEl, {
-        eventClick: function(info) {
-          console.log("Object",info.event)
-          fecha=info.event.start
-          medicacionSeleccionada=info.event.extendedProps.borrarBD;
-          document.getElementById("tituloMedicacion").innerText=info.event.title;
-          document.getElementById("descriMedicacion").innerText=info.event.extendedProps.description;            
-          modalOpen("#modal")
-    },
-    events: eventosTodos,
-    locale: 'es'
-    })
-    cal.render();
-  }
-})
-})
+      
+    
+
+
+
+  
+  })
+ 
+      var calendarEl = document.getElementById('calendar');
+      cal = new FullCalendar.Calendar(calendarEl, {
+      eventClick: function(info) {
+        console.log("Object",info.event)
+        fecha=info.event.start
+        medicacionSeleccionada=info.event.extendedProps.borrarBD;
+        document.getElementById("tituloMedicacion").innerText=info.event.title;
+        document.getElementById("descriMedicacion").innerText=info.event.extendedProps.description;            
+        modalOpen("#modal")
+  },
+  events: eventosTodos,
+  locale: 'es'
+  })
+  cal.render();
+}
 function modalClose(m){
 $(m).modal('close'); 
 }
@@ -62,11 +78,12 @@ $(m).modal('open');
 function añadirMedicacion(){
   var r = confirm("Estás seguro de añadir la medicación?");
   if (r == true) {
-    var especialidad = document.getElementById("especialidad").value;
-    var fecha = document.getElementById("fechaPicker").value;
-    var hora = document.getElementById("timePicker").value;
-    var periodicidad = document.getElementById("periodicidad").value;
-    var medicacion=especialidad+"##"+fecha+"##"+hora+"##"+periodicidad;
+    var nombre = document.getElementById("nombreMedicacion").value;
+    var frecuencia = document.getElementById("frecuencia").value;
+    var fechaInicio = document.getElementById("fechaIPicker").value;
+    var fechaFin = document.getElementById("fechaFPicker").value;
+    var horaInicio = document.getElementById("timePicker").value;
+    var medicacion=nombre+"##"+frecuencia+"##"+fechaInicio+"##"+fechaFin+"##"+horaInicio;
     var db = firebase.firestore();
     db.collection("usuarios").doc(usuario).update({
       medicaciones: firebase.firestore.FieldValue.arrayUnion(medicacion)
@@ -97,15 +114,19 @@ $(document).ready(function(){
       weekdaysAbbrev: ["D","L", "M", "M", "J", "V", "S"]
   }
   })
+
+
 });
 
 function modificarMedicacion(){
 var medicacionModificar  = medicacionSeleccionada;
-var especialidad= document.getElementById("especialidadMod").value
-var fecha = document.getElementById("fechaPickerMod").value
-var hora = document.getElementById("timePickerMod").value
-var periodicidad = document.getElementById("periodicidadMod").value
-var medicacionModificada = especialidad + "##" + fecha + "##" + hora + "##" + periodicidad;
+var nombreMedicacion= document.getElementById("nombreMedicacionMod").value
+var frecuencia = document.getElementById("frecuenciaMod").value
+var fechaInicio = document.getElementById("fechaIPickerMod").value
+var fechaFin = document.getElementById("fechaFPickerMod").value
+var horaInicio = document.getElementById("timePickerMod").value
+
+var medicacionModificada = nombreMedicacion + "##" + frecuencia + "##" + fechaInicio + "##" + fechaFin + "##" + horaInicio;
 var r = confirm("Estas seguro de que quieres modificar la medicación?");
 
 if(r==true){
@@ -116,7 +137,7 @@ db.collection("usuarios").doc(usuario).update({
   db.collection("usuarios").doc(usuario).update({
     medicaciones:firebase.firestore.FieldValue.arrayUnion(medicacionModificada)
   }).then(function(){
-    alert("Descripción modificada correctamente.")
+    alert("Medicación modificada correctamente.")
     location.reload();
   })
 
@@ -131,12 +152,15 @@ function abrirMedicacion(){
 modalClose('#modal')
 var medicacionModificar  = medicacionSeleccionada;
 var medicacionPartes = medicacionModificar.split("##");
-var select = document.getElementById("especialidadMod");
-select.value=medicacionPartes[0];
-M.FormSelect.init(select);  
-var minDate = new Date()
+var nombre = document.getElementById("nombreMedicacionMod");
+nombre.value=medicacionPartes[0];  
 
-var fecha = document.getElementById('fechaPickerMod');
+var select = document.getElementById("frecuenciaMod");
+select.value=medicacionPartes[1];
+M.FormSelect.init(select); 
+
+var minDate = new Date()
+var fecha = document.getElementById('fechaIPickerMod');
 M.Datepicker.init(fecha,{
   format: 'dd/mm/yyyy',
   minDate: minDate,
@@ -148,20 +172,35 @@ M.Datepicker.init(fecha,{
     weekdaysAbbrev: ["D","L", "M", "M", "J", "V", "S"]
 }
 })
-$(fecha).val(medicacionPartes[1])
+$(fecha).val(medicacionPartes[2])
+$(fecha).attr('selected','selected')
 
-var hora = document.getElementById('timePickerMod')
-M.Timepicker.init(hora, {
-  defaultTime: medicacionPartes[2],
+var fechaFin = document.getElementById('fechaFPickerMod')
+M.Datepicker.init(fechaFin,{
+  format: 'dd/mm/yyyy',
+  minDate: minDate,
+  i18n: {
+    months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+    monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Set", "Oct", "Nov", "Dic"],
+    weekdays: ["Domingo","Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+    weekdaysShort: ["Dom","Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
+    weekdaysAbbrev: ["D","L", "M", "M", "J", "V", "S"]
+}
+})
+$(fechaFin).val(medicacionPartes[3])
+$(fechaFin).attr('selected','selected')
+
+var horaInicio = document.getElementById('timePickerMod')
+M.Timepicker.init(horaInicio, {
+  defaultTime: medicacionPartes[4],
   twelveHour: false
 
 });
-$(hora).val(medicacionPartes[2])
-$(hora).attr('selected','selected')
-document.getElementById("periodicidadMod").value=medicacionPartes[3];
+$(horaInicio).val(medicacionPartes[4])
+$(horaInicio).attr('selected','selected')
 modalOpen('#modal3')
 }
-function eliminarMedicación(){
+function eliminarMedicacion(){
 var r = confirm("Estás seguro de borrar la medicación?");
   if (r == true) {
     var db = firebase.firestore();
