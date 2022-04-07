@@ -71,13 +71,7 @@ function añadirCita(){
     db.collection("usuarios").doc(usuario).update({
       citasMedicas: firebase.firestore.FieldValue.arrayUnion(cita)
     }).then(function(){
-      admin.firestore().collection('mail').add({
-        to: 'xocas89@gmail.com',
-        message: {
-          subject: 'Hello from Firebase!',
-          html: 'This is an <code>HTML</code> email body.',
-        },
-      })
+
       $('#modal').modal('close');
       alert("Cita añadida correctamente");
       location.reload();
