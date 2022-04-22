@@ -1,0 +1,82 @@
+<html lang="es">
+ 
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Menu</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="../js/firebase/firebase.js"></script>
+    <script src="../js/firebase/firebaseconfig.js"></script>
+    <link href="../css/global.css" rel="stylesheet">
+    <link href="../css/menuPrincipal.css" rel="stylesheet">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/materialize.min.js"></script>
+    <link href="../css/materialize.css" rel="stylesheet">
+    <link href="../css/materialize.min.css" rel="stylesheet">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/tiposGrafico.js"></script>
+  </head>
+ 
+  <header>
+   
+   
+   
+
+  <div style="position:relative; margin-left:auto; margin-right:auto;">
+    <h4>Salud Vital</h4>
+  </div>
+  </header>
+
+  <div class="fixed-action-btn" style="bottom:90px !important; right:30px !important;">
+    <a href="menuPrincipal.html" class="btn-floating btn-large">
+      <i class="large material-icons" style="font-size: 2.2rem;">arrow_back</i>
+    </a>
+  </div>
+
+<body>
+  <main>
+    <div class="container service">
+  
+      <div class="row">
+        <div class="col s12 m6 l4 center-align">
+          <div class="card" onclick="location.href='graficos.html?tipoGrafico=peso'">
+            <div class="card-content">
+              <i class="material-icons large">show_chart</i>
+              <h5>Evolución Peso</h5>
+   
+  
+            </div>
+        
+          </div>
+        </div>
+    
+        <div class="col s12 m6 l4 center-align">
+          <div class="card" onclick="location.href='graficos.html?tipoGrafico=imc'">
+            <div class="card-content">
+              <i class="material-icons large">show_chart</i>
+              <h5>Evolución IMC</h5>
+        
+            </div>
+            
+          </div>
+        </div>
+    
+        <div class="col s12 m6 l4 center-align">
+          <div class="card" onclick="location.href='graficos.html?tipoGrafico=km'">
+            <div class="card-content">
+              <i class="material-icons large">show_chart</i>
+              <h5>Evolución Kilómetros Diarios</h5>
+
+            </div>
+       
+          </div>
+        </div>
+    
+
+      </div>
+    </div>
+  </main>
+</body>
+</html>

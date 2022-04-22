@@ -267,7 +267,7 @@ var idioma_español = {
 } 
 
 
-var table = $('.mydatatable').removeAttr('width').DataTable({
+var table = $('.mydatatable').DataTable({
   "language":idioma_español,
 
 });
