@@ -15,7 +15,9 @@ docRef.get().then(function (querySnapshot){
         var colesterol = myData.colesterol;
         var trigliceridos = myData.trigliceridos;
         var provincia = myData.provincia;
-        var kmMedia = calcularMedia(myData.evolucionKm);
+        var km = myData.evolucionKm;
+        console.log("km",km)
+        var kmMedia = calcularMedia(Object.values(km));
         console.log("Entras")
         añadir= añadir + ('<tr><td>'+usuario+'</td><td>'+edad+'</td><td>'+peso+'</td><td>'+altura+'</td><td>'+imc.toFixed(2)+'</td><td>'+colesterol+'</td><td>'+trigliceridos+'</td><td>'+provincia+'</td><td>'+kmMedia+'</td>');
         
@@ -290,14 +292,15 @@ table.columns().every(function(){
 
 
 function calcularMedia(arrayKm){
+    console.log("Arraykm",arrayKm)
   var suma=0;
   var registros=0;
   arrayKm.forEach(function(km){
     registros++;
-    suma+=km;
+    suma+=parseInt(km);
   })
   if(registros!=0){
-    return suma/registros;
+    return (suma/registros).toFixed(2);
   }
   else{
     return 0;
