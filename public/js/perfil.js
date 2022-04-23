@@ -58,9 +58,7 @@ function actualizarDatos(){
     var fecha = dia +"/" + month+"/"+year;
     var metrosCuadrados = (altura*altura)/10000;
     var imc = peso/metrosCuadrados;
-    var entradaPeso = peso +"##" + fecha;
-    var entradaImc= imc +"##" + fecha;
-    var entradaKm = km +"##"+fecha; 
+
 
     if(km.length==0){
         km=0;
@@ -86,12 +84,13 @@ function actualizarDatos(){
         alert("Debes introducir una altura válida(en cm)");
         return;
       }
-    if(colesterol>1000 || colesterol <=0){
+      console.log("Colesterol",colesterol.length!=0)
+    if(colesterol.length!=0 && (colesterol>1000 || colesterol <=0)){
         $("html").css("cursor", "default");
         alert("Debes introducir un colesterol menor que 1000");
         return;
     }
-    if(trigliceridos>1000 || trigliceridos <=0){
+    if(trigliceridos!=="" && (trigliceridos>1000 || trigliceridos <=0)){
         $("html").css("cursor", "default");
         alert("Debes introducir unos triglicéridos menores que 1000");
         return;
@@ -116,9 +115,15 @@ function actualizarDatos(){
             correoMedicacion: correoMedicacion,
             colesterol: colesterol,
             trigliceridos:trigliceridos,
-            evolucionKm:firebase.firestore.FieldValue.arrayUnion(entradaKm),
-            evolucionPeso:firebase.firestore.FieldValue.arrayUnion(entradaPeso),
-            evolucionIMC:firebase.firestore.FieldValue.arrayUnion(entradaImc)
+            evolucionKm:{
+                [fecha]:km
+            },
+            evolucionPeso:{
+                [fecha]:peso
+            },
+            evolucionIMC:{
+                [fecha]:imc
+            }
         })
         .then(function () {
 

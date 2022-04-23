@@ -80,12 +80,11 @@ function handleSignUp() {
   var telefono = document.getElementById("telefono").value;
   var citasMedicas = new Array();
   var medicaciones = new Array();
-  var evolucionPeso = new Array();
-  var evolucionKm = new Array();
-  var evolucionIMC = new Array();
+  var evolucionPeso = {}
+  var evolucionKm = {}
+  var evolucionIMC = {}
   var amigos = new Array();
   var solicitudesAmistad = new Array();
-  var kmDiarios=0;
   var colesterol="";
   var trigliceridos="";
 
