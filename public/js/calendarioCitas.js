@@ -7,7 +7,7 @@ var eventosTodos=new Array();
 var usuario;
 var citaSeleccionada;
 var citasMedicas=new Array();
-
+var nombreUsuario;
 
 firebase.auth().onAuthStateChanged(function(user) {
 var db = firebase.firestore();
@@ -15,6 +15,7 @@ var db = firebase.firestore();
  db.collection("usuarios").doc(usuario).get().then(function (doc){
   if(doc &&doc.exists){
     var myData = doc.data();
+    nombreUsuario = myData.nombreUsuario;
      citasMedicas = myData.citasMedicas;
   }
 }).then(function(){
@@ -110,10 +111,20 @@ function añadirCita(){
     db.collection("usuarios").doc(usuario).update({
       citasMedicas: firebase.firestore.FieldValue.arrayUnion(cita)
     }).then(function(){
+      emailjs.init("3PR_-eTJj3PI9wL0d");
+      var tempParams= {
+        usuario:  nombreUsuario,
+        especialidad: especialidad,
+        dia: fecha,
+        hora:hora,
+        email: usuario
+      }
+      emailjs.send('service_p9gzh5v','template_4kablqy',tempParams).then(function(){
+        $('#modal').modal('close');
+        alert("Cita añadida correctamente");
+        location.reload();
+      })
 
-      $('#modal').modal('close');
-      alert("Cita añadida correctamente");
-      location.reload();
     })
   } 
 }

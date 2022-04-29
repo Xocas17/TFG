@@ -7,7 +7,7 @@ var eventosTodos=new Array();
 var usuario;
 var medicacionSeleccionada;
 var medicaciones=new Array();
-
+var nombreUsuario;
 
 firebase.auth().onAuthStateChanged(function(user) {
  var db = firebase.firestore();
@@ -16,6 +16,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   if(doc &&doc.exists){
      var myData = doc.data();
      medicaciones = myData.medicaciones;
+     nombreUsuario= myData.nombreUsuario;
   }
 }).then(function(){
   meterMedicaciones(medicaciones);
@@ -88,9 +89,23 @@ function añadirMedicacion(){
     db.collection("usuarios").doc(usuario).update({
       medicaciones: firebase.firestore.FieldValue.arrayUnion(medicacion)
     }).then(function(){
-      $('#modal').modal('close');
-      alert("Medicación añadida correctamente");
-      location.reload();
+      emailjs.init("3PR_-eTJj3PI9wL0d");
+      var tempParams= {
+        usuario:  nombreUsuario,
+        email: usuario,
+        nombreMedicacion: nombre,
+        frecuencia: frecuencia,
+        fInicio:fechaInicio,
+        fFin: fechaFin,
+        hInicio: horaInicio
+      }
+      emailjs.send('service_p9gzh5v','template_glddij3',tempParams).then(function(){
+        $('#modal').modal('close');
+        alert("Medicación añadida correctamente");
+        location.reload();
+      })
+
+
     })
   } 
 }
