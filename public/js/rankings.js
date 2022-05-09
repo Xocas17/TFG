@@ -16,10 +16,13 @@ docRef.get().then(function (querySnapshot){
         var trigliceridos = myData.trigliceridos;
         var provincia = myData.provincia;
         var km = myData.evolucionKm;
+        var nacionalidad = myData.nacionalidad;
         console.log("km",km)
+        var urlDefault="../src/img/perfilDefault.png";
         var kmMedia = calcularMedia(Object.values(km));
+        var imgUrl = "https://firebasestorage.googleapis.com/v0/b/tfginfo-be99f.appspot.com/o/fotosUsuario%2F" + encodeURIComponent(usuario) + ".jpeg?alt=media";
         console.log("Entras")
-        añadir= añadir + ('<tr><td>'+usuario+'</td><td>'+edad+'</td><td>'+peso+'</td><td>'+altura+'</td><td>'+imc.toFixed(2)+'</td><td>'+colesterol+'</td><td>'+trigliceridos+'</td><td>'+provincia+'</td><td>'+kmMedia+'</td>');
+        añadir= añadir + (`<tr><td><a><img style="float:left;width:20%;border-radius:50%;" id="imgPerfil" class="circle"  src="`+ imgUrl + `" onerror="this.onerror=null;this.src='` + urlDefault + `';"></a>`+usuario+`</td><td>`+edad+`</td><td>`+peso+`</td><td>`+altura+`</td><td>`+imc.toFixed(2)+`</td><td>`+colesterol+`</td><td>`+trigliceridos+`</td><td>`+provincia+`</td><td>`+nacionalidad+`</td><td>`+kmMedia+`</td>`);
         
     })
 }).then(function(){

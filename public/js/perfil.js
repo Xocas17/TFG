@@ -109,8 +109,6 @@ function actualizarDatos(){
             altura:altura,
             peso:peso,
             imc:imc,
-            smsCitas: telefonoCitas,
-            smsMedicacion: telefonoMedicacion,
             correoCitas: correoCitas,
             correoMedicacion: correoMedicacion,
             colesterol: colesterol,
@@ -172,8 +170,6 @@ firebase.auth().onAuthStateChanged(function (user) {
                 var mes = date.getMonth()+1;
                 var dia = date.getDate();
                 var privacidad=myData.perfil;
-                var tCitas = myData.smsCitas;
-                var tMedic = myData.smsMedicacion;
                 var cCitas = myData.correoCitas;
                 var cMedic = myData.correoMedicacion;
 

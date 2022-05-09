@@ -149,8 +149,6 @@ function handleSignUp() {
             peso,
             imc,
             fechaNacimiento:fechaNac,
-            smsCitas:false,
-            smsMedicacion:false,
             correoCitas:false,
             correoMedicacion:false,
             colesterol,
