@@ -73,26 +73,26 @@ function actualizarDatos(){
         alert("Debes introducir un número de teléfono válido");
         return;
     }
-    if(peso.includes(",")){
+    if(peso.includes(",") || (peso<=0 || peso > 500) ){//
         $("html").css("cursor", "default");
         alert("El separador decimal es '.'");
         return;
       }
 
-    if(altura<50||altura>250){
+    if(altura.length==0||(altura<50||altura>250)){
         $("html").css("cursor", "default");
         alert("Debes introducir una altura válida(en cm)");
         return;
       }
-      console.log("Colesterol",colesterol.length!=0)
+    
     if(colesterol.length!=0 && (colesterol>1000 || colesterol <=0)){
         $("html").css("cursor", "default");
-        alert("Debes introducir un colesterol menor que 1000");
+        alert("Debes introducir un colesterol menor que 1000 y mayor que 0");
         return;
     }
     if(trigliceridos!=="" && (trigliceridos>1000 || trigliceridos <=0)){
         $("html").css("cursor", "default");
-        alert("Debes introducir unos triglicéridos menores que 1000");
+        alert("Debes introducir unos triglicéridos menores que 1000 y mayores que 0");
         return;
     }
     if(perfil ==true){

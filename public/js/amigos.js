@@ -4,31 +4,39 @@ var usuario;
 function añadirAmigo(){
 $("html").css("cursor", "progress");
 var amigoAñadir = document.getElementById("usuarioAñadir").value;
-var db = firebase.firestore();
-var docRef = db.collection("usuarios").where("nombreUsuario","==",amigoAñadir);
-var emailAmigoAñadir;
-docRef.get().then(function (querySnapshot){
-    querySnapshot.forEach(function (doc) {
-        emailAmigoAñadir=doc.id;
-    })
-}).then(function(){
-    try{
-        db.collection("usuarios").doc(emailAmigoAñadir).update({
-            solicitudesAmistad: firebase.firestore.FieldValue.arrayUnion(usuario)
-        }).then(function(){
-            $("html").css("cursor", "default");
-            alert("Solicitud de amistad enviada correctamente");
-            location.reload();
+if(amigoAñadir.length!==0){
+    var db = firebase.firestore();
+    var docRef = db.collection("usuarios").where("nombreUsuario","==",amigoAñadir);
+    var emailAmigoAñadir;
+    docRef.get().then(function (querySnapshot){
+        querySnapshot.forEach(function (doc) {
+            emailAmigoAñadir=doc.id;
         })
-        
-
-    } catch(error){
-        $("html").css("cursor", "default");
-        alert("Ha habido un error, es posible que el usuario introducido no exista");
-        location.reload();
-    }
-
-})
+    }).then(function(){
+        try{
+            db.collection("usuarios").doc(emailAmigoAñadir).update({
+                solicitudesAmistad: firebase.firestore.FieldValue.arrayUnion(usuario)
+            }).then(function(){
+                $("html").css("cursor", "default");
+                alert("Solicitud de amistad enviada correctamente");
+                location.reload();
+            })
+            
+    
+        } catch(error){
+            $("html").css("cursor", "default");
+            alert("Ha habido un error, es posible que el usuario introducido no exista");
+            location.reload();
+        }
+    
+    })
+    
+}
+else{
+    $("html").css("cursor", "default");
+    alert("El campo de nombre de usuario está vacío.");
+    location.reload();
+}
 
 }
 function borrarAmigo(amigo){

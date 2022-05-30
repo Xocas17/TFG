@@ -104,6 +104,14 @@ function añadirCita(){
     var especialidad = document.getElementById("especialidad").value;
     var fecha = document.getElementById("fechaPicker").value;
     var hora = document.getElementById("timePicker").value;
+    if(fecha.length==0){
+      alert("Debes introducir la fecha de la cita");
+      return;
+    }
+    if(hora.length==0){
+      alert("Debes introducir la hora de la cita");
+      return;
+    }
     var periodicidad = document.getElementById("periodicidad").value;
     var valorPeriodicidad = document.getElementById("valorPeriodicidad").value;
     var cita=especialidad+"##"+fecha+"##"+hora+"##"+periodicidad+"##"+valorPeriodicidad;
@@ -157,7 +165,14 @@ var citaModificar  = citaSeleccionada;
 var especialidad= document.getElementById("especialidadMod").value
 var fecha = document.getElementById("fechaPickerMod").value
 var hora = document.getElementById("timePickerMod").value
-
+if(fecha.length==0){
+  alert("Debes introducir la fecha de la cita");
+  return;
+}
+if(hora.length==0){
+  alert("Debes introducir la hora de la cita");
+  return;
+}
 var trozoDerecha = citaModificar.split("##")[3] + "##" + citaModificar.split("##")[4]
 
 var citaModificada = especialidad + "##" + fecha + "##" + hora + "##" + trozoDerecha;

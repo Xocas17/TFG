@@ -47,12 +47,24 @@ function handleSignUp() {
 
   var contra1= document.getElementById("password").value;
   var contra2=document.getElementById("confirmPassword").value;
+
+  if(contra1.length<=4){
+    $("html").css("cursor", "default");
+    alert("La contraseña introducida es demasiado corta");
+    return;
+  }
   if(contra1!==contra2){
     $("html").css("cursor", "default");
     alert("Las contraseñas no coinciden");
     return;
   }
+
   var usuario = document.getElementById("usuario").value;
+  if(usuario.length==0){
+    $("html").css("cursor", "default");
+    alert("Debes introducir un nombre de usuario");
+    return;
+  }
   var db = firebase.firestore();
   var docRef = db.collection("usuarios").where("nombreUsuario","==",usuario);
   var existe=false;
@@ -61,7 +73,6 @@ function handleSignUp() {
         existe=true;
       });
   }).then(function(){
-
   if(existe==true){
     $("html").css("cursor", "default");
     alert("Ya existe ese nombre de usuario");
@@ -109,6 +120,11 @@ function handleSignUp() {
     alert("Debes introducir un nombre válido");
     return;
   }
+  if(peso.length==0){
+    $("html").css("cursor", "default");
+    alert("Debes introducir tu peso");
+    return;
+  }
 
   if(peso.includes(",")){
     $("html").css("cursor", "default");
@@ -116,12 +132,34 @@ function handleSignUp() {
     return;
   }
 
+  if(peso<=0 || peso >500){
+    $("html").css("cursor", "default");
+    alert("Debes introducir un peso válido");
+    return;
+  }
+
+  if(altura.length==0){
+    $("html").css("cursor", "default");
+    alert("Debes introducir tu altura");
+    return;
+  }
   if(altura<50||altura>250){
     $("html").css("cursor", "default");
     alert("Debes introducir una altura válida");
     return;
   }
+
+  if(nacionalidad==""){
+    $("html").css("cursor", "default");
+    alert("Debes seleccionar una nacionalidad");
+    return;
+  }
   
+  if(provincia==""){
+    $("html").css("cursor", "default");
+    alert("Debes seleccionar una provincia");
+    return;
+  }
   firebase
     .auth()
     .createUserWithEmailAndPassword(correo1, contra1)

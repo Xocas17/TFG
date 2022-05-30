@@ -78,12 +78,33 @@ $(m).modal('open');
 
 function añadirMedicacion(){
   var r = confirm("Estás seguro de añadir la medicación?");
+  
   if (r == true) {
     var nombre = document.getElementById("nombreMedicacion").value;
+    if(nombre.length==0){
+      alert("Debes introducir el nombre de la medicación");
+      return;
+    }
     var frecuencia = document.getElementById("frecuencia").value;
     var fechaInicio = document.getElementById("fechaIPicker").value;
+    if(fechaInicio.length==0){
+      alert("Debes introducir la fecha de inicio de la medicación");
+      return;
+    }
     var fechaFin = document.getElementById("fechaFPicker").value;
+    if(fechaFin.length==0){
+      alert("Debes introducir la fecha de finalización de la medicación");
+      return;
+    }
+    if(fechaFin<fechaInicio){
+      alert("La fecha de finalización no puede ser menor que la de inicio");
+      return;
+    }
     var horaInicio = document.getElementById("timePicker").value;
+    if(horaInicio.length==0){
+      alert("Debes introducir la hora de inicio de la medicación");
+      return;
+    }
     var medicacion=nombre+"##"+frecuencia+"##"+fechaInicio+"##"+fechaFin+"##"+horaInicio;
     var db = firebase.firestore();
     db.collection("usuarios").doc(usuario).update({
@@ -136,11 +157,30 @@ $(document).ready(function(){
 function modificarMedicacion(){
 var medicacionModificar  = medicacionSeleccionada;
 var nombreMedicacion= document.getElementById("nombreMedicacionMod").value
+if(nombreMedicacion.length==0){
+  alert("Debes introducir el nombre de la medicación");
+  return;
+}
 var frecuencia = document.getElementById("frecuenciaMod").value
 var fechaInicio = document.getElementById("fechaIPickerMod").value
+if(fechaInicio.length==0){
+  alert("Debes introducir la fecha de inicio de la medicación");
+  return;
+}
 var fechaFin = document.getElementById("fechaFPickerMod").value
+if(fechaFin.length==0){
+  alert("Debes introducir la fecha de finalización de la medicación");
+  return;
+}
+if(fechaFin<fechaInicio){
+  alert("La fecha de finalización no puede ser menor que la de inicio");
+  return;
+}
 var horaInicio = document.getElementById("timePickerMod").value
-
+if(horaInicio.length==0){
+  alert("Debes introducir la hora de inicio de la medicación");
+  return;
+}
 var medicacionModificada = nombreMedicacion + "##" + frecuencia + "##" + fechaInicio + "##" + fechaFin + "##" + horaInicio;
 var r = confirm("Estas seguro de que quieres modificar la medicación?");
 
