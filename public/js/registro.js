@@ -29,7 +29,11 @@ function handleSignUp() {
 
   var correo1 = document.getElementById("email").value.toLowerCase();
   var correo2 = document.getElementById("correo2").value.toLowerCase();
-
+  if(correo1.length==0){
+    $("html").css("cursor", "default");
+    alert("Debes introducir un correo");
+    return;
+  }
   if (correo2 != correo1) {
     $("html").css("cursor", "default");
     alert("Los correos no coinciden, evite usar copiar y pegar");
@@ -44,10 +48,25 @@ function handleSignUp() {
       return;
       }
   }
-
+  var db = firebase.firestore();
+  var docRef = db.collection("usuarios").where("correo","==",correo1);
+  docRef.get().then(function (querySnapshot){
+    console.log("Entra1")
+      querySnapshot.forEach(function(doc){
+        $("html").css("cursor", "default");
+        alert("Ya existe un usuario con ese correo");
+        return;
+      });
+  }).then(function(){
+ 
   var contra1= document.getElementById("password").value;
   var contra2=document.getElementById("confirmPassword").value;
 
+  if(contra1.length==0){
+    $("html").css("cursor", "default");
+    alert("Debes introducir una contraseña");
+    return;
+  }
   if(contra1.length<=4){
     $("html").css("cursor", "default");
     alert("La contraseña introducida es demasiado corta");
@@ -112,12 +131,12 @@ function handleSignUp() {
   }
   if(nombre.length<=1){
     $("html").css("cursor", "default");
-    alert("Debes introducir un nombre válido");
+    alert("Debes introducir tu nombre");
     return;
   }
   if(apellidos.length<=1){
     $("html").css("cursor", "default");
-    alert("Debes introducir un nombre válido");
+    alert("Debes introducir tus apellidos");
     return;
   }
   if(peso.length==0){
@@ -126,11 +145,6 @@ function handleSignUp() {
     return;
   }
 
-  if(peso.includes(",")){
-    $("html").css("cursor", "default");
-    alert("El separador decimal es '.'");
-    return;
-  }
 
   if(peso<=0 || peso >500){
     $("html").css("cursor", "default");
@@ -229,4 +243,5 @@ function handleSignUp() {
       }
     );
   }); 
+});
 }

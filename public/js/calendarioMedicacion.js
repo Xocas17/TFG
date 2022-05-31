@@ -76,6 +76,29 @@ function modalOpen(m){
 $(m).modal('open');
 }	
 
+function esMenorFinalizacion(fechaInicio,fechaFin){
+  var trozosIn = fechaInicio.split("/");
+  var trozosFin = fechaFin.split("/");
+  var esMenor = false;
+  if(trozosFin[2]<trozosIn[2]){
+    esMenor=true;
+  }
+  else{
+    if(trozosFin[2]==trozosIn[2]){
+      if(trozosFin[1]<trozosIn[1]){
+        esMenor=true;
+      }
+      else{
+        if(trozosFin[1]==trozosIn[1]){
+          if(trozosFin[0]<trozosIn[0]){
+            esMenor=true;
+          }
+        }
+      }
+    }
+  }
+  return esMenor;
+}
 function añadirMedicacion(){
   var r = confirm("Estás seguro de añadir la medicación?");
   
@@ -87,16 +110,20 @@ function añadirMedicacion(){
     }
     var frecuencia = document.getElementById("frecuencia").value;
     var fechaInicio = document.getElementById("fechaIPicker").value;
+
+    
     if(fechaInicio.length==0){
       alert("Debes introducir la fecha de inicio de la medicación");
       return;
     }
     var fechaFin = document.getElementById("fechaFPicker").value;
+
     if(fechaFin.length==0){
       alert("Debes introducir la fecha de finalización de la medicación");
       return;
     }
-    if(fechaFin<fechaInicio){
+
+    if(esMenorFinalizacion(fechaInicio,fechaFin)){
       alert("La fecha de finalización no puede ser menor que la de inicio");
       return;
     }
@@ -172,7 +199,7 @@ if(fechaFin.length==0){
   alert("Debes introducir la fecha de finalización de la medicación");
   return;
 }
-if(fechaFin<fechaInicio){
+if(esMenorFinalizacion(fechaInicio,fechaFin)){
   alert("La fecha de finalización no puede ser menor que la de inicio");
   return;
 }

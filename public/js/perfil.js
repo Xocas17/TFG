@@ -48,9 +48,7 @@ function actualizarDatos(){
     
     var perfil = document.getElementById("privacidad").checked;
     var correoCitas = document.getElementById("cCitas").checked;
-    var telefonoCitas = document.getElementById("tCitas").checked;
     var correoMedicacion =document.getElementById("cMedic").checked;
-    var telefonoMedicacion =document.getElementById("tMedic").checked;
     var date = new Date();
     var dia = date.getDate();
     var month = date.getMonth()+1;
@@ -73,12 +71,13 @@ function actualizarDatos(){
         alert("Debes introducir un número de teléfono válido");
         return;
     }
-    if(peso.includes(",") || (peso<=0 || peso > 500) ){//
-        $("html").css("cursor", "default");
-        alert("El separador decimal es '.'");
-        return;
-      }
+    
 
+    if((peso<=0 || peso > 500)){
+        $("html").css("cursor", "default");
+        alert("El peso debe estar comprendido entre 0 y 500");
+        return;
+    }
     if(altura.length==0||(altura<50||altura>250)){
         $("html").css("cursor", "default");
         alert("Debes introducir una altura válida(en cm)");
